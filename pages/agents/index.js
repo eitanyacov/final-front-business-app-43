@@ -48,23 +48,23 @@ function UserList({ agents }) {
   // ];
 
    const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'id', headerName: 'ID', width: 50 },
     {
       field: 'name',
       headerName: 'Name',
-      width: 150,
+      width: 130,
       editable: true,
     },
     {
       field: 'email',
       headerName: 'Email',
-      width: 180,
+      width: 160,
       editable: true,
     },
     {
       field: 'phoneNumber',
       headerName: 'Phone Number',
-      width: 150,
+      width: 130,
       editable: true,
     },
     {
@@ -99,9 +99,9 @@ function UserList({ agents }) {
 
   return (
     
-    <div>
+    <div className='ml-[200px]'>
       <h1 className="text-3xl font-semibold mb-3 mt-3 text-center">Agents list</h1>
-       <div style={{ height: 500, width: '100%', marginLeft: '10px', marginTop: '10px' }}>
+       <div style={{ height: 500, width: '95%', marginLeft: '10px', marginTop: '10px' }}>
       <DataGrid
         rows={agents}
         columns={columns}

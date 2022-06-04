@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 const Clients = ({ clients }) => {
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        { field: 'id', headerName: 'ID', width: 70 },
         {
           field: 'name',
           headerName: 'Name',
@@ -49,12 +49,12 @@ const Clients = ({ clients }) => {
     //         )))
     //     }
     // </div>
-     <div style={{ height: 500, width: '100%', marginLeft: '10px', marginTop: '10px' }}>
+     <div style={{ height: 500, width: '80%', marginLeft: '10px', marginTop: '10px', marginLeft: '200px' }}>
       <DataGrid
         rows={clients}
         columns={columns}
         pageSize={7}
-        rowsPerPageOptions={[5]}
+        rowsPerPageOptions={[7]}
         checkboxSelection
         disableSelectionOnClick
         // onRowClick={(params) => goToPage(params.id)}

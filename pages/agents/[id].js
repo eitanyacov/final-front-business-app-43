@@ -89,7 +89,7 @@ const AgentProfile = ({ agent, clients }) => {
                 <h1><span className="font-semibold">Phone Number:</span> {agent.phoneNumber}</h1>
                 <h1><span className="font-semibold">Started at:</span> {agent.startedAt}</h1>
             </div>
-            <div>
+            <div className='ml-[200px]'>
                 {/* <h1 className="ml-5 mt-3 mb-3 text-2xl font-semibold underline">Clients of {agent.name}</h1>
             {clients.map(client => (
                     <div key={client.id} className='ml-5 mt-4 shadow-md w-fit p-3 rounded-lg cursor-pointer'>
@@ -100,7 +100,7 @@ const AgentProfile = ({ agent, clients }) => {
                         <h1>- {client.agent.id}</h1>
                     </div>
                 ))} */}
-                <div style={{ height: 400, width: '100%' }}>
+                <div style={{ height: 400, width: '98%' }}>
       <DataGrid
         rows={clients}
         columns={columns}
