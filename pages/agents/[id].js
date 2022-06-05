@@ -84,10 +84,10 @@ const AgentProfile = ({ agent, clients }) => {
         return (
             <>
             <div key={agent.id} className='flex space-x-4 justify-center mt-5 mb-5'>
-                <h1><span className="font-semibold">Agent Name:</span> {agent.name}</h1>
-                <h1><span className="font-semibold">Email:</span> {agent.email}</h1>
-                <h1><span className="font-semibold">Phone Number:</span> {agent.phoneNumber}</h1>
-                <h1><span className="font-semibold">Started at:</span> {agent.startedAt}</h1>
+                <h1><span className="font-semibold text-gray-800">Agent Name:</span> {agent.name}</h1>
+                <h1><span className="font-semibold text-gray-800">Email:</span> {agent.email}</h1>
+                <h1><span className="font-semibold text-gray-800">Phone Number:</span> {agent.phoneNumber}</h1>
+                <h1><span className="font-semibold text-gray-800">Started at:</span> {agent.startedAt}</h1>
             </div>
             <div className='ml-[200px]'>
                 {/* <h1 className="ml-5 mt-3 mb-3 text-2xl font-semibold underline">Clients of {agent.name}</h1>

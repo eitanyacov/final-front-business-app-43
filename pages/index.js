@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import MiddleBar from '../components/MiddleBar';
+import ReportsBar from '../components/ReportsBar';
 import SideBarPage from '../components/SideBarPage';
 import TopBoxes from '../components/TopBoxes';
 
@@ -15,6 +16,7 @@ export default function Home() {
         <SideBarPage />
         <TopBoxes />
         <MiddleBar />
+        <ReportsBar />
       </main>
     </div>
   );

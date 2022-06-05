@@ -94,7 +94,6 @@ function UserList({ agents }) {
     // agents.map(a => router.push(`agents/${a.id}`))
       router.push(`agents/${id}`)
    
-   
   }
 
   return (

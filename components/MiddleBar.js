@@ -3,9 +3,7 @@ import RightChart from "./RightChart"
 
 const MiddleBar = () => {
   return (
-    // 
-        
-    // </div>
+   
     <div className="flex ml-[80px] md:ml-[200px] justify-between mt-2 space-x-3 p-3">
       <LeftChart />
       <RightChart />
