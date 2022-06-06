@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { FormControl, Select, MenuItem, InputLabel, Input, Button } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid';
+// import { DataGrid } from '@mui/x-data-grid';
 
 const Reports = ({ agents }) => {
   const [val, setVal] = useState();
   const [amount, setAmount] = useState();
+  const [agentName, setAgentName] = useState("");
   const [date, setDate] = useState("");
   const [submit, setSubmit] = useState(false);
   const[agent, setAgent] = useState({});
   const inputRef = useRef(null);
+  
 
   useEffect(()=> {
     getAgent();
@@ -27,6 +29,7 @@ const Reports = ({ agents }) => {
     setDate("");
     setAmount("");
     setAgent({});
+    setAgentName("");
     setSubmit(false)
 
     
@@ -35,19 +38,22 @@ const Reports = ({ agents }) => {
 
   const handleChange = (e) => {
     console.log(e.target.value);
+    setAgentName(e.target.value)
     setVal(e.target.value);
+
   }
 
   console.log(agent)
+  console.log(val)
 
   return (
     <div className='ml-[80px] md:ml-[205px] mt-7'>
  <FormControl fullWidth>
-  <InputLabel id="demo-simple-select-label">Agent</InputLabel>
+  <InputLabel id="demo-simple-select-label" >Agent</InputLabel>
   <Select
     labelId="demo-simple-select-label"
     id="demo-simple-select"
-    value={30}
+    value={agentName}
     label="Agent"
     onChange={handleChange}
   >
@@ -70,6 +76,7 @@ const Reports = ({ agents }) => {
         <h1 className='text-gray-700 text-2xl font-semibold'>Amount: <span className='text-4xl font-bold ml-2 text-gray-600'>{amount}</span></h1>
         <h1 className='text-gray-700 text-2xl font-semibold'>Date:<span className='text-4xl font-bold ml-2 text-gray-600'>{date}</span></h1>
       </div>
+      
    </div>
      )
    }

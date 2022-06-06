@@ -86,6 +86,18 @@ function UserList({ agents }) {
       width: 80,
       editable: true,
     },
+    {
+      field: 'action',
+      headerName: 'Disable Agent',
+      width: 200,
+      renderCell:() => {
+        return (
+          <div className='flex space-x-3'>
+            <h1 className='bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer'>Disable Agent</h1>
+          </div>
+        )
+      }
+    },
     
   ];
 

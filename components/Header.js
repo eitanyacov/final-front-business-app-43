@@ -1,9 +1,20 @@
+// import React, { useState } from 'react'
 import Link from "next/link";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import AddIcon from '@mui/icons-material/Add';
+import { useRouter } from 'next/router'
+
 
 const Header = () => {
+  const router = useRouter();
+  // const [route, setRoute] = useState(false);
+  // if(router.pathname == "/agents") {
+  //   setRoute(true);
+  // }
+
+  console.log("the route is: " + router.asPath)
   return (
     <div className="w-full shadow-md bg-white sticky top-0 z-50">
       <div className="flex justify-between h-14 max-w-6xl mx-auto px-3">
@@ -18,7 +29,17 @@ const Header = () => {
         <div className="flex items-center justify-center space-x-5">
           {/* <a href="/"> */}
           <Link href="/">
-             <div className="flex space-x-1 items-center">
+             <div className="flex space-x-4 items-center">
+                 {router.pathname == "/agents" && (
+                <div className="flex items-center space-x-2">
+                   <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300" onClick={()=> router.push("/reports")}>
+                     <AddIcon color="primary" className="cursor-pointer"/>
+                   </div>
+                   <h1>Add Invoice</h1>
+                </div>
+                  
+                 
+                 )}
                 <DashboardIcon color="primary"/>
                 <h1 className="font-semibold cursor-pointer">Dashboard</h1>
             </div>
