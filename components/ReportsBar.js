@@ -107,7 +107,7 @@ const ReportsBar = () => {
     ];
  
   return (
-    <div className="ml-[205px] mt-3">
+    <div className="ml-[80px] md:ml-[205px] mt-3">
         <h1 className="text-2xl text-gray-700 font-semibold ml-3">Reports</h1>
       <div
         style={{

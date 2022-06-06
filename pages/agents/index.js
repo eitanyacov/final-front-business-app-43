@@ -97,11 +97,9 @@ function UserList({ agents }) {
   }
 
   return (
-    
-    <div className='ml-[200px]'>
-      <h1 className="text-3xl font-semibold mb-3 mt-3 text-center">Agents list</h1>
-       <div style={{ height: 500, width: '95%', marginLeft: '10px', marginTop: '10px' }}>
-      <DataGrid
+  
+    <div className='h-[500px] w-[80%] ml-[80px] md:ml-[205px] mt-2'> 
+        <DataGrid
         rows={agents}
         columns={columns}
         pageSize={5}
@@ -111,7 +109,6 @@ function UserList({ agents }) {
         onRowClick={(params) => goToPage(params.id)}
         className='cursor-pointer'
       />
-    </div>
       {/* <h1 className="text-3xl font-bold ml-3 mt-3 text-center">List of Agents</h1>
       {agents.map(a => (
           <Link href={`agents/${a.id}`} passHref>
@@ -120,7 +117,6 @@ function UserList({ agents }) {
            </div>
           </Link>
         ))} */}
-     
      
     </div>
   );

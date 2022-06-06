@@ -49,7 +49,7 @@ const Clients = ({ clients }) => {
     //         )))
     //     }
     // </div>
-     <div style={{ height: 500, width: '80%', marginLeft: '10px', marginTop: '10px', marginLeft: '200px' }}>
+         <div className='h-[500px] w-[80%] ml-[80px] md:ml-[205px] mt-2'>
       <DataGrid
         rows={clients}
         columns={columns}
@@ -61,7 +61,6 @@ const Clients = ({ clients }) => {
         className='cursor-pointer'
       />
     </div>
-    
   )
 }
 
