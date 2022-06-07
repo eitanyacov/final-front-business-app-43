@@ -2,6 +2,7 @@ import SideBar from "./SideBar";
 import AssessmentIcon from '@mui/icons-material/Assessment';import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import DescriptionIcon from '@mui/icons-material/Description';
 import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
@@ -18,18 +19,18 @@ const SideBarPage = () => {
       <SideBar icon={DashboardIcon} color="secondary" title="Dashboard" onClick={()=> router.push('/')}/>
       </div>
       <h1 className="text-gray-600 font-semibold mt-1">Lists</h1>
-      <div className={router.asPath == "/agents" ? "active" : ""}>
-      <SideBar icon={PeopleAltIcon} color="secondary" title="Agents" onClick={()=> router.push('/agents')}/>
+      <div className={router.asPath == "/suppliers" ? "active" : ""}>
+      <SideBar icon={PeopleAltIcon} color="secondary" title="Suppliers" onClick={()=> router.push('/suppliers')}/>
       </div>
       <div className={router.asPath == "/clients" ? "active" : ""}>
-      <SideBar icon={PeopleOutlineIcon} color="secondary" title="Clients" onClick={()=> router.push('/clients')}/> 
+      <SideBar icon={PeopleOutlineIcon} color="secondary" title="Workers" onClick={()=> router.push('/clients')}/> 
       </div>
       <h1 className="text-gray-600 font-semibold mt-1">Services</h1>
       <div className={router.asPath == "/scheduler" ? "active" : ""}>
       <SideBar icon={CalendarMonthIcon} color="secondary" title="Calendar" onClick={()=> router.push("/scheduler")}/>
       </div>
       <div className={router.asPath == "/chats" ? "active" : ""}>
-      <SideBar icon={HeadsetMicIcon} color="secondary" title="Chat" onClick={()=> router.push("/chats")}/>
+      <SideBar icon={DescriptionIcon} color="secondary" title="Invoice" onClick={()=> router.push("/chats")}/>
       </div>
       <div className={router.asPath == "/reports" ? "active" : ""}>
       <SideBar icon={AssessmentIcon} color="secondary" title="All Reports" onClick={()=> router.push("/reports")}/>
