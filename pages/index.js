@@ -1,11 +1,16 @@
-import Head from 'next/head'
-import MiddleBar from '../components/MiddleBar';
-import ReportsBar from '../components/ReportsBar';
-import SideBarPage from '../components/SideBarPage';
-import TopBoxes from '../components/TopBoxes';
+import React,  { useState } from 'react';
+import { useRouter } from 'next/router'
+import Head from "next/head";
+import MiddleBar from "../components/MiddleBar";
+import ReportsBar from "../components/ReportsBar";
+import SideBarPage from "../components/SideBarPage";
+import TopBoxes from "../components/TopBoxes";
 
 export default function Home() {
-  return (
+  const [user, setUser] = useState({id: 1, name: "xxx"});
+  const router = useRouter();
+  if(!user) router.push("/login")
+  else return (
     <div>
       <Head>
         <title>Agent-Clients</title>

@@ -2,7 +2,7 @@ import { DataGrid } from '@mui/x-data-grid';
 // import { useRouter } from 'next/router'
 
 export async function getStaticPaths() {
-    const response = await fetch("http://localhost:8080/api/supplier/all-suppliers");
+    const response = await fetch("http://localhost:8080/api/user/all-suppliers");
     const data = await response.json();
 
     const paths = data.map(a => {
@@ -120,7 +120,7 @@ export default AgentProfile
 
 export async function getStaticProps(context) {
     const { params } = context;
-    const response = await fetch(`http://localhost:8080/api/supplier/${params.id}`);
+    const response = await fetch(`http://localhost:8080/api/user/${params.id}`);
     const data = await response.json();
 
     // const res = await fetch(`http://localhost:8080/api/manger/get-clients-by-agent-id/${params.id}`);

@@ -5,7 +5,6 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useRouter } from 'next/router'
 
@@ -23,7 +22,7 @@ const SideBarPage = () => {
       <SideBar icon={PeopleAltIcon} color="secondary" title="Suppliers" onClick={()=> router.push('/suppliers')}/>
       </div>
       <div className={router.asPath == "/clients" ? "active" : ""}>
-      <SideBar icon={PeopleOutlineIcon} color="secondary" title="Workers" onClick={()=> router.push('/clients')}/> 
+      <SideBar icon={PeopleOutlineIcon} color="secondary" title="Workers" onClick={()=> router.push('/workers')}/> 
       </div>
       <h1 className="text-gray-600 font-semibold mt-1">Services</h1>
       <div className={router.asPath == "/scheduler" ? "active" : ""}>
@@ -39,7 +38,7 @@ const SideBarPage = () => {
       <div className={router.asPath == "/profile" ? "active" : ""}>
       <SideBar icon={PersonIcon} color="secondary" title="Profile" onClick={()=> router.push("/profile")}/>
       </div>
-      <div className={router.asPath == "/" ? "active" : ""}>
+      <div className={router.asPath == "/" ? "active" : ""} onClick={()=> router.push("/login")}>
       <SideBar icon={LogoutIcon} color="secondary" title="Logout"/> 
       </div>   
     </div>

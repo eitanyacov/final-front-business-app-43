@@ -17,7 +17,7 @@ const TopBoxes = () => {
   }, [])
 
   const getNumberOfSuppliers = async () => {
-    const result = await fetch("http://localhost:8080/api/supplier/number-of-suppliers");
+    const result = await fetch("http://localhost:8080/api/user/number-of-suppliers");
     const data = await result.json();
     setNumberofSuppliers(data);
   }

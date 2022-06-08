@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { FormControl, Select, MenuItem, InputLabel, Input, Button } from '@mui/material'
 // import { DataGrid } from '@mui/x-data-grid';
+import SideBarPage from '../../components/SideBarPage';
 
 const Reports = ({ suppliers }) => {
   const [val, setVal] = useState();
@@ -17,7 +18,7 @@ const Reports = ({ suppliers }) => {
   }, [val])
 
   const getSupplier = async () => {
-    const response = await fetch("http://localhost:8080/api/supplier/" + val);
+    const response = await fetch("http://localhost:8080/api/user/" + val);
     const data = await response.json();
     // console.log(data);
     setSupplier(data);
@@ -44,6 +45,8 @@ const Reports = ({ suppliers }) => {
   console.log(val)
 
   return (
+    <>
+    <SideBarPage />
     <div className='ml-[80px] md:ml-[205px] mt-7'>
  <FormControl fullWidth>
   <InputLabel id="demo-simple-select-label" >Supplier</InputLabel>
@@ -78,6 +81,8 @@ const Reports = ({ suppliers }) => {
      )
    }
     </div>
+    </>
+
    
   )
 }
@@ -86,7 +91,7 @@ export default Reports
 
 
 export async function getStaticProps() {
-  const response = await fetch("http://localhost:8080/api/supplier/all-suppliers");
+  const response = await fetch("http://localhost:8080/api/user/all-suppliers");
   const data = await response.json();
 
   return {
