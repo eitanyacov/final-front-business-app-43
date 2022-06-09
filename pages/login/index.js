@@ -27,6 +27,7 @@ const Login = () => {
     setError("")
     // localStorage.setItem("firstName", user.firstName)
     // localStorage.setItem("lastName", user.lastName)
+    localStorage.removeItem("lastName")
     
   }
 
