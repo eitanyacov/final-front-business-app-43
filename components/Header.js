@@ -1,4 +1,4 @@
-// import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from "next/link";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -9,10 +9,16 @@ import { useRouter } from 'next/router'
 
 const Header = () => {
   const router = useRouter();
+  const [userName, setUserName] = useState("");
   // const [route, setRoute] = useState(false);
   // if(router.pathname == "/agents") {
   //   setRoute(true);
   // }
+
+  useEffect(()=> {
+    console.log("my name is: " + localStorage.getItem("name"));
+    setUserName(localStorage.getItem("name"))
+  }, [])
 
   console.log("the route is: " + router.asPath)
   return (
@@ -61,9 +67,13 @@ const Header = () => {
               <NotificationsNoneIcon />
       
             </div>
+            <div className='flex items-center space-x-2'>
             <div className="flex h-15 w-15 border justify-center items-center rounded-full">
               <img src="https://www.compassionpregnancy.com/images/smiling-man.jpg" alt="" width={40} height={40} className='rounded-full' />
             </div>
+            <h1 className='font-semibold'>{userName}</h1>
+            </div>
+            
           </div>
           
         </div>

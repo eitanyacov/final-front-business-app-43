@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Alert } from '@mui/material';
 
 const Register = () => {
     const [firstName, setFirstName] = useState("");
@@ -9,6 +10,8 @@ const Register = () => {
     const [companyName, setCompanyName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [dealerlicensed, setDealerlicensed] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState([]);
 
     const postData = (e) => {
         e.preventDefault();
@@ -19,9 +22,10 @@ const Register = () => {
             address,
             companyName,
             phoneNumber,
-            dealerlicensed
+            dealerlicensed,
+            password
           }).then(res => console.log(res.data))
-          .catch(error => console.log(error))
+          .catch(error => setError(error.response.data))
           setFirstName("")
           setAddress("")
           setCompanyName("")
@@ -29,8 +33,9 @@ const Register = () => {
           setDealerlicensed("")
           setEmail("")
           setPhoneNumber("")
+          setPassword("")
+          setError("")
     }
-
 
 
   return (
@@ -44,8 +49,10 @@ const Register = () => {
            <input type="text" value={address} placeholder='address' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setAddress(e.target.value)}/>
            <input type="text" value={dealerlicensed} placeholder='dealerlicensed' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setDealerlicensed(e.target.value)}/>
            <input type="text" value={companyName} placeholder='company name' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setCompanyName(e.target.value)}/>
+           <input type="password" value={password} placeholder='password' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setPassword(e.target.value)}/>
            <button type='submit' className='bg-blue-500 px-20 py-2 mt-4 rounded-full text-white font-semibold hover:bg-blue-400'>Register</button>
          </form>
+         {error != "" && <Alert severity="error">{error}</Alert>}
       </div> 
   )
 }

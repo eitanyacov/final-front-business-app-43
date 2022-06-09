@@ -21,7 +21,7 @@ const SideBarPage = () => {
       <div className={router.asPath == "/suppliers" ? "active" : ""}>
       <SideBar icon={PeopleAltIcon} color="secondary" title="Suppliers" onClick={()=> router.push('/suppliers')}/>
       </div>
-      <div className={router.asPath == "/clients" ? "active" : ""}>
+      <div className={router.asPath == "/workers" ? "active" : ""}>
       <SideBar icon={PeopleOutlineIcon} color="secondary" title="Workers" onClick={()=> router.push('/workers')}/> 
       </div>
       <h1 className="text-gray-600 font-semibold mt-1">Services</h1>
@@ -38,9 +38,12 @@ const SideBarPage = () => {
       <div className={router.asPath == "/profile" ? "active" : ""}>
       <SideBar icon={PersonIcon} color="secondary" title="Profile" onClick={()=> router.push("/profile")}/>
       </div>
-      <div className={router.asPath == "/" ? "active" : ""} onClick={()=> router.push("/login")}>
+      <a href="/login">
+      <div className={router.asPath == "/" ? "active" : ""} onClick={()=> {localStorage.removeItem("name")}}>
       <SideBar icon={LogoutIcon} color="secondary" title="Logout"/> 
       </div>   
+      </a>
+      
     </div>
   );
 };
