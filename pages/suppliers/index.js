@@ -1,9 +1,17 @@
+import React, { useState, useEffect } from 'react';
 import { DataGrid } from "@mui/x-data-grid";
 import { useRouter } from "next/router";
 import SideBarPage from "../../components/SideBarPage";
 
 function UserList({ suppliers }) {
+  const [user, setUser] = useState({})
   const router = useRouter();
+  useEffect(()=> {
+      const res = localStorage.getItem("user")
+      const result = JSON.parse(res)
+      setUser(result)
+      
+  }, [])
 
   const columns = [
     { field: "id", headerName: "ID", width: 20 },
@@ -70,7 +78,7 @@ function UserList({ suppliers }) {
     // agents.map(a => router.push(`agents/${a.id}`))
     router.push(`suppliers/${id}`);
   };
-
+  if(!user) router.push('login')
   return (
     <>
       <SideBarPage />

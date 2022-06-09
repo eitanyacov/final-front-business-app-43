@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import SideBarPage from "../../components/SideBarPage";
+import { useRouter } from 'next/router'
 // import Snackbar from '@mui/material/Snackbar';
 import { DragDropProvider } from "@devexpress/dx-react-scheduler-material-ui";
 import { Snackbar, Alert } from "@mui/material";
@@ -19,6 +20,14 @@ import {
 
 const SchedulerPage = () => {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState({})
+  const router = useRouter();
+  useEffect(()=> {
+      const res = localStorage.getItem("user")
+      const result = JSON.parse(res)
+      setUser(result)
+      
+  }, [])
   const currentDate = "2018-11-01";
   const schedulerData = [
     {
@@ -50,7 +59,7 @@ const SchedulerPage = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
+  if(!user) router.push('login')
   return (
     <>
       <SideBarPage />

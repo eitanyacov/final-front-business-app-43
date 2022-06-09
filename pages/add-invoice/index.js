@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { FormControl, Select, MenuItem, InputLabel, Input, Button } from '@mui/material'
 // import { DataGrid } from '@mui/x-data-grid';
 import SideBarPage from '../../components/SideBarPage';
+import { useRouter } from 'next/router'
 
 const Reports = ({ suppliers }) => {
   const [val, setVal] = useState();
@@ -11,6 +12,15 @@ const Reports = ({ suppliers }) => {
   const [submit, setSubmit] = useState(false);
   const [supplier, setSupplier] = useState({});
   const inputRef = useRef(null);
+
+  const [user, setUser] = useState({})
+  const router = useRouter();
+  useEffect(()=> {
+      const res = localStorage.getItem("user")
+      const result = JSON.parse(res)
+      setUser(result)
+      
+  }, [])
   
 
   useEffect(()=> {
@@ -44,6 +54,7 @@ const Reports = ({ suppliers }) => {
   console.log(supplier)
   console.log(val)
 
+  if(!user) router.push('login')
   return (
     <>
     <SideBarPage />

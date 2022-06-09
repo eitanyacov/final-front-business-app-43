@@ -13,8 +13,8 @@ export default function Home() {
   const router = useRouter();
   useEffect(()=> {
     let res = localStorage.getItem("user")
-    res = JSON.parse(res)
-    setUser(res)
+    const result = JSON.parse(res)
+    setUser(result)
     }, [])
    return (
     <div>

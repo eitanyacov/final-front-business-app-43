@@ -3,7 +3,7 @@ import SideBarPage from '../../components/SideBarPage'
 import { useRouter } from 'next/router'
 
 
-const Profile = () => {
+const Invoice = () => {
   const [user, setUser] = useState({})
   const router = useRouter();
   useEffect(()=> {
@@ -15,13 +15,13 @@ const Profile = () => {
   
   if(!user) router.push('login')
   return (
-    <div>
-        <SideBarPage />
-        <h1 className='ml-[250px]'>Profile Page</h1>
+    <>
+    <SideBarPage />
+    <div className='ml-[250px]'>
+        <h1>Invoices</h1>
     </div>
-    
-
+    </>
   )
 }
 
-export default Profile
+export default Invoice

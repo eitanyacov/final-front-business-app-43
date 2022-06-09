@@ -29,7 +29,7 @@ const SideBarPage = () => {
       <SideBar icon={CalendarMonthIcon} color="secondary" title="Calendar" onClick={()=> router.push("/scheduler")}/>
       </div>
       <div className={router.asPath == "/chats" ? "active" : ""}>
-      <SideBar icon={DescriptionIcon} color="secondary" title="Invoice" onClick={()=> router.push("/chats")}/>
+      <SideBar icon={DescriptionIcon} color="secondary" title="Invoice" onClick={()=> router.push("/invoice")}/>
       </div>
       <div className={router.asPath == "/reports" ? "active" : ""}>
       <SideBar icon={AssessmentIcon} color="secondary" title="All Reports" onClick={()=> router.push("/reports")}/>
