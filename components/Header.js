@@ -9,16 +9,25 @@ import { useRouter } from 'next/router'
 
 const Header = () => {
   const router = useRouter();
-  const [userName, setUserName] = useState("");
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
+  const [user, setUser] = useState({})
   // const [route, setRoute] = useState(false);
   // if(router.pathname == "/agents") {
   //   setRoute(true);
   // }
 
   useEffect(()=> {
-    console.log("my name is: " + localStorage.getItem("name"));
-    setUserName(localStorage.getItem("name"))
+    // console.log("my name is: " + localStorage.getItem("name"));
+    // setUserFirstName(localStorage.getItem("firstName"))
+    // setUserLastName(localStorage.getItem("lastName"))
+    const res = localStorage.getItem("user")
+    res = JSON.parse(res)
+    setUser(res)
   }, [])
+
+
+   
 
   console.log("the route is: " + router.asPath)
   return (
@@ -71,7 +80,8 @@ const Header = () => {
             <div className="flex h-15 w-15 border justify-center items-center rounded-full">
               <img src="https://www.compassionpregnancy.com/images/smiling-man.jpg" alt="" width={40} height={40} className='rounded-full' />
             </div>
-            <h1 className='font-semibold'>{userName}</h1>
+            {/* <h1 className='font-semibold'>{userFirstName}</h1> */}
+            <h1 className='font-semibold'>{user?.email}</h1>
             </div>
             
           </div>

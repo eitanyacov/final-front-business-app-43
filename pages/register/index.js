@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Alert } from '@mui/material';
+import { useRouter } from 'next/router'
 
 const Register = () => {
+    const router = useRouter()
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -35,6 +37,7 @@ const Register = () => {
           setPhoneNumber("")
           setPassword("")
           setError("")
+          router.push('/login')
     }
 
 

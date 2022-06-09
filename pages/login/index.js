@@ -19,12 +19,15 @@ const Login = () => {
     axios.post("http://localhost:8080/api/admin/login", {
       email,
       password
-    }).then(res => {console.log(res.data), setUser(res.data), localStorage.setItem("name", res.data.firstName), router.push('/')})
+    }).then(res => {console.log(res.data), setUser(res.data), localStorage.setItem("user", JSON.stringify(res.data)), window.location.href = '/';})
+    // }).then(res => {console.log(res.data), setUser(res.data), localStorage.setItem("firstName", res.data.firstName), window.location.href = '/';})
     .catch(error => setError(error.response.data))
     setEmail("")
     setPassword("")
     setError("")
-   
+    // localStorage.setItem("firstName", user.firstName)
+    // localStorage.setItem("lastName", user.lastName)
+    
   }
 
   return (

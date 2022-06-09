@@ -39,7 +39,7 @@ const SideBarPage = () => {
       <SideBar icon={PersonIcon} color="secondary" title="Profile" onClick={()=> router.push("/profile")}/>
       </div>
       <a href="/login">
-      <div className={router.asPath == "/" ? "active" : ""} onClick={()=> {localStorage.removeItem("name")}}>
+      <div className={router.asPath == "/" ? "active" : ""} onClick={()=> {localStorage.removeItem("user")}}>
       <SideBar icon={LogoutIcon} color="secondary" title="Logout"/> 
       </div>   
       </a>
