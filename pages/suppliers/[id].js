@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
 import axios from 'axios'
 import { DataGrid } from "@mui/x-data-grid";
 import SideBarPage from '../../components/SideBarPage';
 
 export async function getStaticPaths() {
-    const response = await fetch("http://localhost:8080/api/user/get-suppliers-by-user/10");
+    // const response = await fetch("http://localhost:8080/api/user/get-suppliers-by-user/" + id);
+    const response = await fetch("http://localhost:8080/api/admin/all-suppliers");
     const data = await response.json();
 
     const paths = data.map(a => {
@@ -34,6 +36,7 @@ export async function getStaticPaths() {
 const SupplierPage = ({ id }) => {
     const [user, setUser] = useState({})
     const [supplier, setSupplier] = useState({})
+    const router = useRouter()
 
     const clients = []
     
@@ -84,6 +87,8 @@ const SupplierPage = ({ id }) => {
 
     console.log(user?.id)
     console.log("id from getstaticprops: " + id)
+    
+
     return (
         <>
         <SideBarPage />
