@@ -43,9 +43,9 @@ const Header = () => {
         </Link>
         <div className="flex items-center justify-center space-x-5">
           {/* <a href="/"> */}
-          <Link href="/">
+          
              <div className="flex space-x-4 items-center">
-                 {router.pathname == "/suppliers" && (
+                 {router.pathname == "/invoice" && (
                 <div className="flex items-center space-x-2" onClick={()=> router.push("/add-invoice")}>
                    <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">
                      <AddIcon color="primary" className="cursor-pointer"/>
@@ -55,11 +55,14 @@ const Header = () => {
                   
                  
                  )}
-                <DashboardIcon color="primary"/>
-                <h1 className="font-semibold cursor-pointer">Dashboard</h1>
+                 <Link href="/">
+                 <div className='flex items-center space-x-1'>
+                 <DashboardIcon color="primary"/>
+                 <h1 className="font-semibold cursor-pointer">Dashboard</h1>
+                 </div>
+                 </Link>
             </div>
-          </Link>
-            
+          
           {/* </a> */}
           <ChatBubbleOutlineIcon fontSize="medium" className="cursor-pointer"/>
           <div className="flex items-center space-x-8 cursor-pointer">
