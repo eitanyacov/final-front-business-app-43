@@ -64,7 +64,7 @@ import SideBarPage from "../../components/SideBarPage";
       editable: true,
     },
     {
-      field: "isPermanent",
+      field: "isPermanentModel",
       headerName: "isPermanent",
       width: 85,
       editable: true,
