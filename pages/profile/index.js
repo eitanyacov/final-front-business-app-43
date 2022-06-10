@@ -11,6 +11,7 @@ const Profile = () => {
       const result = JSON.parse(res)
       setUser(result)
       
+      
   }, [])
   
   if(!user) router.push('login')
