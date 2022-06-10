@@ -52,8 +52,14 @@ const Header = () => {
                    </div>
                    <h1>Add Invoice</h1>
                 </div>
-                  
-                 
+                 )}
+                 {router.pathname == "/suppliers" && (
+                <div className="flex items-center space-x-2" onClick={()=> router.push("/add-invoice")}>
+                   <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">
+                     <AddIcon color="primary" className="cursor-pointer"/>
+                   </div>
+                   <h1>Add Supplier</h1>
+                </div>
                  )}
                  <Link href="/">
                  <div className='flex items-center space-x-1'>
