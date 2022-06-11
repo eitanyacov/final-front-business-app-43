@@ -28,7 +28,7 @@ const SideBarPage = () => {
       <div className={router.asPath == "/scheduler" ? "active" : ""}>
       <SideBar icon={CalendarMonthIcon} color="secondary" title="Calendar" onClick={()=> router.push("/scheduler")}/>
       </div>
-      <div className={router.asPath == "/chats" ? "active" : ""}>
+      <div className={router.asPath == "/invoice" ? "active" : ""}>
       <SideBar icon={DescriptionIcon} color="secondary" title="Invoice" onClick={()=> router.push("/invoice")}/>
       </div>
       <div className={router.asPath == "/reports" ? "active" : ""}>

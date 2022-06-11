@@ -36,9 +36,12 @@ export async function getStaticPaths() {
 const SupplierPage = ({ id }) => {
     const [user, setUser] = useState({})
     const [supplier, setSupplier] = useState({})
+    const [invoices, setInvoices] = useState([])
     const router = useRouter()
 
     const clients = []
+
+    
     
     useEffect(()=> {
         const res = localStorage.getItem("user")
@@ -49,41 +52,53 @@ const SupplierPage = ({ id }) => {
         .catch(err => console.log(err))
     }, [user?.id])
 
+    useEffect(()=> {
+        axios.get(`http://localhost:8080/api/user/get-invoices-by-supplier-per-user/${id}`)
+        .then(res => {console.log(res.data), setInvoices(res.data)})
+        .catch(err => console.log(err))
+    }, [id])
+
     const columns = [
-        { field: "id", headerName: "ID", width: 30 },
-        {
-          field: "invoiceId",
-          headerName: "invoiceId",
-          width: 150,
-          editable: true,
-        },
-        {
-          field: "amount",
-          headerName: "amount",
-          width: 100,
-          editable: true,
-        },
-        {
-          field: "date",
-          headerName: "date",
-          width: 150,
-          editable: true,
-        },
-        {
-          field: "isPaid",
-          headerName: "is paid?",
-          // type: 'number',
-          width: 100,
-          editable: true,
-        },
-    
-        {
-          field: "paymentMethod",
-          headerName: "payment method",
-          width: 130,
-          editable: true,
-        },
-      ];
+      { field: "id", headerName: "ID", width: 70 },
+      {
+        field: "supplierName",
+        headerName: "Supplier Name",
+        width: 150,          
+        editable: true,
+      },
+      {
+        field: "date",
+        headerName: "Date",
+        width: 180,
+        editable: true,
+      },
+      {
+        field: "amount",
+        headerName: "Amount",
+        width: 150,
+        editable: true,
+      },
+      {
+        field: "invoiceId",
+        headerName: "Invoice Id",
+        // type: 'number',
+        width: 180,
+        editable: true,
+      },
+  
+      {
+        field: "paymentMethod",
+        headerName: "Payment Method",
+        width: 130,
+        editable: true,
+      },
+      {
+        field: "paidOrNo",
+        headerName: "Is Paid?",
+        width: 130,
+        editable: true,
+      },
+    ];
 
     console.log(user?.id)
     console.log("id from getstaticprops: " + id)
@@ -101,7 +116,7 @@ const SupplierPage = ({ id }) => {
         </div>
         <div className="h-[500px] w-[80%] ml-[80px] md:ml-[205px] mt-2">
         <DataGrid
-          rows={clients}
+          rows={invoices}
           columns={columns}
           pageSize={7}
           rowsPerPageOptions={[7]}

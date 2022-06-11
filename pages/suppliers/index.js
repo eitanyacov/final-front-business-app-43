@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useRouter } from "next/router";
 import SideBarPage from "../../components/SideBarPage";
 
+
 // function UserList({ suppliers }) {
   function UserList() {
   const [user, setUser] = useState({})
@@ -15,8 +16,10 @@ import SideBarPage from "../../components/SideBarPage";
       setUser(result)
       getSuppliers()
       
+      
   }, [user?.id])
 
+ 
   const getSuppliers = async () => {
     const id = user?.id;
     const response = await fetch(`http://localhost:8080/api/user/get-suppliers-by-user/${id}`);
