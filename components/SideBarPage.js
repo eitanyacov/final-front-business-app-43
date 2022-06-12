@@ -15,7 +15,7 @@ const SideBarPage = () => {
   console.log(router.pathname)
   return (
     <div className="bg-gray-50 w-[80px] md:w-[200px] p-1 fixed min-h-screen border">
-      {/* <h1 className="text-gray-600 font-semibold mt-1">Main</h1>  */}
+      <h1 className="text-gray-600 font-semibold mt-1">Main</h1> 
       <div className={router.asPath == "/" ? "active" : ""}>
       <SideBar icon={DashboardIcon} color="secondary" title="Dashboard" onClick={()=> router.push('/')}/>
       </div>
@@ -26,15 +26,15 @@ const SideBarPage = () => {
       <div className={router.asPath == "/daily-income" ? "active" : ""}>
       <SideBar icon={MonetizationOnIcon} color="secondary" title="Daily Income" onClick={()=> router.push('/daily-income')}/>
       </div>
+      <div className={router.asPath == "/invoice" ? "active" : ""}>
+      <SideBar icon={DescriptionIcon} color="secondary" title="Invoice" onClick={()=> router.push("/invoice")}/>
+      </div>
       <div className={router.asPath == "/workers" ? "active" : ""}>
       <SideBar icon={PeopleOutlineIcon} color="secondary" title="Workers" onClick={()=> router.push('/workers')}/> 
       </div>
       <h1 className="text-gray-600 font-semibold mt-1">Services</h1>
       <div className={router.asPath == "/scheduler" ? "active" : ""}>
       <SideBar icon={CalendarMonthIcon} color="secondary" title="Calendar" onClick={()=> router.push("/scheduler")}/>
-      </div>
-      <div className={router.asPath == "/invoice" ? "active" : ""}>
-      <SideBar icon={DescriptionIcon} color="secondary" title="Invoice" onClick={()=> router.push("/invoice")}/>
       </div>
       <div className={router.asPath == "/reports" ? "active" : ""}>
       <SideBar icon={AssessmentIcon} color="secondary" title="All Reports" onClick={()=> router.push("/reports")}/>
@@ -44,7 +44,7 @@ const SideBarPage = () => {
       <SideBar icon={PersonIcon} color="secondary" title="Profile" onClick={()=> router.push("/profile")}/>
       </div>
       <a href="/login">
-      <div className={router.asPath == "/" ? "active" : ""} onClick={()=> {localStorage.removeItem("user")}}>
+      <div onClick={()=> {localStorage.removeItem("user")}}>
       <SideBar icon={LogoutIcon} color="secondary" title="Logout"/> 
       </div>   
       </a>

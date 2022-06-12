@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import TopBox from './TopBox'
+import { Snackbar, Alert } from "@mui/material";
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
@@ -15,8 +16,9 @@ const TopBoxes = () => {
   const [outcome, setOutcome] = useState()
   const [income, setIncome] = useState()
   const [balance, setBalance] = useState()
+  const [open, setOpen] = useState(false)
 
-
+  
   useEffect(()=> {
     const res = localStorage.getItem("user")
     const result = JSON.parse(res)
@@ -52,6 +54,15 @@ const TopBoxes = () => {
     .catch(err => console.log(err))
   }, [user?.id])
 
+  useEffect(()=> {
+    if(balance < 0) {
+      console.log("red alert!!!!")
+      setOpen(true)
+    }
+  }, [balance])
+  const handleClose = () => {
+    setOpen(false);
+  };
   // const getNumberOfSuppliers = async () => {
     
   //   const result = await fetch(`http://localhost:8080/api/user/number-of-suppliers/12`);
@@ -65,6 +76,15 @@ const TopBoxes = () => {
         <TopBox title="OUTCOME"  amount={`ש"ח ${outcome}`} link="Watch details" icon={MoneyOffIcon}  color="primary" onClick={()=> router.push('/agents')}/>
         <TopBox title="INCOME" amount={`ש"ח ${income}`} link="View net income" icon={AttachMoneyIcon}  color="secondary" />
         <TopBox title="BALANCE" amount={`ש"ח ${balance}`} link="See details" icon={MonetizationOnIcon}  color="info"/>
+        <Snackbar open={open} autoHideDuration={10000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            Warning Balance is negative!
+          </Alert>
+        </Snackbar>
     </div>
   )
 }
