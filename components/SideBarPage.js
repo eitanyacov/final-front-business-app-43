@@ -5,6 +5,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PersonIcon from '@mui/icons-material/Person';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useRouter } from 'next/router'
@@ -13,7 +14,7 @@ const SideBarPage = () => {
   const router = useRouter()
   console.log(router.pathname)
   return (
-    <div className="bg-gray-50 w-[80px] md:w-[200px] p-2 fixed min-h-screen border">
+    <div className="bg-gray-50 w-[80px] md:w-[200px] p-1 fixed min-h-screen border">
       {/* <h1 className="text-gray-600 font-semibold mt-1">Main</h1>  */}
       <div className={router.asPath == "/" ? "active" : ""}>
       <SideBar icon={DashboardIcon} color="secondary" title="Dashboard" onClick={()=> router.push('/')}/>
@@ -23,7 +24,7 @@ const SideBarPage = () => {
       <SideBar icon={PeopleAltIcon} color="secondary" title="Suppliers" onClick={()=> router.push('/suppliers')}/>
       </div>
       <div className={router.asPath == "/daily-income" ? "active" : ""}>
-      <SideBar icon={PeopleAltIcon} color="secondary" title="Daily Income" onClick={()=> router.push('/daily-income')}/>
+      <SideBar icon={MonetizationOnIcon} color="secondary" title="Daily Income" onClick={()=> router.push('/daily-income')}/>
       </div>
       <div className={router.asPath == "/workers" ? "active" : ""}>
       <SideBar icon={PeopleOutlineIcon} color="secondary" title="Workers" onClick={()=> router.push('/workers')}/> 

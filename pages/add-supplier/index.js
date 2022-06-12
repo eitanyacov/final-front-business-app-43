@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Alert } from '@mui/material';
 import { useRouter } from 'next/router'
 import SideBarPage from '../../components/SideBarPage';
 import { Select, MenuItem, InputLabel} from '@mui/material'
+import { Snackbar, Alert } from "@mui/material";
 
 
 const AddSupplier = () => {
     const router = useRouter()
     const [user, setUser] = useState({})
+    const [open, setOpen] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [isPermanentModel, setIsPermanentModel] = useState();
@@ -38,6 +39,7 @@ const AddSupplier = () => {
             description,
           }).then(res => console.log(res.data))
           .catch(error => setError(error.response.data))
+          setOpen(true)
           setName("")
           setAddress("")
           setDescription("")
@@ -51,6 +53,10 @@ const AddSupplier = () => {
     const handleChange = (e) => {
         setIsPermanentModel(e.target.value)
     }
+
+    const handleClose = () => {
+      setOpen(false);
+    };
 
     console.log('====================================');
     console.log(user?.id);
@@ -77,6 +83,19 @@ const AddSupplier = () => {
            <button type='submit' className='bg-blue-500 px-20 py-2 mt-4 rounded-full text-white font-semibold hover:bg-blue-400'>ADD SUPPLIER</button>
          </form>
          {error != "" && <Alert severity="error">{error}</Alert>}
+         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Addede a success message!
+          </Alert>
+        </Snackbar>
+        {/* <Alert severity="error">This is an error message!</Alert>
+        <Alert severity="warning">This is a warning message!</Alert>
+        <Alert severity="info">This is an information message!</Alert>
+        <Alert severity="success">This is a success message!</Alert> */}
          
       </div> 
     </>
