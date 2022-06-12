@@ -46,7 +46,7 @@ const TopBoxes = () => {
   return (
     <div className='flex ml-[80px] md:ml-[200px] justify-around p-1 space-x-2'>
         <TopBox title="SUPPLIERS" amount={numberOfSuppliers} link="See all suppliers" icon={PeopleOutlineIcon} color="success" onClick={()=> router.push('/suppliers')}/>
-        <TopBox title="OUTCOME"  amount={outcome} link="Watch details" icon={PeopleAltIcon}  color="primary" onClick={()=> router.push('/agents')}/>
+        <TopBox title="OUTCOME"  amount={`ש"ח ${outcome}`} link="Watch details" icon={PeopleAltIcon}  color="primary" onClick={()=> router.push('/agents')}/>
         <TopBox title="INCOME" amount="15478$" link="View net income" icon={CalendarMonthIcon}  color="secondary" />
         <TopBox title="BALANCE" amount="7240$" link="See details" icon={MonetizationOnIcon}  color="info"/>
     </div>

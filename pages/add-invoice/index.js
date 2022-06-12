@@ -149,7 +149,7 @@ const Reports = () => {
   
     <SideBarPage/>
     <div className='flex justify-center ml-[80px] md:ml-[205px] mt-10'>
- <FormControl className='w-96'>
+ { !submit && <FormControl className='w-96'>
   <InputLabel id="demo-simple-select-label" >Supplier</InputLabel>
   <Select
     // labelId="demo-simple-select-label"
@@ -183,7 +183,7 @@ const Reports = () => {
          <Input type='number' value={invoiceId} placeholder='invice id' onChange={e => setInvoiceId(e.target.value)}/>
 
   <Button disabled={date == "" || !amount || supplierName == "" || paidOrNo == "" || paymentMethod == ""} onClick={() => setSubmit(true)}>Click to watch before submit</Button>
-</FormControl>
+</FormControl>}
 
    {
      submit && (

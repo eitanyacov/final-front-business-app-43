@@ -27,8 +27,6 @@ const Header = () => {
   }, [])
 
 
-   
-
   console.log("the route is: " + router.asPath)
   return (
     <div className="w-full shadow-md bg-white sticky top-0 z-50">
@@ -43,7 +41,6 @@ const Header = () => {
         </Link>
         <div className="flex items-center justify-center space-x-5">
           {/* <a href="/"> */}
-          
              <div className="flex space-x-4 items-center">
                  {router.pathname == "/invoice" && (
                 <div className="flex items-center space-x-2" onClick={()=> router.push("/add-invoice")}>
@@ -59,6 +56,14 @@ const Header = () => {
                      <AddIcon color="primary" className="cursor-pointer"/>
                    </div>
                    <h1>Add Supplier</h1>
+                </div>
+                 )}
+                 {router.pathname == "/daily-income" && (
+                <div className="flex items-center space-x-2" onClick={()=> router.push("/add-daily-z")}>
+                   <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">
+                     <AddIcon color="primary" className="cursor-pointer"/>
+                   </div>
+                   <h1>Add Daily-Z</h1>
                 </div>
                  )}
                  <Link href="/">
