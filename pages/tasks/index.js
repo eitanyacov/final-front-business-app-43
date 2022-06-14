@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import SideBarPage from '../../components/SideBarPage';
+import AddLinkIcon from '@mui/icons-material/AddLink';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import axios from 'axios';
 import Task from '../../components/Task';
 
@@ -26,6 +29,30 @@ const Tasks = () => {
         .catch(err => console.log(err))
     }, [user?.id])
 
+    const changeColor = (name) => {
+        if(name == "Backlog") {
+            return 'success'
+        }else if(name == "In Progress") {
+            return 'primary'
+        }else {
+            return 'secondary'
+        }
+    }
+
+    const changeIcon = (name) => {
+        if(name == "Backlog") {
+            return AddLinkIcon
+        }else if(name == "In Progress") {
+            return AccessTimeIcon
+        }else {
+            return TaskAltIcon
+        }
+    }
+
+    // const changeIcon = (name) => {
+    //     console.log(name)
+    // }
+
     const onDragEnd = (result) => {
         console.log(result)
     }
@@ -45,7 +72,7 @@ const Tasks = () => {
                                          <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                                             {(provided, snapshot) => (
                                                 <div style={{...provided.draggableProps.style, backgroundColor: snapshot.isDragging ? 'red' : 'blue'}} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                    <Task title={task.description} date={task.date}/>
+                                                    <Task title={task.description} date={task.date} icon={changeIcon(section.name)} color={changeColor(section.name)}/>
                                                 </div>
                                             )}
                                          </Draggable>
