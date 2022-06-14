@@ -3,7 +3,9 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import SideBarPage from '../../components/SideBarPage';
 import AddLinkIcon from '@mui/icons-material/AddLink';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import PreviewIcon from '@mui/icons-material/Preview';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import { useRouter } from 'next/router'
 import axios from 'axios';
 import Task from '../../components/Task';
 
@@ -13,6 +15,7 @@ const Tasks = () => {
 
     const [data, setData] = useState([])
     const [user, setUser] = useState({})
+    const router = useRouter();
 
     useEffect(()=> {
         const res = localStorage.getItem("user")
@@ -21,10 +24,11 @@ const Tasks = () => {
         
     }, [])
 
+
     useEffect(()=> {
         const id = user?.id;
-        // axios.get(`http://localhost:8080/api/user/user-task-statuses/${id}`)
-        axios.get(`http://localhost:8080/api/user/user-task-statuses/25`)
+        axios.get(`http://localhost:8080/api/user/user-task-statuses/${id}`)
+        // axios.get(`http://localhost:8080/api/user/user-task-statuses/24`)
         .then(res => setData(res.data))
         .catch(err => console.log(err))
     }, [user?.id])
@@ -34,6 +38,8 @@ const Tasks = () => {
             return 'success'
         }else if(name == "In Progress") {
             return 'primary'
+        }else if(name == "Review") {
+            return 'warning'
         }else {
             return 'secondary'
         }
@@ -44,18 +50,44 @@ const Tasks = () => {
             return AddLinkIcon
         }else if(name == "In Progress") {
             return AccessTimeIcon
+        }else if(name == "Review") {
+            return PreviewIcon
         }else {
             return TaskAltIcon
         }
     }
 
-    // const changeIcon = (name) => {
-    //     console.log(name)
+
+    // const onDragEnd = (result) => {
+    //     console.log(result)
+    //     const { destination, source } = result;
+    //     if(!destination) return;
+    //     console.log(destination.droppableId)
+    //     console.log(result.draggableId)
+    //     axios.get("http://localhost:8080/api/user/update-status-for-task/" + destination.droppableId + "/" + result.draggableId)
+    //     .then(res => console.log(res.data))
+    //     .catch(err => console.log(err))
+    //     window.location.reload();
+        
     // }
 
-    const onDragEnd = (result) => {
+     const onDragEnd = (result) => {
         console.log(result)
+        const { destination, source } = result;
+        if(!destination) return;
+        console.log(destination.droppableId)
+        console.log(result.draggableId)
+        // const x = parseInt(destination.droppableId)
+        // const y = parseInt(result.draggableId)
+        axios.get("http://localhost:8080/api/user/update-status-for-task/" + destination.droppableId + "/" + result.draggableId)
+        // axios.get("http://localhost:8080/api/user/update-status-for-task/" + x + "/" + y)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err))
+        router.reload()
+        // window.location.reload();
+        
     }
+
 
     return (
         <>
@@ -67,7 +99,7 @@ const Tasks = () => {
                     <Droppable key={section.id} droppableId={section.id.toString()}>
                         {(provided) => (
                             <div className='flex flex-col items-center' ref={provided.innerRef} {...provided.droppableProps}>
-                                    <h1>{section.name}</h1>
+                                    <h1 className='text-2xl'>{section.name}</h1>
                                     {section.tasks.map((task, index) => (
                                          <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                                             {(provided, snapshot) => (

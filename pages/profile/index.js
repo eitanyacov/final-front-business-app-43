@@ -28,7 +28,7 @@ const Profile = () => {
   return (
     <div>
         <SideBarPage />
-        <div className='flex ml-[220px] max-w-[1200px] bg-white min-h-screen p-8'>
+        <div className='flex ml-[220px] max-w-[1200px] bg-white min-h-screen px-3 py-2'>
               <div className='w-fit  bg-white shadow-2xl h-fit p-10 space-y-5 rounded-lg fixed'>
                   <div className='flex justify-between items-center'>
                   <div className='flex space-x-3 items-center'>
