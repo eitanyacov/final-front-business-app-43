@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Icon } from "@mui/material"
 import Switch from '@mui/material/Switch';
 
-const Task = ({ title, date, icon, color }) => {
+const Task = ({ title, date, icon, color  }) => {
   const [checked, setChecked] = useState(false)
 
   const handleChange = () => {
     setChecked(!checked)
   }
   return (
-    <div className='flex flex-col justify-between w-[90px] md:w-[220px] h-[100px] bg-white shadow-xl border mt-5 rounded-2xl p-3 cursor-pointer'>
+    <div className='flex flex-col border-l-4 border-green-500 justify-between w-[90px] md:w-[220px] h-[100px] bg-white shadow-xl border mt-5 rounded-2xl p-3 cursor-pointer'>
         <div className="flex justify-between">
         <h1 className='text-gray-500 text-md md:text-sm'>{title}</h1>
         <Switch

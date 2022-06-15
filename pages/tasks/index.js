@@ -8,6 +8,7 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { useRouter } from 'next/router'
 import axios from 'axios';
 import Task from '../../components/Task';
+import { green } from '@mui/material/colors';
 
 
 
@@ -24,10 +25,12 @@ const Tasks = () => {
         
     }, [])
 
-
+   
     useEffect(()=> {
         const id = user?.id;
-        axios.get(`http://localhost:8080/api/user/user-task-statuses/${id}`)
+        const url = "http://localhost:8080/api/user/user-task-statuses/" + id;
+        // axios.get(`http://localhost:8080/api/user/user-task-statuses/${id}`)
+        axios.get(url)
         // axios.get(`http://localhost:8080/api/user/user-task-statuses/24`)
         .then(res => setData(res.data))
         .catch(err => console.log(err))
@@ -83,8 +86,7 @@ const Tasks = () => {
         // axios.get("http://localhost:8080/api/user/update-status-for-task/" + x + "/" + y)
         .then(res => console.log(res.data))
         .catch(err => console.log(err))
-        router.reload()
-        // window.location.reload();
+        router.reload();
         
     }
 
@@ -98,9 +100,9 @@ const Tasks = () => {
                 data.map(section => (
                     <Droppable key={section.id} droppableId={section.id.toString()}>
                         {(provided) => (
-                            <div className='flex flex-col items-center' ref={provided.innerRef} {...provided.droppableProps}>
-                                    <h1 className='text-2xl'>{section.name}</h1>
-                                    {section.tasks.map((task, index) => (
+                            <div className='flex flex-col items-center border border-gray-400 h-fit p-2 rounded-lg' ref={provided.innerRef} {...provided.droppableProps}>
+                                    <h1 className={`text-xl font-semibold text-[#333] ${section.name == "Complete" ? `bg-purple-100` : `bg-green-100`} w-full rounded-md p-2`}>{section.name}</h1>
+                                    {section?.tasks?.map((task, index) => (
                                          <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                                             {(provided, snapshot) => (
                                                 <div style={{...provided.draggableProps.style, backgroundColor: snapshot.isDragging ? 'red' : 'blue'}} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
