@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Link from "next/link";
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 import AddIcon from '@mui/icons-material/Add';
 import { useRouter } from 'next/router'
 
@@ -66,6 +66,14 @@ const Header = () => {
                    <h1>Add Daily-Z</h1>
                 </div>
                  )}
+                 {/* {router.pathname == "/tasks" && (
+                <div className="flex items-center space-x-2" onClick={()=> router.push("/")}>
+                   <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">
+                     <AddIcon color="primary" className="cursor-pointer"/>
+                   </div>
+                   <h1>Add Task</h1>
+                </div>
+                 )} */}
                  <Link href="/">
                  <div className='flex items-center space-x-1'>
                  <DashboardIcon color="primary"/>
@@ -75,7 +83,6 @@ const Header = () => {
             </div>
           
           {/* </a> */}
-          <ChatBubbleOutlineIcon fontSize="medium" className="cursor-pointer"/>
           <div className="flex items-center space-x-8 cursor-pointer">
             <div className="relative">
               <div className="flex justify-center items-center h-4 w-4 bg-red-600 rounded-full absolute hover:scale-125 transition-all duration-150 ease-out">
@@ -87,7 +94,7 @@ const Header = () => {
                     <h3 className="text-xs font-bold text-white">3</h3>
               </div> */}
               
-              <NotificationsNoneIcon />
+              <AssignmentIcon fontSize='large' color='primary' className='cursor-pointer'/>
       
             </div>
             <div className='flex items-center space-x-2'>

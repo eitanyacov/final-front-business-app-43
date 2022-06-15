@@ -1,22 +1,52 @@
 import React, { useState } from "react";
 import { Icon } from "@mui/material"
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Switch from '@mui/material/Switch';
+import { useRouter } from "next/router";
+import axios from "axios";
 
-const Task = ({ title, date, icon, color  }) => {
-  const [checked, setChecked] = useState(false)
+
+const Task = ({ title, date, icon, color, id, isChecked }) => {
+  const [checked, setChecked] = useState(isChecked)
+  const router = useRouter();
 
   const handleChange = () => {
     setChecked(!checked)
+    console.log(id)
+    axios.get("http://localhost:8080/api/user/set-urgent-task/" + id)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
+
   }
+
+  const deleteTask = () => {
+    axios.delete("http://localhost:8080/api/user/delete-task/" + id)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
+    router.reload()
+
+  }
+
+
+  
+
   return (
-    <div className='flex flex-col border-l-4 border-green-500 justify-between w-[90px] md:w-[220px] h-[100px] bg-white shadow-xl border mt-5 rounded-2xl p-3 cursor-pointer'>
+    <div className='flex flex-col border-l-4 border-green-500 justify-between w-[90px] md:w-[220px] h-[100px] bg-white shadow-xl border mt-5 rounded-2xl p-2 cursor-pointer'>
         <div className="flex justify-between">
         <h1 className='text-gray-500 text-md md:text-sm'>{title}</h1>
+        <div className="flex items-center">
+        <div>
         <Switch
           checked={checked}
           onChange={handleChange}
           size='small'
-          inputProps={{ 'aria-label': 'controlled' }}/>  
+          inputProps={{ 'aria-label': 'controlled' }}/>
+        </div>
+          <div onClick={deleteTask}>
+          <DeleteForeverIcon className="text-red-400 hover:scale-125 transition-all duration-150 ease-out" fontSize="small" /> 
+          </div>
+        </div>
+        
         </div>
         
         <div>
@@ -25,7 +55,7 @@ const Task = ({ title, date, icon, color  }) => {
             <div className='flex items-center justify-between'>
                 <div className="hidden lg:block cursor-pointer" >
                 <div className='w-[100px] h-[0.5px] bg-black'/>
-                <h1 className='text-gray-700 text-md font-semibold md:text-sm'>{date}</h1>
+                <h1 className='text-gray-700 text-sm font-semibold md:text-xs'>{date}</h1>
                 </div>
                 <div className="flex items-center justify-center h-5 w-5 bg-gray-100 rounded-lg cursor-pointer">
                     <Icon component={icon} color={color}/>
