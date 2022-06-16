@@ -69,7 +69,7 @@ import SideBarPage from "../../components/SideBarPage";
     {
       field: "isPermanentModel",
       headerName: "isPermanent",
-      width: 85,
+      width: 100,
       editable: true,
     },
     // {
@@ -80,13 +80,13 @@ import SideBarPage from "../../components/SideBarPage";
     // },
     {
       field: "action",
-      headerName: "Disable Supplier",
+      headerName: "Supplier Info",
       width: 200,
       renderCell: () => {
         return (
           <div className="flex space-x-3">
             <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
-              Disable Supplier
+              Supplier Invoices
             </h1>
           </div>
         );

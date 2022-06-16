@@ -74,6 +74,7 @@ const Tasks = () => {
 
   // }
 
+  
   const addTask = (id) => {
     axios.post("http://localhost:8080/api/user/addTask/" + id, {
             date,
@@ -83,6 +84,7 @@ const Tasks = () => {
           setDate("")
           setDescription("")
           setModelOpen(false)
+          
         //   router.push('/tasks1')
         router.reload();
   }
@@ -119,12 +121,12 @@ const Tasks = () => {
     <>
       <SideBarPage />
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex justify-around ml-[220px] mt-5">
+        <div className="flex justify-between ml-[220px] space-x-6 mt-5 fixed top-14">
           {data.map((section) => (
             <Droppable key={section.id} droppableId={section.id.toString()}>
               {(provided) => (
                 <div
-                  className="flex flex-col items-center border border-gray-400 border-t-4 h-fit p-2 rounded-lg md:min-w-[220px]"
+                  className="flex flex-col items-center border border-gray-400 border-t-4 h-fit p-2 rounded-lg md:min-w-[220px] max-h-[545px] overflow-y-auto"
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >

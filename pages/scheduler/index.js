@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SideBarPage from "../../components/SideBarPage";
 import { useRouter } from 'next/router'
-import { DragDropProvider } from "@devexpress/dx-react-scheduler-material-ui";
+// import { DragDropProvider, DateNavigator, TodayButton, Toolbar } from "@devexpress/dx-react-scheduler-material-ui";
 import { Snackbar, Alert } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import {
@@ -11,6 +11,10 @@ import {
 } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
+  DragDropProvider,
+  DateNavigator,
+  TodayButton,
+  Toolbar,
   DayView,
   MonthView,
   Appointments,
@@ -21,6 +25,7 @@ import {
 const SchedulerPage = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({})
+  const [date, setDate] = useState(new Date());
   const router = useRouter();
   useEffect(()=> {
       const res = localStorage.getItem("user")
@@ -29,14 +34,16 @@ const SchedulerPage = () => {
       
   }, [])
   // const currentDate = "2018-11-01";
-  const currentDate = new Date()
+  // const currentDate = new Date()
   const schedulerData = [
     {
+      id: 1,
       startDate: "2022-06-14T07:45",
       endDate: "2022-06-14T08:45",
       title: "Meeting",
     },
     {
+      id: 2,
       startDate: "2022-06-12T09:00",
       endDate: "2022-06-12T10:45",
       title: "go to the gym",
@@ -58,14 +65,26 @@ const SchedulerPage = () => {
     );
   };
 
-  // const commitChanges = (data) => {
-  //   console.log(data)
-  // }
-  const commitChanges = ({ added }) => {
-    console.log(added?.startDate)
-    console.log(added?.endDate)
-    console.log(added?.title)
+  const commitChanges = (data) => {
+    console.log(data)
     setOpen(true)
+  }
+
+  // const commitChanges = ({ deleted }) => {
+  //   console.log("------------------------")
+  //   console.log("deleted: ")
+  //   console.log(deleted)
+  //   console.log("------------------------")
+  //   setOpen(true)
+  // }
+  // const commitChanges = ({ added, deleted, changed }) => {
+  //   console.log(added?.startDate)
+  //   console.log(added?.endDate)
+  //   console.log(added?.title)
+  //   setOpen(true)
+  // }
+  const currentDateChange = (currentDate) => {
+        setDate(currentDate)
   }
 
   const handleClose = () => {
@@ -75,20 +94,23 @@ const SchedulerPage = () => {
   return (
     <>
       <SideBarPage />
-      <div className="w-[80%] md:ml-[200px] mt-3">
+      <div className="w-[80%] md:ml-[205px] mt-2">
         <Paper>
           <Scheduler data={schedulerData}>
-            <ViewState currentDate={currentDate} />
+            <ViewState currentDate={date} onCurrentDateChange={currentDateChange}/>
             {/* <EditingState onCommitChanges={(paramas)=> console.log(paramas)}/> */}
             {/* <EditingState onCommitChanges={() => setOpen(true)} /> */}
             <EditingState onCommitChanges={commitChanges} />
             <IntegratedEditing />
             <WeekView startDayHour={5} endDayHour={24}/>
             <MonthView />
-            <DayView
+            {/* <DayView
         startDayHour={9}
         endDayHour={14}
-      />
+      /> */}
+            <Toolbar />
+            <DateNavigator/>
+            <TodayButton />
             <Appointments appointmentComponent={appointmentComponent} />
             <AppointmentForm />
             <DragDropProvider allowDrag={allowDrag} />

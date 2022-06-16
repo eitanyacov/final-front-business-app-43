@@ -37,9 +37,8 @@ const AddSupplier = () => {
             isPermanentModel,
             phoneNumber,
             description,
-          }).then(res => console.log(res.data))
+          }).then(res => {console.log(res.data), setOpen(true), router.push('/suppliers')})
           .catch(error => setError(error.response.data))
-          setOpen(true)
           setName("")
           setAddress("")
           setDescription("")
@@ -47,7 +46,7 @@ const AddSupplier = () => {
           setPhoneNumber("")
           setIsPermanentModel("")
           setError("")
-          router.push('/suppliers')
+          // router.push('/suppliers')
     }
 
     const handleChange = (e) => {

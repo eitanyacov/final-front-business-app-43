@@ -122,14 +122,19 @@ const SupplierPage = ({ id }) => {
     return (
         <>
         <SideBarPage />
-        <div className='flex justify-center space-x-4 mt-2'>
+        <div className='flex justify-around ml-[80px] md:ml-[200px] space-x-4 mt-2'>
             <h1 className='text-lg font-semibold'>Name: <span className='text-sm'>{supplier?.name}</span></h1>
             <h1 className='text-lg font-semibold'>Email: <span className='text-sm'>{supplier?.email}</span></h1>
             <h1 className='text-lg font-semibold'>Phone: <span className='text-sm'>{supplier?.phoneNumber}</span></h1>
             <h1 className='text-lg font-semibold'>Address: <span className='text-sm'>{supplier?.address}</span></h1>
             <h1 className='text-lg font-semibold'>Info: <span className='text-sm'>{supplier?.description}</span></h1>
+            <div className="flex space-x-3">
+            <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
+              Disable Supplier
+            </h1>
+          </div>
         </div>
-        <div className="h-[500px] w-[80%] ml-[80px] md:ml-[205px] mt-2">
+        <div className="h-[500px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
         <DataGrid
           rows={invoices}
           columns={columns}
