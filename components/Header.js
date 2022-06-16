@@ -1,31 +1,47 @@
 import React, { useState, useEffect } from 'react'
 import Link from "next/link";
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ListAltIcon from '@mui/icons-material/ListAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AddIcon from '@mui/icons-material/Add';
+import { Snackbar, Alert } from "@mui/material";
+import axios from 'axios';
 import { useRouter } from 'next/router'
 
 
 const Header = () => {
   const router = useRouter();
-  const [userFirstName, setUserFirstName] = useState("");
-  const [userLastName, setUserLastName] = useState("");
   const [user, setUser] = useState({})
+  const [open, setOpen] = useState(false)
+  const [urgentTasks, setUrgentTasks] = useState()
+
   // const [route, setRoute] = useState(false);
   // if(router.pathname == "/agents") {
   //   setRoute(true);
   // }
 
   useEffect(()=> {
-    // console.log("my name is: " + localStorage.getItem("name"));
-    // setUserFirstName(localStorage.getItem("firstName"))
-    // setUserLastName(localStorage.getItem("lastName"))
     const res = localStorage.getItem("user")
     res = JSON.parse(res)
     setUser(res)
   }, [])
 
+  useEffect(()=> {
+    axios.get("http://localhost:8080/api/user/count-user-urgent-tasks/" + user?.id)
+    .then((res) => setUrgentTasks(res.data))
+    .catch((err) => console.log(err));
+
+  }, [user?.id])
+
+  useEffect(()=> {
+    if(urgentTasks > 0) {
+      setOpen(true)
+    }
+  }, [urgentTasks])
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+  
 
   console.log("the route is: " + router.asPath)
   return (
@@ -84,9 +100,9 @@ const Header = () => {
           
           {/* </a> */}
           <div className="flex items-center space-x-8 cursor-pointer">
-            <div className="relative">
-              <div className="flex justify-center items-center h-4 w-4 bg-red-600 rounded-full absolute hover:scale-125 transition-all duration-150 ease-out">
-                <p className="text-white text-xs">3</p>
+            <div className="relative" onClick={()=> router.push('/tasks')}>
+              <div className="flex p-2 justify-center items-center h-4 w-4 bg-red-500 rounded-full absolute hover:scale-125 transition-all duration-150 ease-out">
+                <p className="text-white text-xs">{urgentTasks}</p>
               </div>
 
               {/* this div is "flashing, flickering" because of the "animate-pulse" */}
@@ -109,6 +125,15 @@ const Header = () => {
           
         </div>
       </div>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            There are {urgentTasks} Urgent tasks!
+          </Alert>
+        </Snackbar>
     </div>
   );
 };

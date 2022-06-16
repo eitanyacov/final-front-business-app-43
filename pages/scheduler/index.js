@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SideBarPage from "../../components/SideBarPage";
 import { useRouter } from 'next/router'
-// import Snackbar from '@mui/material/Snackbar';
 import { DragDropProvider } from "@devexpress/dx-react-scheduler-material-ui";
 import { Snackbar, Alert } from "@mui/material";
 import Paper from "@mui/material/Paper";
@@ -13,6 +12,7 @@ import {
 import {
   Scheduler,
   DayView,
+  MonthView,
   Appointments,
   WeekView,
   AppointmentForm,
@@ -28,17 +28,18 @@ const SchedulerPage = () => {
       setUser(result)
       
   }, [])
-  const currentDate = "2018-11-01";
+  // const currentDate = "2018-11-01";
+  const currentDate = new Date()
   const schedulerData = [
     {
-      startDate: "2018-11-01T00:45",
-      endDate: "2018-11-01T01:30",
+      startDate: "2022-06-14T07:45",
+      endDate: "2022-06-14T08:45",
       title: "Meeting",
     },
     {
-      startDate: "2018-10-29T03:00",
-      endDate: "2018-10-29T03:30",
-      title: "Go to a gym",
+      startDate: "2022-06-12T09:00",
+      endDate: "2022-06-12T10:45",
+      title: "go to the gym",
     },
   ];
   const dragDisableIds = new Set([3, 8, 10, 12]);
@@ -56,6 +57,17 @@ const SchedulerPage = () => {
       />
     );
   };
+
+  // const commitChanges = (data) => {
+  //   console.log(data)
+  // }
+  const commitChanges = ({ added }) => {
+    console.log(added?.startDate)
+    console.log(added?.endDate)
+    console.log(added?.title)
+    setOpen(true)
+  }
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -68,13 +80,15 @@ const SchedulerPage = () => {
           <Scheduler data={schedulerData}>
             <ViewState currentDate={currentDate} />
             {/* <EditingState onCommitChanges={(paramas)=> console.log(paramas)}/> */}
-            <EditingState onCommitChanges={() => setOpen(true)} />
+            {/* <EditingState onCommitChanges={() => setOpen(true)} /> */}
+            <EditingState onCommitChanges={commitChanges} />
             <IntegratedEditing />
-            <WeekView />
-            {/* <DayView
+            <WeekView startDayHour={5} endDayHour={24}/>
+            <MonthView />
+            <DayView
         startDayHour={9}
         endDayHour={14}
-      /> */}
+      />
             <Appointments appointmentComponent={appointmentComponent} />
             <AppointmentForm />
             <DragDropProvider allowDrag={allowDrag} />
@@ -89,10 +103,10 @@ const SchedulerPage = () => {
             Addede a success message!
           </Alert>
         </Snackbar>
-        <Alert severity="error">This is an error message!</Alert>
+        {/* <Alert severity="error">This is an error message!</Alert>
         <Alert severity="warning">This is a warning message!</Alert>
-        <Alert severity="info">This is an information message!</Alert>
-        <Alert severity="success">This is a success message!</Alert>
+        <Alert severity="info">This is an information message!</Alert> */}
+        {/* <Alert severity="success">This is a success message!</Alert> */}
       </div>
     </>
   );

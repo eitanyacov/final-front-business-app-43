@@ -8,8 +8,11 @@ import axios from "axios";
 
 const Task = ({ title, date, icon, color, id, isChecked }) => {
   const [checked, setChecked] = useState(isChecked)
+  const [user, setUser] = useState({});
+
   const router = useRouter();
 
+ 
   const handleChange = () => {
     setChecked(!checked)
     console.log(id)
@@ -18,6 +21,8 @@ const Task = ({ title, date, icon, color, id, isChecked }) => {
     .catch(err => console.log(err))
 
   }
+
+
 
   const deleteTask = () => {
     axios.delete("http://localhost:8080/api/user/delete-task/" + id)
@@ -29,7 +34,6 @@ const Task = ({ title, date, icon, color, id, isChecked }) => {
 
 
   
-
   return (
     <div className='flex flex-col border-l-4 border-green-500 justify-between w-[90px] md:w-[220px] h-[100px] bg-white shadow-xl border mt-5 rounded-2xl p-2 cursor-pointer'>
         <div className="flex justify-between">

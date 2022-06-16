@@ -124,7 +124,7 @@ const Tasks = () => {
             <Droppable key={section.id} droppableId={section.id.toString()}>
               {(provided) => (
                 <div
-                  className="flex flex-col items-center border border-gray-400 h-fit p-2 rounded-lg md:min-w-[220px]"
+                  className="flex flex-col items-center border border-gray-400 border-t-4 h-fit p-2 rounded-lg md:min-w-[220px]"
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
