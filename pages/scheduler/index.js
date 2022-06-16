@@ -3,6 +3,7 @@ import SideBarPage from "../../components/SideBarPage";
 import { useRouter } from 'next/router'
 // import { DragDropProvider, DateNavigator, TodayButton, Toolbar } from "@devexpress/dx-react-scheduler-material-ui";
 import { Snackbar, Alert } from "@mui/material";
+import axios from 'axios'
 import Paper from "@mui/material/Paper";
 import {
   ViewState,
@@ -26,6 +27,8 @@ const SchedulerPage = () => {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({})
   const [date, setDate] = useState(new Date());
+  const [schedulers, setSchedulers] = useState([])
+
   const router = useRouter();
   useEffect(()=> {
       const res = localStorage.getItem("user")
@@ -33,22 +36,31 @@ const SchedulerPage = () => {
       setUser(result)
       
   }, [])
+
+  useEffect(()=> {
+    const id = user?.id;
+    axios.get(`http://localhost:8080/api/user/schedulers-by-user/${id}`)
+    .then(res => {setSchedulers(res.data), console.log(res.data)})
+    .catch(err => console.log(err))
+  }, [user?.id])
   // const currentDate = "2018-11-01";
   // const currentDate = new Date()
-  const schedulerData = [
-    {
-      id: 1,
-      startDate: "2022-06-14T07:45",
-      endDate: "2022-06-14T08:45",
-      title: "Meeting",
-    },
-    {
-      id: 2,
-      startDate: "2022-06-12T09:00",
-      endDate: "2022-06-12T10:45",
-      title: "go to the gym",
-    },
-  ];
+  // const schedulerData = [
+  //   {
+  //     id: 1,
+  //     startDate: "2022-06-14T07:45",
+  //     endDate: "2022-06-14T08:45",
+  //     title: "Meeting",
+  //     notes: "do some stuff"
+  //   },
+  //   {
+  //     id: 2,
+  //     startDate: "2022-06-12T09:00",
+  //     endDate: "2022-06-12T10:45",
+  //     title: "go to the gym",
+  //     notes: "do some stuff"
+  //   },
+  // ];
   const dragDisableIds = new Set([3, 8, 10, 12]);
 
   const allowDrag = ({ id }) => !dragDisableIds.has(id);
@@ -65,10 +77,14 @@ const SchedulerPage = () => {
     );
   };
 
-  const commitChanges = (data) => {
-    console.log(data)
-    setOpen(true)
-  }
+  // const commitChanges = (data) => {
+  //   console.log(data)
+  //   setOpen(true)
+  // }
+  // const commitChanges = ({ added }) => {
+  //   console.log(added)
+  //   setOpen(true)
+  // }
 
   // const commitChanges = ({ deleted }) => {
   //   console.log("------------------------")
@@ -77,12 +93,38 @@ const SchedulerPage = () => {
   //   console.log("------------------------")
   //   setOpen(true)
   // }
-  // const commitChanges = ({ added, deleted, changed }) => {
-  //   console.log(added?.startDate)
-  //   console.log(added?.endDate)
-  //   console.log(added?.title)
-  //   setOpen(true)
-  // }
+  const commitChanges = ({ added, deleted, changed }) => {
+    // console.log(added?.startDate)
+    // console.log(added?.endDate)
+    // console.log(added?.title)
+    // console.log(added?.notes)
+    // setTitle(added?.title)
+    // setStartDate(added?.startDate)
+    // setEndDate(added?.endDate)
+    // setNotes(added?.notes)
+    // console.log("title: " + title + "notes: " + notes)
+    // console.log(title, startDate, endDate, notes)
+    console.log("deleted: ? " + deleted)
+    if(deleted) {
+      axios.delete("http://localhost:8080/api/user/delete-scheduler/" + deleted)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+       setOpen(true)
+       router.reload()
+    }
+
+    axios.post("http://localhost:8080/api/user/add-scheduler/" + user?.id, {
+            title: added?.title,
+            startDate: added?.startDate,
+            endDate: added?.endDate,
+            notes: added?.notes
+          }).then(res => {console.log(res.data)})
+          // .catch(error => setError(error.response.data))
+          .catch(error => console.log(error.response.data))
+           setOpen(true)
+           router.reload()
+         
+  }
   const currentDateChange = (currentDate) => {
         setDate(currentDate)
   }
@@ -96,7 +138,7 @@ const SchedulerPage = () => {
       <SideBarPage />
       <div className="w-[80%] md:ml-[205px] mt-2">
         <Paper>
-          <Scheduler data={schedulerData}>
+          <Scheduler data={schedulers}>
             <ViewState currentDate={date} onCurrentDateChange={currentDateChange}/>
             {/* <EditingState onCommitChanges={(paramas)=> console.log(paramas)}/> */}
             {/* <EditingState onCommitChanges={() => setOpen(true)} /> */}

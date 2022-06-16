@@ -92,7 +92,8 @@ const Tasks = () => {
   const openModel = (id) => {
     console.log("section id: " + id);
     setTaskStatusId(id);
-    setModelOpen(true);
+    // setModelOpen(true);
+    setModelOpen(!modelOpen);
   };
 
   const onDragEnd = (result) => {
@@ -141,7 +142,7 @@ const Tasks = () => {
                       {section.name}
                     </h1>
                     <div
-                      className={`border px-2 py-1 rounded-xl ${
+                      className={`border-2 border-red-300 px-2 py-1 rounded-xl ${
                         section.name == "Complete" ? `hidden` : `flex`
                       } bg-red-200 w-fit cursor-pointer hover:bg-red-100`}
                       onClick={() => openModel(section.id)}
@@ -153,7 +154,7 @@ const Tasks = () => {
                   </div>
                   <div>
                     {modelOpen && section.id == taskStatusId && (
-                      <div className="flex flex-col justify-between md:min-w-[200px] h-[130px] mt-2 border border-gray-500 rounded-md">
+                      <div className="flex flex-col justify-between md:min-w-[200px] h-[130px] mt-2 border border-gray-300 rounded-md">
                         <FormControl>
                           <Input type="date" onChange={e => setDate(e.target.value)} />
                           <TextareaAutosize
