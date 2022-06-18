@@ -49,7 +49,7 @@ const Workers = ({ clients }) => {
     },
   ];
   
-  if(!user) router.push('login')
+  if(!user) router.push('/login')
   return (
     // <div>
     //     {
@@ -63,7 +63,7 @@ const Workers = ({ clients }) => {
     <>
       <SideBarPage />
 
-      <div className="h-[500px] w-[80%] ml-[80px] md:ml-[205px] mt-2">
+      <div className="h-[500px] w-[80%] ml-[80px] md:ml-[205px] mt-1">
         <DataGrid
           rows={clients}
           columns={columns}

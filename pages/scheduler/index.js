@@ -28,7 +28,7 @@ const SchedulerPage = () => {
   const [user, setUser] = useState({})
   const [date, setDate] = useState(new Date());
   const [schedulers, setSchedulers] = useState([])
-
+  
   const router = useRouter();
   useEffect(()=> {
       const res = localStorage.getItem("user")
@@ -132,11 +132,11 @@ const SchedulerPage = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  if(!user) router.push('login')
+  if(!user) router.push('/login')
   return (
     <>
       <SideBarPage />
-      <div className="w-[80%] md:ml-[205px] mt-2">
+      <div className="w-[80%] md:ml-[205px] mt-1">
         <Paper>
           <Scheduler data={schedulers}>
             <ViewState currentDate={date} onCurrentDateChange={currentDateChange}/>

@@ -25,6 +25,7 @@ import SideBarPage from "../../components/SideBarPage";
     const response = await fetch(`http://localhost:8080/api/user/get-suppliers-by-user/${id}`);
     const data = await response.json();
     setSuppliers(data)
+    
   }
 
   const columns = [
@@ -99,7 +100,7 @@ import SideBarPage from "../../components/SideBarPage";
     router.push(`suppliers/${id}`);
   };
 
-  if(!user) router.push('login')
+  if(!user) router.push('/login')
   return (
     <>
       <SideBarPage />
@@ -108,7 +109,7 @@ import SideBarPage from "../../components/SideBarPage";
           Disable Agent
         </h1>
       </div> */}
-      <div className="h-[540px] w-[80%] ml-[80px] md:ml-[205px] mt-2">
+      <div className="h-[540px] w-[80%] ml-[80px] md:ml-[205px] mt-1">
         <DataGrid
           rows={suppliers}
           columns={columns}

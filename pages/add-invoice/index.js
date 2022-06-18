@@ -141,7 +141,7 @@ const Reports = () => {
 
   console.log("supplier Id: " + supplierId)
   console.log(suppliers)
-  if(!user) router.push('login')
+  if(!user) router.push('/login')
   const x = parseInt("11")
   console.log(x)
   return (

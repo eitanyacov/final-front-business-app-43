@@ -16,7 +16,7 @@ const Reports = () => {
  
  
   
-  if(!user) router.push('login')
+  if(!user) router.push('/login')
   return (
     <>
     <SideBarPage />

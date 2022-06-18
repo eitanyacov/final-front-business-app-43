@@ -60,7 +60,7 @@ const AddSupplier = () => {
     console.log('====================================');
     console.log(user?.id);
     console.log('====================================');
-    if(!user) router.push('login')
+    if(!user) router.push('/login')
   return (
     <>
     <SideBarPage />

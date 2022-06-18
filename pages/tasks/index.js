@@ -3,7 +3,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import SideBarPage from "../../components/SideBarPage";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import PreviewIcon from "@mui/icons-material/Preview";
+import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
 import { FormControl, Input, Button } from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
@@ -55,7 +55,7 @@ const Tasks = () => {
     } else if (iconName == "In Progress") {
       return AccessTimeIcon;
     } else if (iconName == "Review") {
-      return PreviewIcon;
+      return AccessAlarmsIcon;
     } else {
       return TaskAltIcon;
     }
@@ -117,12 +117,13 @@ const Tasks = () => {
     // router.push('/tasks1')
     router.reload();
   };
-
+  
+  if(!user) router.push('/login')
   return (
     <>
       <SideBarPage />
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex justify-between ml-[220px] space-x-6 mt-5 fixed top-14">
+        <div className="flex justify-between ml-[220px] space-x-6 mt-3 fixed top-14">
           {data.map((section) => (
             <Droppable key={section.id} droppableId={section.id.toString()}>
               {(provided) => (
@@ -158,9 +159,9 @@ const Tasks = () => {
                         <FormControl>
                           <Input type="date" onChange={e => setDate(e.target.value)} />
                           <TextareaAutosize
-                            maxRows={3}
+                            maxRows={2}
                             aria-label="maximum height"
-                            placeholder="Maximum 3 rows"
+                            placeholder="Maximum 2 rows"
                             style={{ width: 200 }}
                             onChange={e => setDescription(e.target.value)}
                           />

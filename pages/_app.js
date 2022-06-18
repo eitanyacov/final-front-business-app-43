@@ -4,6 +4,7 @@ import '../styles/globals.css'
 import { StyledEngineProvider } from '@mui/material';
 import { useRouter } from 'next/router'
 
+
 function MyApp({ Component, pageProps }) {
     const [user, setUser] = useState({})
     const router = useRouter();

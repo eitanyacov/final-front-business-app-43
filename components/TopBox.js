@@ -2,8 +2,8 @@ import { Icon } from "@mui/material"
 
 const TopBox = ({ title, amount, link, icon, color, onClick }) => {
   return (
-    <div className='flex flex-col justify-between w-[100px] md:w-[250px] h-[140px] bg-white shadow-xl border mt-5 rounded-2xl p-3'>
-        <h1 className='text-gray-500 text-md md:text-xl'>{title}</h1>
+    <div className='flex flex-col justify-between text-center w-[100px] md:w-[250px] h-[140px] bg-white shadow-xl border mt-3 rounded-2xl p-1'>
+        <h1 className='text-gray-500 text-md md:text-2xl'>{title}</h1>
         <h1 className='text-gray-700 text-md font-semibold md:text-2xl'>{amount}</h1>
         <div>
 

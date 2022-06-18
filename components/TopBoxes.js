@@ -72,10 +72,10 @@ const TopBoxes = () => {
   console.log("number of suppliers: " + numberOfSuppliers)
   return (
     <div className='flex ml-[80px] md:ml-[200px] justify-around p-1 space-x-2'>
-        <TopBox title="SUPPLIERS" amount={numberOfSuppliers} link="See all suppliers" icon={PeopleOutlineIcon} color="success" onClick={()=> router.push('/suppliers')}/>
-        <TopBox title="OUTCOME"  amount={`ש"ח ${outcome}`} link="Watch details" icon={MoneyOffIcon}  color="primary" onClick={()=> router.push('/agents')}/>
-        <TopBox title="INCOME" amount={`ש"ח ${income}`} link="View net income" icon={AttachMoneyIcon}  color="secondary" />
-        <TopBox title="BALANCE" amount={`ש"ח ${balance}`} link="See details" icon={MonetizationOnIcon}  color="info"/>
+        <TopBox title="ספקים" amount={numberOfSuppliers} link="See all suppliers" icon={PeopleOutlineIcon} color="success" onClick={()=> router.push('/suppliers')}/>
+        <TopBox title="הוצאות"  amount={`ש"ח ${outcome}`} link="Watch details" icon={MoneyOffIcon}  color="primary" onClick={()=> router.push('/agents')}/>
+        <TopBox title="הכנסות" amount={`ש"ח ${income}`} link="View net income" icon={AttachMoneyIcon}  color="secondary" />
+        <TopBox title="מאזן" amount={`ש"ח ${balance}`} link="See details" icon={MonetizationOnIcon}  color="info"/>
         <Snackbar open={open} autoHideDuration={10000} onClose={handleClose}>
           <Alert
             onClose={handleClose}

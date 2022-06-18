@@ -13,12 +13,8 @@ const Header = () => {
   const [user, setUser] = useState({})
   const [open, setOpen] = useState(false)
   const [urgentTasks, setUrgentTasks] = useState()
-
-  // const [route, setRoute] = useState(false);
-  // if(router.pathname == "/agents") {
-  //   setRoute(true);
-  // }
-
+  
+  
   useEffect(()=> {
     const res = localStorage.getItem("user")
     res = JSON.parse(res)
@@ -42,8 +38,10 @@ const Header = () => {
     setOpen(false)
   }
   
-
+  
   console.log("the route is: " + router.asPath)
+ 
+  
   return (
     <div className="w-full shadow-md bg-white sticky top-0 z-50">
       <div className="flex justify-between h-14 max-w-6xl mx-auto px-3">
@@ -54,6 +52,7 @@ const Header = () => {
               width={100}
             />
           </div>
+          
         </Link>
         <div className="flex items-center justify-center space-x-5">
           {/* <a href="/"> */}
@@ -63,7 +62,7 @@ const Header = () => {
                    <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">
                      <AddIcon color="primary" className="cursor-pointer"/>
                    </div>
-                   <h1>Add Invoice</h1>
+                   <h1>הכנס חשבונית חדשה</h1>
                 </div>
                  )}
                  {router.pathname == "/suppliers" && (
@@ -71,7 +70,7 @@ const Header = () => {
                    <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">
                      <AddIcon color="primary" className="cursor-pointer"/>
                    </div>
-                   <h1>Add Supplier</h1>
+                   <h1>הכנס ספק חדש</h1>
                 </div>
                  )}
                  {router.pathname == "/daily-income" && (
@@ -79,7 +78,15 @@ const Header = () => {
                    <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">
                      <AddIcon color="primary" className="cursor-pointer"/>
                    </div>
-                   <h1>Add Daily-Z</h1>
+                   <h1>הכנס דו"ח יומי</h1>
+                </div>
+                 )}
+                 {router.pathname == "/workers" && (
+                <div className="flex items-center space-x-2" onClick={()=> router.push("/add-daily-z")}>
+                   <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">
+                     <AddIcon color="primary" className="cursor-pointer"/>
+                   </div>
+                   <h1>הכנס עובד חדש</h1>
                 </div>
                  )}
                  {/* {router.pathname == "/tasks" && (
@@ -99,24 +106,29 @@ const Header = () => {
             </div>
           
           {/* </a> */}
+          
           <div className="flex items-center space-x-8 cursor-pointer">
-            <div className="relative" onClick={()=> router.push('/tasks')}>
-              <div className="flex p-2 justify-center items-center h-4 w-4 bg-red-500 rounded-full absolute hover:scale-125 transition-all duration-150 ease-out">
+            {user?.id &&
+              <div className="relative" onClick={()=> router.push('/tasks')}>
+              {/* <div className="flex p-2 justify-center items-center h-4 w-4 bg-red-500 rounded-full absolute hover:scale-125 transition-all duration-150 ease-out">
                 <p className="text-white text-xs">{urgentTasks}</p>
-              </div>
+              </div> */}
 
               {/* this div is "flashing, flickering" because of the "animate-pulse" */}
-              {/* <div className="flex absolute w-5 h-5 bg-red-500 animate-pulse rounded-full -top-2 -right-1 justify-center items-center">
-                    <h3 className="text-xs font-bold text-white">3</h3>
-              </div> */}
+              { urgentTasks > 0 &&
+                <div className="flex absolute w-5 h-5 bg-red-500 animate-pulse rounded-full -top-2 -right-1 justify-center items-center">
+                <h3 className="text-xs font-bold text-white">{urgentTasks}</h3>
+                </div>
+              }
               
               <AssignmentIcon fontSize='large' color='primary' className='cursor-pointer'/>
-      
             </div>
+            }
             <div className='flex items-center space-x-2'>
+            {user?.id && 
             <div className="flex h-15 w-15 border justify-center items-center rounded-full">
               <img src="https://www.compassionpregnancy.com/images/smiling-man.jpg" alt="" width={40} height={40} className='rounded-full' />
-            </div>
+            </div>}
             {/* <h1 className='font-semibold'>{userFirstName}</h1> */}
             <h1 className='font-semibold'>{user?.email}</h1>
             </div>

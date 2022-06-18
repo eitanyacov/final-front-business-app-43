@@ -17,7 +17,7 @@ const Task = ({ title, date, icon, color, id, isChecked }) => {
     setChecked(!checked)
     console.log(id)
     axios.get("http://localhost:8080/api/user/set-urgent-task/" + id)
-    .then(res => console.log(res.data))
+    .then(res => {console.log(res.data), router.reload()})
     .catch(err => console.log(err))
 
   }
@@ -35,9 +35,9 @@ const Task = ({ title, date, icon, color, id, isChecked }) => {
 
   
   return (
-    <div className='flex flex-col border-l-4 border-green-500 justify-between w-[90px] md:w-[220px] h-[100px] bg-white shadow-xl border mt-5 rounded-2xl p-2 cursor-pointer'>
+    <div className='flex flex-col border-l-4 border-green-500 justify-between w-[90px] md:w-[220px] h-fit bg-white shadow-xl border mt-4 rounded-2xl p-2 cursor-pointer'>
         <div className="flex justify-between">
-        <h1 className='text-gray-500 text-md md:text-sm'>{title}</h1>
+        <h1 className='text-gray-500 text-sm md:text-sm'>{title}</h1>
         <div className="flex items-center">
         <div>
         <Switch
@@ -58,8 +58,15 @@ const Task = ({ title, date, icon, color, id, isChecked }) => {
         </div>
             <div className='flex items-center justify-between'>
                 <div className="hidden lg:block cursor-pointer" >
-                <div className='w-[100px] h-[0.5px] bg-black'/>
-                <h1 className='text-gray-700 text-sm font-semibold md:text-xs'>{date}</h1>
+                  <div>
+                  <div className='w-[100px] h-[0.5px] bg-black'/>
+                  <div className="flex space-x-2">
+                  <h1 className='text-gray-700 text-sm font-semibold md:text-xs'>{date}</h1>
+                  {checked && <p className="text-xs font-semibold text-red-700">דחוף</p>}
+                  </div>
+                  
+                  </div> 
+                  
                 </div>
                 <div className="flex items-center justify-center h-5 w-5 bg-gray-100 rounded-lg cursor-pointer">
                     <Icon component={icon} color={color}/>

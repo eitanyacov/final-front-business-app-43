@@ -1,23 +1,42 @@
 import SideBar from "./SideBar";
+import React, { useState, useEffect } from "react";
+import Switch from '@mui/material/Switch';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PersonIcon from '@mui/icons-material/Person';
-// import ListAltIcon from '@mui/icons-material/ListAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useRouter } from 'next/router'
 
+
 const SideBarPage = () => {
+  const [checked, setChecked] = useState(false)
   const router = useRouter()
+ 
+  
+  const handleChange = () => {
+    setChecked(!checked)
+
+  }
+
   console.log(router.pathname)
   return (
     <div className="bg-gray-50 w-[80px] md:w-[200px] px-2 fixed min-h-screen border">
-      <h1 className="text-gray-600 text-sm font-semibold">Main</h1> 
+     {checked ? ( 
+      <>
+      <div className="flex justify-between py-1">
+     <h1 className="text-gray-600 text-sm font-semibold">Main</h1> 
+      <Switch
+          checked={checked}
+          onChange={handleChange}
+          size='small'
+          inputProps={{ 'aria-label': 'controlled' }}/>
+     </div>
       <div className={router.asPath == "/" ? "active" : ""}>
       <SideBar icon={DashboardIcon} color="secondary" title="Dashboard" onClick={()=> router.push('/')}/>
       </div>
@@ -53,7 +72,52 @@ const SideBarPage = () => {
       <SideBar icon={LogoutIcon} color="secondary" title="Logout"/> 
       </div>   
       </a>
-      
+      </>
+     ) : (<>
+     <div className="flex justify-between py-1">
+     <h1 className="text-gray-600 text-sm font-semibold">ראשי</h1> 
+      <Switch
+          checked={checked}
+          onChange={handleChange}
+          size='small'
+          inputProps={{ 'aria-label': 'controlled' }}/>
+     </div>
+      <div className={router.asPath == "/" ? "active" : ""}>
+      <SideBar icon={DashboardIcon} color="secondary" title="דף הבית" onClick={()=> router.push('/')}/>
+      </div>
+      <h1 className="text-gray-600 text-sm font-semibold">רשימות</h1>
+      <div className={router.asPath == "/suppliers" ? "active" : ""}>
+      <SideBar icon={PeopleAltIcon} color="secondary" title="ספקים" onClick={()=> router.push('/suppliers')}/>
+      </div>
+      <div className={router.asPath == "/daily-income" ? "active" : ""}>
+      <SideBar icon={MonetizationOnIcon} color="secondary" title="דו''ח הכנסות יומי" onClick={()=> router.push('/daily-income')}/>
+      </div>
+      <div className={router.asPath == "/invoice" ? "active" : ""}>
+      <SideBar icon={DescriptionIcon} color="secondary" title="חשבוניות" onClick={()=> router.push("/invoice")}/>
+      </div>
+      <div className={router.asPath == "/workers" ? "active" : ""}>
+      <SideBar icon={PeopleOutlineIcon} color="secondary" title="עובדים" onClick={()=> router.push('/workers')}/> 
+      </div>
+      <h1 className="text-gray-600 text-sm font-semibold">שירותים</h1>
+      <div className={router.asPath == "/scheduler" ? "active" : ""}>
+      <SideBar icon={CalendarMonthIcon} color="secondary" title="יומן פגישות" onClick={()=> router.push("/scheduler")}/>
+      </div>
+      <div className={router.asPath == "/tasks" ? "active" : ""}>
+      <SideBar icon={AssignmentIcon} color="secondary" title="משימות / תזכורות" onClick={()=> router.push("/tasks")}/>
+      </div>
+      <div className={router.asPath == "/reports" ? "active" : ""}>
+      <SideBar icon={AssessmentIcon} color="secondary" title="כל הדוחות" onClick={()=> router.push("/reports")}/>
+      </div>
+      <h1 className="text-gray-600 text-sm font-semibold">משתמש</h1>
+      <div className={router.asPath == "/profile" ? "active" : ""}>
+      <SideBar icon={PersonIcon} color="secondary" title="פרופיל משתמש" onClick={()=> router.push("/profile")}/>
+      </div>
+      <a href="/login">
+      <div onClick={()=> {localStorage.removeItem("user")}}>
+      <SideBar icon={LogoutIcon} color="secondary" title="יציאה"/> 
+      </div>   
+      </a>
+     </>)}
     </div>
   );
 };

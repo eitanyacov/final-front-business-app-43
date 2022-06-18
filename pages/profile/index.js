@@ -23,7 +23,7 @@ const Profile = () => {
   }, [])
 
   
-  if(!user) router.push('login')
+  if(!user) router.push('/login')
 
   return (
     <div>
@@ -32,54 +32,54 @@ const Profile = () => {
               <div className='w-fit  bg-white shadow-2xl h-fit p-10 space-y-5 rounded-lg fixed'>
                   <div className='flex justify-between items-center'>
                   <div className='flex space-x-3 items-center'>
-                  <PersonIcon />
+                  <PersonIcon color='primary'/>
                   <h1 className='text-[#333] text-2xl font-semibold'>First Name :</h1>
                   </div>
                   <h1 className='text-[#333] text-2xl'>{user?.firstName}</h1>
                   </div>
                   <div className='flex justify-between items-center'>
                   <div className='flex space-x-3 items-center'>
-                  <PersonOutlineIcon />
+                  <PersonOutlineIcon color='primary'/>
                   <h1 className='text-[#333] text-2xl font-semibold'>Last Name :</h1>
                   </div>
                   <h1 className='text-[#333] text-2xl'>{user?.lastName}</h1>
                   </div>
                   <div className='flex justify-between items-center'>
-                    <MarkunreadIcon />
+                    <MarkunreadIcon color='primary'/>
                   <h1 className='text-[#333] text-2xl font-semibold'>Email :</h1>
                   <h1 className='text-[#333] text-2xl'>{user?.email}</h1>
                   </div>
                   <div className='flex justify-between items-center'>
                   <div className='flex space-x-3 items-center'>
-                  <BusinessIcon />
+                  <BusinessIcon color='primary'/>
                   <h1 className='text-[#333] text-2xl font-semibold'>Company : </h1>
                   </div>
                   <h1 className='text-[#333] text-2xl'>{user?.companyName}</h1>
                   </div>
                   <div className='flex justify-between items-center'>
                   <div className='flex space-x-3 items-center'>
-                  <PhoneIcon />
+                  <PhoneIcon color='primary'/>
                   <h1 className='text-[#333] text-2xl font-semibold'>Phone : </h1>
                   </div>
                   <h1 className='text-[#333] text-2xl'>{user?.phoneNumber}</h1>
                   </div>
                   <div className='flex justify-between items-center'>
                   <div className='flex space-x-3 items-center'>
-                  <HomeIcon />
+                  <HomeIcon color='primary'/>
                   <h1 className='text-[#333] text-2xl font-semibold'>Address : </h1>
                   </div>
                   <h1 className='text-[#333] text-2xl'>{user?.address}</h1>
                   </div>
                   <div className='flex justify-between items-center'>
                   <div className='flex space-x-3 items-center'>
-                  <CalendarMonthIcon />
+                  <CalendarMonthIcon color='primary'/>
                   <h1 className='text-[#333] text-2xl font-semibold'>Joind Date :</h1>
                   </div>
                   <h1 className='text-[#333] text-2xl'>{user?.joinDate}</h1>
                   </div>
                   <div className='flex justify-between items-center'>
                   <div className='flex space-x-3 items-center'>
-                  <AppRegistrationIcon />
+                  <AppRegistrationIcon color='primary'/>
                   <h1 className='text-[#333] text-2xl font-semibold'>Dealer licensed :</h1>
                   </div>
                   <h1 className='text-[#333] text-2xl'>{user?.dealerlicensed}</h1>

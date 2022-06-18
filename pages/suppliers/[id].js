@@ -117,8 +117,7 @@ const SupplierPage = ({ id }) => {
 
     console.log(user?.id)
     console.log("id from getstaticprops: " + id)
-    
-
+    if(!user) router.push('/login')
     return (
         <>
         <SideBarPage />
