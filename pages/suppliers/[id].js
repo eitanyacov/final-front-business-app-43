@@ -157,8 +157,6 @@ export async function getStaticProps(context) {
 
     const id = params.id
     
-    
-
    return {
        props: {
            id

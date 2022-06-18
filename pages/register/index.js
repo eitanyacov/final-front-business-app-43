@@ -27,7 +27,7 @@ const Register = () => {
             dealerlicensed,
             password
           }).then(res => console.log(res.data))
-          .catch(err => {setError(err.response.data), console.log("xxx: " + err.response.data)})
+          .catch(err => setError(err.response.data))
           setFirstName("")
           setAddress("")
           setCompanyName("")
@@ -36,25 +36,11 @@ const Register = () => {
           setEmail("")
           setPhoneNumber("")
           setPassword("")
-          // setError("")
-          // router.push('/login')
-          // setError2(error);
-          console.log(error)
-          if(error.length) {
-            router.push('/register')
-            console.log("my error: " + error)
-            // setError([])
-            
-          }
-          // if(!error.length) {
-          //   router.push('/login')
-          // }
-          
-          // // setError2("");
-          // router.push('/login')
-          
+          setError("")
+          router.push('/login')
+        
     }
-    // console.log(error)
+   
   return (
      <div className='flex flex-col max-w-[1200px] mx-auto min-h-screen items-center mt-3 fixed ml-96'>
          <h1>REGISTER</h1>

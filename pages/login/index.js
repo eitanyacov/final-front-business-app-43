@@ -26,8 +26,8 @@ const Login = () => {
   }
 
   return (
-        <div className='flex justify-center h-fit mt-10'>
-          <form onSubmit={handleSubmit} className='flex flex-col bg-gray-100 border px-5 py-3 rounded-lg'>
+        <div className='flex flex-col items-center justify-center h-fit mt-10'>
+          <form onSubmit={handleSubmit} className='flex flex-col bg-gray-100 border-l border-r border-t-2 px-5 py-3 rounded-lg'>
           <h1 className='text-center text-2xl font-semibold text-gray-500'>LOGIN FORM</h1>
          <div className='flex flex-col mb-6 mt-1'>
          <input type="email" value={email} placeholder='email' className='bg-white my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setEmail(e.target.value)}/>
@@ -43,10 +43,11 @@ const Login = () => {
          </div>
          </div>
            <button type='submit' className='bg-blue-500 px-20 py-2 mt-4 rounded-full text-white font-semibold hover:bg-blue-400'>Login</button>
-           <button className='bg-blue-500 px-20 py-2 mt-4 rounded-full text-white font-semibold hover:bg-blue-400' onClick={()=> router.push("/register")}>Register</button>
            {error != "" && <div className='mt-2'><Alert severity="error">{error}</Alert></div>}
          </form>
-         
+         <div className='bg-gray-100 pb-4 px-4 pt-2 rounded-bl-lg rounded-br-lg border-b-2'>
+         <button className='bg-blue-500 px-20 py-2 mt-4 rounded-full text-white font-semibold hover:bg-blue-400' onClick={()=> router.push("/register")}>Register</button>
+         </div>
          <h1>{sessionName}</h1>
       </div>
    
