@@ -76,18 +76,17 @@ const DailiZ = () => {
   return (
     <>
     <SideBarPage />
-    {!submit && <div className='flex flex-col max-w-[1200px] mx-auto min-h-screen items-center mt-3 fixed ml-96'>
-         <h1 className='text-2xl font-semibold'>ADD DAILY INCOME</h1>
-         <form className='flex flex-col border px-5 py-3 rounded-lg'>
+    {!submit && <div className='flex flex-col mx-auto h-fit items-center mt-5 w-fit'>
+         <form className='flex flex-col border bg-gray-100 px-5 py-3 rounded-lg border-t-4'>
          <Input type='date' value={date} placeholder='add date' onChange={e => setDate(e.target.value)}/>
-           <input type="number" value={cashMoney} placeholder='Cash' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setCash(e.target.value)}/>
-           <input type="number" value={creditCard} placeholder='Credit Cards' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setCreditCard(e.target.value)}/>
-           <input type="number" value={cheque} placeholder='Checks' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setChecks(e.target.value)}/>
-           <input type="number" value={cibus} placeholder='Cibus' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setCibus(e.target.value)}/>
-           <input type="number" value={tenBis} placeholder='Ten Bis' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setTenBis(e.target.value)}/>
-           <input type="number" value={wallt} placeholder='Wallt' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setWallt(e.target.value)}/>
-           <input type="number" value={other} placeholder='Other' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setOther(e.target.value)}/>
-           <input type="number" value={total} placeholder='Total' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> settotal(e.target.value)}/>
+           <input type="number" value={cashMoney} placeholder='Cash' className='bg-white my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setCash(e.target.value)}/>
+           <input type="number" value={creditCard} placeholder='Credit Cards' className='bg-white my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setCreditCard(e.target.value)}/>
+           <input type="number" value={cheque} placeholder='Checks' className='bg-white my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setChecks(e.target.value)}/>
+           <input type="number" value={cibus} placeholder='Cibus' className='bg-white my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setCibus(e.target.value)}/>
+           <input type="number" value={tenBis} placeholder='Ten Bis' className='bg-white my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setTenBis(e.target.value)}/>
+           <input type="number" value={wallt} placeholder='Wallt' className='bg-white my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setWallt(e.target.value)}/>
+           <input type="number" value={other} placeholder='Other' className='bg-white my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setOther(e.target.value)}/>
+           <input type="number" value={total} placeholder='Total' className='bg-white my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> settotal(e.target.value)}/>
            {/* <input type="text" value={isPermanent} placeholder='is Permanent' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setIsPermanent(e.target.value)}/> */}
            <button type='submit' className='bg-blue-500 px-20 py-2 mt-4 rounded-full text-white font-semibold hover:bg-blue-400' onClick={()=> setSubmit(true)} >ADD INCOME</button>
          </form>

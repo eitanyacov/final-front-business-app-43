@@ -2,21 +2,38 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { DataGrid } from "@mui/x-data-grid";
 import SideBarPage from '../../components/SideBarPage';
+// import { useSelector } from "react-redux";
+// import { selectUser } from '../../public/src/features/UserSlice';
 
-// const supId = 24;
+
+
 
 export async function getStaticPaths() {
+  
+// option one is to get all the suppliers in the system, cause i cannot get the user id inside the getStaticPathes
+    // const response = await fetch("http://localhost:8080/api/admin/all-suppliers");
+    // const data = await response.json();
+    // const paths = data.map(a => {
+    //     return {
+    //         params: {
+    //             id: a.id.toString()
+    //         }
+    //     }
+    // })
 
-    // const response = await fetch("http://localhost:8080/api/user/get-suppliers-by-user/" + supId);
-    const response = await fetch("http://localhost:8080/api/admin/all-suppliers");
-    const data = await response.json();
-    const paths = data.map(a => {
-        return {
-            params: {
-                id: a.id.toString()
-            }
-        }
-    })
+    //option two is to prerender big number (maybe option one is better, cause if you will have more suppliers than the number it will be a problem)
+    const arr = []
+    for(let i = 0; i < 50000; i++) {
+      arr.push(i)
+    }
+    const paths = arr.map(a => {
+   
+    return {
+      params: {
+          id: a.toString()
+      }
+  }
+})
 
     return {
       // paths: [
@@ -48,8 +65,7 @@ const SupplierPage = ({ invoices, supplier }) => {
     // const [supplier, setSupplier] = useState({})
     // const [invoices, setInvoices] = useState([])
     const router = useRouter()
-
-   
+    
     
     useEffect(()=> {
         const res = localStorage.getItem("user")

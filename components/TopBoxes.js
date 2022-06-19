@@ -6,17 +6,30 @@ import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from "react-redux";
+import { addUserId, selectUser } from "../public/src/features/UserSlice";
 import axios from 'axios'
 
 
 const TopBoxes = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [numberOfSuppliers, setNumberofSuppliers] = useState();
   const [user, setUser] = useState({})
   const [outcome, setOutcome] = useState()
+  const [id, setId] = useState()
   const [income, setIncome] = useState()
   const [balance, setBalance] = useState()
   const [open, setOpen] = useState(false)
+
+  const userId = useSelector(selectUser);
+
+
+useEffect(()=> {
+  axios.get('http://localhost:8080/api/admin/return-user-id/' + user?.id)
+  .then(res => dispatch(addUserId(res.data)))
+  .catch(err => console.log(err))
+}, [user?.id])
 
   
   useEffect(()=> {

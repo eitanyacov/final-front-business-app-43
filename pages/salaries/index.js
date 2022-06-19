@@ -6,78 +6,78 @@ const salaries = () => {
     const [user, setUser] = useState({})
     const [salaries, setSaleries] = useState([])
 
-    // useEffect(()=> {
-    //     const res = localStorage.getItem("user")
-    //     const result = JSON.parse(res)
-    //     setUser(result)
-    //     getWorkers()
+    useEffect(()=> {
+        const res = localStorage.getItem("user")
+        const result = JSON.parse(res)
+        setUser(result)
+        getSalaries()
         
-    // }, [user?.id])
+    }, [user?.id])
   
    
-    // const getWorkers = async () => {
-    //   const id = user?.id;
-    //   const response = await fetch(`http://localhost:8080/api/user/all-workers/${id}`);
-    //   const data = await response.json();
-    //   setWorkers(data)
-    // }
+    const getSalaries = async () => {
+      const id = user?.id;
+      const response = await fetch(`http://localhost:8080/api/user/all-workers-salaries/${id}`);
+      const data = await response.json();
+      setSaleries(data)
+    }
 
     const columns = [
         { field: "id", headerName: "ID", width: 40 },
         {
-          field: "שם עובד/ת",
+          field: "workerFullName",
           headerName: "שם עובד/ת",
           width: 110,
           editable: true,
         },
         
         {
-          field: "עבור חודש",
+          field: "month",
           headerName: "עבור חודש",
           width: 120,
           editable: true,
         },
         {
-          field: "מספר שעות",
+          field: "hours",
           headerName: "מספר שעות",
           // type: 'number',
           width: 105,
           editable: true,
         },
         {
-          field: "שעות נוספות",
+          field: "extraHours",
           headerName: "שעות נוספות",
           // type: 'number',
           width: 100,
           editable: true,
         },
         {
-          field: "סכום משכורת",
+          field: "amount",
           headerName: "סכום משכורת מלא",
           // type: 'number',
           width: 120,
           editable: true,
         },
-        {
-          field: "מס הכנסה",
-          headerName: "מס הכנסה",
-          // type: 'number',
-          width: 100,
-          editable: true,
-        },
+        // {
+        //   field: "מס הכנסה",
+        //   headerName: "מס הכנסה",
+        //   // type: 'number',
+        //   width: 100,
+        //   editable: true,
+        // },
     
-        {
-          field: "ביטוח לאומי",
-          headerName: "ביטוח לאומי",
-          width: 100,
-          editable: true,
-        },
-        {
-            field: "ביטוח לאומי",
-            headerName: "משכורת נטו",
-            width: 100,
-            editable: true,
-          },
+        // {
+        //   field: "ביטוח לאומי",
+        //   headerName: "ביטוח לאומי",
+        //   width: 100,
+        //   editable: true,
+        // },
+        // {
+        //     field: "ביטוח לאומי",
+        //     headerName: "משכורת נטו",
+        //     width: 100,
+        //     editable: true,
+        //   },
         
         // {
         //   field: "action",

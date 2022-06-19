@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import '../styles/globals.css'
 import { StyledEngineProvider } from '@mui/material';
 import { useRouter } from 'next/router'
+import store from "../public/src/app/store";
+import { Provider } from "react-redux";
 
 
 function MyApp({ Component, pageProps }) {
@@ -19,7 +21,9 @@ function MyApp({ Component, pageProps }) {
     <>
     <Header />
     <StyledEngineProvider injectFirst>
-         <Component {...pageProps} />
+         <Provider store={store}>
+            <Component {...pageProps} />
+         </Provider>
     </StyledEngineProvider>
     </>
     
