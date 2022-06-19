@@ -81,7 +81,7 @@ const AddWorker = () => {
   return (
     <>
     <SideBarPage />
-    <div className='flex flex-col max-w-[1200px] mx-auto h-fit border-t-4 border-gray-400 border-l border-r border-b items-center mt-2 bg-slate-200 rounded-lg fixed ml-96'>
+    <div className='flex flex-col mx-auto h-fit border-t-4 border-gray-400 border-l border-r border-b items-center mt-2 bg-gray-100 rounded-lg w-fit'>
          {/* <h1 className='text-2xl font-semibold'>הכנס עובד חדש</h1> */}
          <form onSubmit={postData} className='flex flex-col border px-5 py-2 rounded-lg'>
            <input type="text" value={firstName} placeholder='first name' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setFirstName(e.target.value)}/>

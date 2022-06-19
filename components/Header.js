@@ -82,11 +82,16 @@ const Header = () => {
                 </div>
                  )}
                  {router.pathname == "/workers" && (
+                  <div className='flex items-center space-x-14'>
+                  <div className='flex items-center justify-center bg-green-400 rounded-full px-3 py-1 cursor-pointer hover:bg-green-300' onClick={()=> router.push('/salaries')}>
+                    <h1 className='text-blue-700 font-semibold'> משכורות עובדים</h1>
+                  </div>
                 <div className="flex items-center space-x-2" onClick={()=> router.push("/add-worker")}>
                    <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">
                      <AddIcon color="primary" className="cursor-pointer"/>
                    </div>
                    <h1>הכנס עובד חדש</h1>
+                </div>
                 </div>
                  )}
                  {/* {router.pathname == "/tasks" && (

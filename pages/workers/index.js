@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import SideBarPage from '../../components/SideBarPage';
 
 
+
 const Workers = ({ clients }) => {
   const [user, setUser] = useState({})
   const [workers, setWorkers] = useState([])
@@ -17,8 +18,7 @@ const Workers = ({ clients }) => {
       
   }, [user?.id])
 
-  
-
+ 
   const getWorkers = async () => {
     const id = user?.id;
     const response = await fetch(`http://localhost:8080/api/user/all-workers/${id}`);

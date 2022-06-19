@@ -64,14 +64,14 @@ const AddSupplier = () => {
   return (
     <>
     <SideBarPage />
-    <div className='flex flex-col max-w-[1200px] mx-auto min-h-screen items-center mt-3 fixed ml-96'>
-         <h1 className='text-2xl font-semibold'>ADD NEW SUPPLIER</h1>
-         <form onSubmit={postData} className='flex flex-col border px-5 py-3 rounded-lg'>
-           <input type="text" value={name} placeholder='name' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setName(e.target.value)}/>
-           <input type="email" value={email} placeholder='email' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setEmail(e.target.value)}/>
-           <input type="text" value={phoneNumber} placeholder='phone number' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setPhoneNumber(e.target.value)}/>
-           <input type="text" value={address} placeholder='address' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setAddress(e.target.value)}/>
-           <input type="text" value={description} placeholder='description' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setDescription(e.target.value)}/>
+    <div className='flex flex-col mx-auto h-fit items-center mt-2 w-fit'>
+         <h1 className='text-2xl font-semibold mb-2'>הכנס ספק למערכת</h1>
+         <form onSubmit={postData} className='flex flex-col border px-5 py-3 rounded-lg bg-gray-100 border-t-4 border-b-2'>
+           <input type="text" value={name} placeholder='name' className='bg-white-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setName(e.target.value)}/>
+           <input type="email" value={email} placeholder='email' className='bg-white-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setEmail(e.target.value)}/>
+           <input type="text" value={phoneNumber} placeholder='phone number' className='bg-white-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setPhoneNumber(e.target.value)}/>
+           <input type="text" value={address} placeholder='address' className='bg-white-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setAddress(e.target.value)}/>
+           <input type="text" value={description} placeholder='description' className='bg-white-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setDescription(e.target.value)}/>
            {/* <input type="text" value={isPermanent} placeholder='is Permanent' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setIsPermanent(e.target.value)}/> */}
            <InputLabel id="demo-simple-select-label" >isPermanent</InputLabel>
         <Select onChange={handleChange}>
@@ -79,7 +79,7 @@ const AddSupplier = () => {
                 <MenuItem value={a}>{a}</MenuItem>
             ))}
          </Select>
-           <button type='submit' className='bg-blue-500 px-20 py-2 mt-4 rounded-full text-white font-semibold hover:bg-blue-400'>ADD SUPPLIER</button>
+           <button type='submit' className='bg-blue-500 px-20 py-2 mt-4 rounded-full text-white font-semibold hover:bg-blue-400'>הכנס ספק</button>
          </form>
          {error != "" && <Alert severity="error">{error}</Alert>}
          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
