@@ -34,21 +34,21 @@ const salaries = () => {
         {
           field: "month",
           headerName: "עבור חודש",
-          width: 120,
+          width: 110,
           editable: true,
         },
         {
           field: "hours",
           headerName: "מספר שעות",
           // type: 'number',
-          width: 105,
+          width: 110,
           editable: true,
         },
         {
           field: "extraHours",
           headerName: "שעות נוספות",
           // type: 'number',
-          width: 100,
+          width: 110,
           editable: true,
         },
         {
@@ -58,26 +58,26 @@ const salaries = () => {
           width: 120,
           editable: true,
         },
-        // {
-        //   field: "מס הכנסה",
-        //   headerName: "מס הכנסה",
-        //   // type: 'number',
-        //   width: 100,
-        //   editable: true,
-        // },
+        {
+          field: "מס הכנסה",
+          headerName: "מס הכנסה",
+          // type: 'number',
+          width: 100,
+          editable: true,
+        },
     
-        // {
-        //   field: "ביטוח לאומי",
-        //   headerName: "ביטוח לאומי",
-        //   width: 100,
-        //   editable: true,
-        // },
-        // {
-        //     field: "ביטוח לאומי",
-        //     headerName: "משכורת נטו",
-        //     width: 100,
-        //     editable: true,
-        //   },
+        {
+          field: "ביטוח לאומי",
+          headerName: "ביטוח לאומי",
+          width: 100,
+          editable: true,
+        },
+        {
+            field: "משכורת נטו",
+            headerName: "משכורת נטו",
+            width: 100,
+            editable: true,
+          },
         
         // {
         //   field: "action",

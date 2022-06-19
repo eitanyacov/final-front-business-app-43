@@ -18,6 +18,10 @@ const Workers = ({ clients }) => {
       
   }, [user?.id])
 
+  const goToPage = (id) => {
+    router.push('/workers/' + id)
+  }
+
  
   const getWorkers = async () => {
     const id = user?.id;
@@ -112,7 +116,7 @@ const Workers = ({ clients }) => {
           rowsPerPageOptions={[7]}
           checkboxSelection
           disableSelectionOnClick
-          // onRowClick={(params) => goToPage(params.id)}
+          onRowClick={(params) => goToPage(params.id)}
           className="cursor-pointer"
         />
       </div>

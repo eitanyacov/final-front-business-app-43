@@ -98,7 +98,7 @@ const Reports = () => {
     <SideBarPage/>
     <div className='flex flex-col mx-auto h-fit items-center justify-center mt-4 w-fit'>
  { !submit && <FormControl className='w-96'>
-  <InputLabel id="demo-simple-select-label" >עובדים</InputLabel>
+  <InputLabel id="demo-simple-select-label" >בחר עובד/ת</InputLabel>
   <Select
     value={workerFullName}
     label="Supplier"
