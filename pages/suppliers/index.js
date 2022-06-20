@@ -96,8 +96,8 @@ import axios from 'axios';
     // },
     {
       field: "action",
-      headerName: "חשבוניות",
-      width: 120,
+      headerName: "חשבוניות ספק",
+      width: 140,
       renderCell: () => {
         return (
           <div className="flex space-x-3">
@@ -212,35 +212,35 @@ const handleChange2 = (e) => {
             <button className='hover:text-red-600 hover:scale-150 text-2xl text-red-500' onClick={()=> setEditMode(false)}>X</button>
             </div>
             {field == "name" && <>
-              <label>שם: {supplier.name}</label>
+              <label className='text-center mb-3'><span className='font-semibold text-xl text-gray-600'> שם:  </span>{supplier.name}</label>
               <input type="text" value={name} placeholder="enter new name" className='bg-white rounded-full px-2 py-1' onChange={e => setName(e.target.value)}/>
             </>
               
             }
             {field == "email" &&
               <>
-              <label>{supplier.email} :אימייל</label>
+              <label className='text-center mb-3'>{supplier.email} <span className='font-semibold text-xl text-gray-600'> :אימייל  </span></label>
               <input type="email" value={email} placeholder="enter new email" className='bg-white rounded-full px-2 py-1' onChange={e => setEmail(e.target.value)}/>
             </>
     
             }
             {field == "address" &&
               <>
-              <label>כתובת: {supplier.address}</label>
+              <label className='text-center mb-3'><span className='font-semibold text-xl text-gray-600'> כתובת:  </span> {supplier.address}</label>
             <input type="text" value={address} placeholder="enter new address" className='bg-white rounded-full px-2 py-1' onChange={e => setAddress(e.target.value)}/>
               </>
             }
 
             {field == "description" &&
               <>
-              <label>תיאור: {supplier.description}</label>
+              <label className='text-center mb-3'><span className='font-semibold text-xl text-gray-600'> תיאור:  </span> {supplier.description}</label>
             <input type="text" value={description} placeholder="enter new description" className='bg-white rounded-full px-2 py-1' onChange={e => setDescription(e.target.value)}/>
               </>
             }
             
             {field == "phoneNumber" &&
               <>
-              <label>מס' טלפון: {supplier.phoneNumber}</label>
+              <label className='text-center mb-3'><span className='font-semibold text-xl text-gray-600'> מס' טלפון:  </span>{supplier.phoneNumber}</label>
             <input type="text" value={phoneNumber} placeholder="enter new phone" className='bg-white rounded-full px-2 py-1' onChange={e => setPhoneNumber(e.target.value)}/>
               </>
             }
@@ -258,7 +258,7 @@ const handleChange2 = (e) => {
             
          {field == "active" &&
           <>
-          <InputLabel id="demo-simple-select-label" >?פעיל</InputLabel>
+          <InputLabel className='text-center mb-3' id="demo-simple-select-label" >{supplier.active == true ? "True" : "False" } <span className='font-semibold text-xl text-gray-600'> ?פעיל </span></InputLabel>
         <Select onChange={handleChange2}>
             {arr.map(a => (
                 <MenuItem value={a}>{a}</MenuItem>
