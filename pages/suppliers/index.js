@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from "@mui/x-data-grid";
 import { useRouter } from "next/router";
+import { Select, MenuItem, InputLabel} from '@mui/material'
 import SideBarPage from "../../components/SideBarPage";
+import axios from 'axios';
 
 
 // function UserList({ suppliers }) {
   function UserList() {
   const [user, setUser] = useState({})
+  const [supplier, setSupplier] = useState({})
+  const [isPermanent, setIsPermanent] = useState();
+  const [isActive, setIsActive] = useState();
+  const [address, setAddress] = useState("")
+  const [description, setDescription] = useState("")
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [editMode, setEditMode] = useState(false)
   const [suppliers, setSuppliers] = useState([])
   const router = useRouter();
+
+  const arr = ["True", "False"];
 
   useEffect(()=> {
       const res = localStorage.getItem("user")
@@ -32,45 +45,45 @@ import SideBarPage from "../../components/SideBarPage";
     { field: "id", headerName: "ID", width: 10 },
     {
       field: "name",
-      headerName: "Name",
-      width: 120,
+      headerName: "שם ספק",
+      width: 90,
       editable: true,
     },
     {
       field: "email",
-      headerName: "Email",
+      headerName: "אימייל",
       width: 140,
       editable: true,
     },
     {
       field: "phoneNumber",
-      headerName: "Phone Number",
+      headerName: "טלפון",
       width: 110,
       editable: true,
     },
     {
       field: "address",
-      headerName: "Address",
+      headerName: "כתובת",
       // type: 'number',
       width: 90,
       editable: true,
     },
     {
       field: "description",
-      headerName: "Description",
+      headerName: "תיאור",
       width: 120,
       editable: true,
     },
     {
       field: "active",
-      headerName: "Active",
+      headerName: "?פעיל",
       width: 60,
       editable: true,
     },
     {
       field: "isPermanentModel",
-      headerName: "isPermanent",
-      width: 100,
+      headerName: "?ספק קבוע",
+      width: 90,
       editable: true,
     },
     // {
@@ -81,13 +94,27 @@ import SideBarPage from "../../components/SideBarPage";
     // },
     {
       field: "action",
-      headerName: "Supplier Info",
-      width: 200,
+      headerName: "חשבוניות",
+      width: 120,
       renderCell: () => {
         return (
           <div className="flex space-x-3">
             <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
-              Supplier Invoices
+              חשבוניות ספק
+            </h1>
+          </div>
+        );
+      },
+    },
+    {
+      field: "action2",
+      headerName: "עריכה",
+      width: 120,
+      renderCell: () => {
+        return (
+          <div className="flex space-x-3">
+            <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
+              ערוך ספק
             </h1>
           </div>
         );
@@ -95,10 +122,46 @@ import SideBarPage from "../../components/SideBarPage";
     },
   ];
 
+
+  // const editCell = (param) => {
+  //   console.log(param.getValue(param.row.id, param.field))
+  //   console.log(param)
+  // }
+
+  const handleChange1 = (e) => {
+    setIsPermanent(e.target.value)
+}
+const handleChange2 = (e) => {
+  setIsActive(e.target.value)
+}
+
+  const cellClick = (e) => {
+    // console.log(e)
+    if(e.field == 'action') {
+      goToPage(e.id)
+    }
+    if(e.field == 'action2') {
+      console.log(e)
+      console.log(e.id)
+      axios.get("http://localhost:8080/api/user/supplier-by-id/" + e.id)
+      .then(res => {setSupplier(res.data), setEditMode(true)})
+      .catch(err => console.log(err))
+    }
+  }
+
   const goToPage = (id) => {
     // agents.map(a => router.push(`agents/${a.id}`))
     router.push(`suppliers/${id}`);
   };
+
+  // const showRowId = (id) => {
+  //   console.log("row id is: " + id)
+  //   return id;
+  // }
+  const printValues = (e)=> {
+    e.preventDefault()
+    console.log(name, email, address, description, phoneNumber, isActive, isPermanent)
+  }
 
   if(!user) router.push('/login')
   return (
@@ -110,25 +173,55 @@ import SideBarPage from "../../components/SideBarPage";
         </h1>
       </div> */}
       <div className="h-[540px] w-[80%] ml-[80px] md:ml-[205px] mt-1">
-        <DataGrid
+        {!editMode ? (
+          <DataGrid
           rows={suppliers}
           columns={columns}
           pageSize={8}
           rowsPerPageOptions={[8]}
           checkboxSelection
+          // onCellDoubleClick={param => editCell(param)}
+          editMode='row'
+          onCellClick={(e)=> cellClick(e)}
           disableSelectionOnClick
-          onRowClick={(params) => goToPage(params.id)}
+          // onRowDoubleClick={(params) => goToPage(params.id)}
+          // onRowClick={(params) => showRowId(params.id)}
           className="cursor-pointer"
         />
-        {/* <h1 className="text-3xl font-bold ml-3 mt-3 text-center">List of Agents</h1>
-      {agents.map(a => (
-          <Link href={`agents/${a.id}`} passHref>
-           <div key={a.id}>
-              <Agent name={a.name} email={a.email} date={a.startedAt} clients={a.numberOfClients} />
-           </div>
-          </Link>
-        ))} */}
-        
+        ) : (
+          <div className='flex justify-center items-center mt-1 h-fit'>
+          <form onSubmit={printValues} className='flex flex-col border px-3 py-1 bg-gray-200 rounded-3xl border-t-4 border-gray-500'>
+            <div className='text-right'>
+            <button className='hover:text-red-600 hover:scale-150 text-2xl text-red-500' onClick={()=> setEditMode(false)}>X</button>
+            </div>
+            <label>שם: {supplier.name}</label>
+            <input type="text" value={name} placeholder="enter new name" className='bg-white rounded-full px-2 py-1' onChange={e => setName(e.target.value)}/>
+            <label>{supplier.email} :אימייל</label>
+            <input type="email" value={email} placeholder="enter new email" className='bg-white rounded-full px-2 py-1' onChange={e => setEmail(e.target.value)}/>
+            <label>כתובת: {supplier.address}</label>
+            <input type="text" value={address} placeholder="enter new address" className='bg-white rounded-full px-2 py-1' onChange={e => setAddress(e.target.value)}/>
+            <label>תיאור: {supplier.description}</label>
+            <input type="text" value={description} placeholder="enter new description" className='bg-white rounded-full px-2 py-1' onChange={e => setDescription(e.target.value)}/>
+            <label>מס' טלפון: {supplier.phoneNumber}</label>
+            <input type="text" value={phoneNumber} placeholder="enter new phone" className='bg-white rounded-full px-2 py-1' onChange={e => setPhoneNumber(e.target.value)}/>
+            <InputLabel id="demo-simple-select-label" >?ספק קבוע</InputLabel>
+        <Select onChange={handleChange1}>
+            {arr.map(a => (
+                <MenuItem value={a}>{a}</MenuItem>
+            ))}
+         </Select>
+         <InputLabel id="demo-simple-select-label" >?פעיל</InputLabel>
+        <Select onChange={handleChange2}>
+            {arr.map(a => (
+                <MenuItem value={a}>{a}</MenuItem>
+            ))}
+         </Select>
+            <button type='submit' className='bg-blue-400 rounded-full px-2 py-1 my-4 hover:bg-blue-300'>עדכן ספק</button>
+          </form>
+          </div>
+          
+        )}
+       
       </div>
     </>
   );

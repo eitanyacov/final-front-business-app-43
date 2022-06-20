@@ -81,21 +81,21 @@ const AddWorker = () => {
   return (
     <>
     <SideBarPage />
-    <div className='flex flex-col mx-auto h-fit border-t-4 border-gray-400 border-l border-r border-b items-center mt-2 bg-gray-100 rounded-lg w-fit'>
+    <div className='flex flex-col mx-auto h-fit border-t-4 border-gray-400 border-l border-r border-b items-center mt-1 bg-gray-100 rounded-lg w-fit'>
          {/* <h1 className='text-2xl font-semibold'>הכנס עובד חדש</h1> */}
          <form onSubmit={postData} className='flex flex-col border px-5 py-2 rounded-lg'>
-           <input type="text" value={firstName} placeholder='first name' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setFirstName(e.target.value)}/>
-           <input type="text" value={lastName} placeholder='last name' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setLastName(e.target.value)}/>
-           <input type="text" value={fullName} placeholder='full name' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setFullName(e.target.value)}/>
-           <input type="text" value={address} placeholder='address' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setAddress(e.target.value)}/>
+           <input type="text" value={firstName} placeholder='שם פרטי' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setFirstName(e.target.value)}/>
+           <input type="text" value={lastName} placeholder='שם משפחה' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setLastName(e.target.value)}/>
+           <input type="text" value={fullName} placeholder='שם מלא' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setFullName(e.target.value)}/>
+           <input type="text" value={address} placeholder='כתובת מגורים' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setAddress(e.target.value)}/>
            {/* <input type="email" value={email} placeholder='email' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setEmail(e.target.value)}/> */}
-           <input type="text" value={idNumber} placeholder='id number' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setIdNumber(e.target.value)}/>
-           <label htmlFor="" className='text-xs text-gray-600 font-semibold'>date of birth</label>
-           <input type="date" value={dob} placeholder='date of birth' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setDob(e.target.value)}/>
-           <input type="text" value={salaryPerHour} placeholder='salary(hour)' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setSalaryPerHour(e.target.value)}/>
-           <input type="text" value={phoneNumber} placeholder='phone number' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setPhoneNumber(e.target.value)}/>
-           <label htmlFor="" className='text-xs text-gray-600 font-semibold'>start date</label>
-           <input type="date" value={startedAt} placeholder='started date' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setStarttedAt(e.target.value)}/>
+           <input type="text" value={idNumber} placeholder='ת.ז' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setIdNumber(e.target.value)}/>
+           <label htmlFor="" className='text-[11px] text-gray-600 font-semibold'>תאריך לידה</label>
+           <input type="date" value={dob} placeholder='תאריך לידה' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setDob(e.target.value)}/>
+           <input type="text" value={salaryPerHour} placeholder='שכר שעתי' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setSalaryPerHour(e.target.value)}/>
+           <input type="text" value={phoneNumber} placeholder='טלפון' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setPhoneNumber(e.target.value)}/>
+           <label htmlFor="" className='text-[11px] text-gray-600 font-semibold'>התחלת עבודה</label>
+           <input type="date" value={startedAt} placeholder='התחלת עבודה' className='bg-white my-1 rounded-full px-2 py-1 w-72' onChange={(e)=> setStarttedAt(e.target.value)}/>
            {/* <input type="text" value={isPermanent} placeholder='is Permanent' className='bg-gray-100 my-1 rounded-full px-2 py-2 w-72' onChange={(e)=> setIsPermanent(e.target.value)}/> */}
            <InputLabel id="demo-simple-select-label" >סטטוס</InputLabel>
         <Select onChange={handleChange}

@@ -34,41 +34,41 @@ const Workers = ({ clients }) => {
     { field: "id", headerName: "ID", width: 40 },
     {
       field: "fullName",
-      headerName: "Name",
+      headerName: "שם מלא",
       width: 110,
       editable: true,
     },
     
     {
       field: "phoneNumber",
-      headerName: "Phone Number",
+      headerName: "מספר טלפון",
       width: 120,
       editable: true,
     },
     {
       field: "startedAt",
-      headerName: "Started At",
+      headerName: "התחלת עבודה",
       // type: 'number',
       width: 105,
       editable: true,
     },
     {
       field: "address",
-      headerName: "Address",
+      headerName: "כתובת",
       // type: 'number',
       width: 100,
       editable: true,
     },
     {
       field: "dob",
-      headerName: "DOB",
+      headerName: "תאריך לידה",
       // type: 'number',
       width: 100,
       editable: true,
     },
     {
       field: "idNumber",
-      headerName: "Id Number",
+      headerName: "ת.ז",
       // type: 'number',
       width: 100,
       editable: true,
@@ -76,13 +76,13 @@ const Workers = ({ clients }) => {
 
     {
       field: "salaryPerHour",
-      headerName: "Salary(hour)",
+      headerName: "שכר שעתי",
       width: 100,
       editable: true,
     },
     {
       field: "active",
-      headerName: "Is Active",
+      headerName: "?פעיל",
       width: 75,
       editable: true,
     },

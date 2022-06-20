@@ -54,25 +54,25 @@ const Invoice = () => {
     { field: "id", headerName: "ID", width: 70 },
     {
       field: "supplierName",
-      headerName: "Supplier Name",
+      headerName: "שם ספק",
       width: 150,          
       editable: true,
     },
     {
       field: "date",
-      headerName: "Date",
+      headerName: "תאריך חשבונית",
       width: 180,
       editable: true,
     },
     {
       field: "amount",
-      headerName: "Amount",
+      headerName: "סכום חשבונית",
       width: 150,
       editable: true,
     },
     {
       field: "invoiceId",
-      headerName: "Invoice Id",
+      headerName: "מס' חשבונית",
       // type: 'number',
       width: 180,
       editable: true,
@@ -80,13 +80,13 @@ const Invoice = () => {
 
     {
       field: "paymentMethod",
-      headerName: "Payment Method",
+      headerName: "צורת תשלום",
       width: 130,
       editable: true,
     },
     {
       field: "paidOrNo",
-      headerName: "Is Paid?",
+      headerName: "?שולם",
       width: 130,
       editable: true,
     },

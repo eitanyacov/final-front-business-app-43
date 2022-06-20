@@ -26,31 +26,29 @@ const Invoice = () => {
   }, [user?.id])
 
  
-  const clients = [{id: 1, supplierName: "xxx"}, {id: 2, name: "yyy"}, {id: 3, name: "fff"},]
-  
   const columns = [
     { field: "id", headerName: "ID", width: 60 },
     {
       field: "date",
-      headerName: "Date",
-      width: 130,          
+      headerName: "תאריך",
+      width: 120,          
       editable: true,
     },
     {
       field: "cashMoney",
-      headerName: "Cash",
-      width: 100,
+      headerName: "מזומן",
+      width: 90,
       editable: true,
     },
     {
       field: "creditCard",
-      headerName: "Credit Card",
+      headerName: "כרטיס אשראי",
       width: 120,
       editable: true,
     },
     {
       field: "cheque",
-      headerName: "Checks",
+      headerName: "צ'קים",
       // type: 'number',
       width: 90,
       editable: true,
@@ -58,31 +56,31 @@ const Invoice = () => {
 
     {
       field: "cibus",
-      headerName: "Cibus",
+      headerName: "סיבוס",
       width: 90,
       editable: true,
     },
     {
       field: "tenBis",
-      headerName: "Ten Bis",
+      headerName: "תן ביס",
       width: 90,
       editable: true,
     },
     {
         field: "wallt",
-        headerName: "Wallt",
+        headerName: "וולט",
         width: 90,
         editable: true,
       },
       {
         field: "other",
-        headerName: "Other",
+        headerName: "אחר",
         width: 90,
         editable: true,
       },
       {
         field: "total",
-        headerName: "Total",
+        headerName: 'סה"כ', 
         width: 100,
         editable: true,
       },

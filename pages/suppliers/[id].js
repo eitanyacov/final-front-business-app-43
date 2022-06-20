@@ -84,25 +84,25 @@ const SupplierPage = ({ invoices, supplier }) => {
       { field: "id", headerName: "ID", width: 70 },
       {
         field: "supplierName",
-        headerName: "Supplier Name",
+        headerName: "שם ספק",
         width: 150,          
         editable: true,
       },
       {
         field: "date",
-        headerName: "Date",
+        headerName: "תאריך חשבונית",
         width: 180,
         editable: true,
       },
       {
         field: "amount",
-        headerName: "Amount",
+        headerName: "סכום חשבונית",
         width: 150,
         editable: true,
       },
       {
         field: "invoiceId",
-        headerName: "Invoice Id",
+        headerName: "מס' חשבונית",
         // type: 'number',
         width: 180,
         editable: true,
@@ -110,13 +110,13 @@ const SupplierPage = ({ invoices, supplier }) => {
   
       {
         field: "paymentMethod",
-        headerName: "Payment Method",
+        headerName: "צורת תשלום",
         width: 130,
         editable: true,
       },
       {
         field: "paidOrNo",
-        headerName: "Is Paid?",
+        headerName: "?שולם",
         width: 130,
         editable: true,
       },
@@ -128,14 +128,14 @@ const SupplierPage = ({ invoices, supplier }) => {
         <>
         <SideBarPage />
         <div className='flex justify-around ml-[80px] md:ml-[200px] space-x-4 mt-2'>
-            <h1 className='text-lg font-semibold'>Name: <span className='text-sm'>{supplier?.name}</span></h1>
-            <h1 className='text-lg font-semibold'>Email: <span className='text-sm'>{supplier?.email}</span></h1>
-            <h1 className='text-lg font-semibold'>Phone: <span className='text-sm'>{supplier?.phoneNumber}</span></h1>
-            <h1 className='text-lg font-semibold'>Address: <span className='text-sm'>{supplier?.address}</span></h1>
-            <h1 className='text-lg font-semibold'>Info: <span className='text-sm'>{supplier?.description}</span></h1>
+            <h1 className='text-lg font-semibold'>כתובת : <span className='text-sm'>{supplier?.address}</span></h1>
+            <h1 className='text-lg font-semibold'>תיאור : <span className='text-sm'>{supplier?.description}</span></h1>
+            <h1 className='text-lg font-semibold'>טלפון : <span className='text-sm'>{supplier?.phoneNumber}</span></h1>
+            <h1 className='text-lg font-semibold'>אימייל : <span className='text-sm'>{supplier?.email}</span></h1>
+            <h1 className='text-lg font-semibold'>שם ספק : <span className='text-sm'>{supplier?.name}</span></h1>
             <div className="flex space-x-3">
             <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
-              Disable Supplier
+              הקפא ספק
             </h1>
           </div>
         </div>
