@@ -56,7 +56,10 @@ const Header = () => {
         </Link>
         <div className="flex items-center justify-center space-x-5">
           {router.pathname == '/suppliers' && (
-            <h1 className='mr-10'>לחץ לחיצה כפולה על השדה שברצונך לערוך</h1>
+            <h1 className='mr-8 text-green-600'>לחץ לחיצה כפולה על השדה שברצונך לערוך</h1>
+          )}
+          {router.pathname == '/invoice' && (
+            <h1 className='mr-8 text-green-600'>לחץ לחיצה כפולה על השדה שברצונך לערוך</h1>
           )}
           {/* <a href="/"> */}
              <div className="flex space-x-4 items-center">
@@ -87,7 +90,7 @@ const Header = () => {
                  {router.pathname == "/workers" && (
                   <div className='flex items-center space-x-14'>
                   <div className='flex items-center justify-center bg-green-400 rounded-full px-3 py-1 cursor-pointer hover:bg-green-300' onClick={()=> router.push('/salaries')}>
-                    <h1 className='text-blue-700 font-semibold'> משכורות עובדים</h1>
+                    <h1 className='text-blue-700 font-semibold'> משכורות כל העובדים</h1>
                   </div>
                 <div className="flex items-center space-x-2" onClick={()=> router.push("/add-worker")}>
                    <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">

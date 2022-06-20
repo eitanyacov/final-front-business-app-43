@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from "@mui/x-data-grid";
 import SideBarPage from '../../components/SideBarPage'
+import axios from 'axios';
 
 const salaries = () => {
     const [user, setUser] = useState({})
@@ -20,6 +21,10 @@ const salaries = () => {
       const response = await fetch(`http://localhost:8080/api/user/all-workers-salaries/${id}`);
       const data = await response.json();
       setSaleries(data)
+    }
+
+    const editCell = (params) => {
+          console.log(params)
     }
 
     const columns = [
@@ -58,26 +63,26 @@ const salaries = () => {
           width: 120,
           editable: true,
         },
-        {
-          field: "מס הכנסה",
-          headerName: "מס הכנסה",
-          // type: 'number',
-          width: 100,
-          editable: true,
-        },
+        // {
+        //   field: "מס הכנסה",
+        //   headerName: "מס הכנסה",
+        //   // type: 'number',
+        //   width: 100,
+        //   editable: true,
+        // },
     
-        {
-          field: "ביטוח לאומי",
-          headerName: "ביטוח לאומי",
-          width: 100,
-          editable: true,
-        },
-        {
-            field: "משכורת נטו",
-            headerName: "משכורת נטו",
-            width: 100,
-            editable: true,
-          },
+        // {
+        //   field: "ביטוח לאומי",
+        //   headerName: "ביטוח לאומי",
+        //   width: 100,
+        //   editable: true,
+        // },
+        // {
+        //     field: "משכורת נטו",
+        //     headerName: "משכורת נטו",
+        //     width: 100,
+        //     editable: true,
+        //   },
         
         // {
         //   field: "action",
@@ -105,6 +110,7 @@ const salaries = () => {
           columns={columns}
           pageSize={7}
           rowsPerPageOptions={[7]}
+          onCellDoubleClick={(params)=> editCell(params)}
           checkboxSelection
           disableSelectionOnClick
           // onRowClick={(params) => goToPage(params.id)}

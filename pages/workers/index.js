@@ -77,13 +77,13 @@ const Workers = ({ clients }) => {
     {
       field: "salaryPerHour",
       headerName: "שכר שעתי",
-      width: 100,
+      width: 80,
       editable: true,
     },
     {
       field: "active",
       headerName: "?פעיל",
-      width: 75,
+      width: 60,
       editable: true,
     },
     {
@@ -94,7 +94,7 @@ const Workers = ({ clients }) => {
         return (
           <div className="flex space-x-3">
             <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
-              משכורות
+               משכורות עובד
             </h1>
           </div>
         );

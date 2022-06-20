@@ -114,24 +114,24 @@ const WorkerPage = ({ salaries, worker }) => {
         width: 80,
         editable: true,
       },
-      {
-        field: "irs",
-        headerName: "מס הכנסה",
-        width: 90,
-        editable: true,
-      },
-      {
-        field: "soicel insurince",
-        headerName: "ביטוח לאומי",
-        width: 90,
-        editable: true,
-      },
-      {
-        field: "neto",
-        headerName: "משכורת נטו",
-        width: 90,
-        editable: true,
-      },
+      // {
+      //   field: "irs",
+      //   headerName: "מס הכנסה",
+      //   width: 90,
+      //   editable: true,
+      // },
+      // {
+      //   field: "soicel insurince",
+      //   headerName: "ביטוח לאומי",
+      //   width: 90,
+      //   editable: true,
+      // },
+      // {
+      //   field: "neto",
+      //   headerName: "משכורת נטו",
+      //   width: 90,
+      //   editable: true,
+      // },
     ];
 
   

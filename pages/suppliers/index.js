@@ -128,6 +128,7 @@ import axios from 'axios';
   const editCell = (param) => {
     setId(param.id)
     if(param.field == 'action') return
+    if(param.field == 'id') return
     axios.get("http://localhost:8080/api/user/supplier-by-id/" + param.id)
     .then(res => {setSupplier(res.data), setEditMode(true)})
     .catch(err => console.log(err))
