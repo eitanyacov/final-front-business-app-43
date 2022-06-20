@@ -55,12 +55,13 @@ const Header = () => {
           
         </Link>
         <div className="flex items-center justify-center space-x-5">
-          {router.pathname == '/suppliers' && (
-            <h1 className='mr-8 text-green-600'>לחץ לחיצה כפולה על השדה שברצונך לערוך</h1>
+          {router.pathname.startsWith('/suppliers') && (
+            <h1 className='mr-6 text-green-600'>לחץ לחיצה כפולה על השדה שברצונך לעדכן</h1>
           )}
           {router.pathname == '/invoice' && (
-            <h1 className='mr-8 text-green-600'>לחץ לחיצה כפולה על השדה שברצונך לערוך</h1>
+            <h1 className='mr-6 text-green-600'>לחץ לחיצה כפולה על השדה שברצונך לעדכן</h1>
           )}
+      
           {/* <a href="/"> */}
              <div className="flex space-x-4 items-center">
                  {router.pathname == "/invoice" && (

@@ -151,12 +151,12 @@ const WorkerPage = ({ salaries, worker }) => {
             </h1>
           </div>
         </div>
-        <div className="h-[500px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
+        <div className="h-[490px] w-[82%] ml-[80px] md:ml-[205px] mt-1">
         <DataGrid
           rows={salaries}
           columns={columns}
-          pageSize={7}
-          rowsPerPageOptions={[7]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
           checkboxSelection
           disableSelectionOnClick
           // onRowClick={(params) => goToPage(params.id)}

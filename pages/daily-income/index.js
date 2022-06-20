@@ -90,12 +90,12 @@ const Invoice = () => {
   return (
     <>
     <SideBarPage />
-    <div className="h-[500px] w-[80%] ml-[80px] md:ml-[205px] mt-1">
+    <div className="h-[530px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
         <DataGrid
           rows={dailyIncomes}
           columns={columns}
-          pageSize={7}
-          rowsPerPageOptions={[7]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
           checkboxSelection
           disableSelectionOnClick
           // onRowClick={(params) => goToPage(params.id)}

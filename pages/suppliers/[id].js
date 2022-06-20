@@ -130,7 +130,7 @@ const SupplierPage = ({ invoices, supplier }) => {
       { field: "id", headerName: "ID", width: 70 },
       {
         field: "supplierName",
-        headerName: "שם ספק",
+        headerName: "שם ספק (לא ניתן לערוך)",
         width: 150,          
         editable: true,
       },
@@ -177,7 +177,7 @@ const SupplierPage = ({ invoices, supplier }) => {
             <h1 className='text-lg font-semibold'>כתובת : <span className='text-sm'>{supplier?.address}</span></h1>
             <h1 className='text-lg font-semibold'>תיאור : <span className='text-sm'>{supplier?.description}</span></h1>
             <h1 className='text-lg font-semibold'>טלפון : <span className='text-sm'>{supplier?.phoneNumber}</span></h1>
-            <h1 className='text-lg font-semibold'>אימייל : <span className='text-sm'>{supplier?.email}</span></h1>
+            <h1 className='text-lg font-semibold'><span className='text-sm'>{supplier?.email}</span> : אימייל</h1>
             <h1 className='text-lg font-semibold'>שם ספק : <span className='text-sm'>{supplier?.name}</span></h1>
             <div className="flex space-x-3">
             <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
@@ -185,13 +185,13 @@ const SupplierPage = ({ invoices, supplier }) => {
             </h1>
           </div>
         </div>
-        <div className="h-[500px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
+        <div className="h-[490px] w-[82%] ml-[80px] md:ml-[205px] mt-1">
         {!editMode ? (
           <DataGrid
           rows={invoices}
           columns={columns}
-          pageSize={7}
-          rowsPerPageOptions={[7]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
           checkboxSelection
           disableSelectionOnClick
           onCellDoubleClick={(params)=> editCell(params)}

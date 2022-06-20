@@ -108,8 +108,8 @@ const salaries = () => {
         <DataGrid
           rows={salaries}
           columns={columns}
-          pageSize={7}
-          rowsPerPageOptions={[7]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
           onCellDoubleClick={(params)=> editCell(params)}
           checkboxSelection
           disableSelectionOnClick

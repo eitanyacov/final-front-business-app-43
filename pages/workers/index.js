@@ -35,14 +35,14 @@ const Workers = ({ clients }) => {
     {
       field: "fullName",
       headerName: "שם מלא",
-      width: 110,
+      width: 105,
       editable: true,
     },
     
     {
       field: "phoneNumber",
       headerName: "מספר טלפון",
-      width: 120,
+      width: 115,
       editable: true,
     },
     {
@@ -89,7 +89,7 @@ const Workers = ({ clients }) => {
     {
       field: "action",
       headerName: "משכורות",
-      width: 200,
+      width: 150,
       renderCell: () => {
         return (
           <div className="flex space-x-3">
@@ -108,12 +108,12 @@ const Workers = ({ clients }) => {
     <>
       <SideBarPage />
       
-      <div className="h-[500px] w-[80%] ml-[80px] md:ml-[205px] mt-1">
+      <div className="h-[530px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
         <DataGrid
           rows={workers}
           columns={columns}
-          pageSize={7}
-          rowsPerPageOptions={[7]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
           checkboxSelection
           disableSelectionOnClick
           onRowClick={(params) => goToPage(params.id)}

@@ -190,7 +190,7 @@ const handleChange2 = (e) => {
           Disable Agent
         </h1>
       </div> */}
-      <div className="h-[540px] w-[80%] ml-[80px] md:ml-[205px] mt-1">
+      <div className="h-[535px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
         {!editMode ? (
           <DataGrid
           rows={suppliers}

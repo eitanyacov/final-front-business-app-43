@@ -182,7 +182,7 @@ const Reports = () => {
          </Select>
          <Input type='number' value={invoiceId} placeholder='invice id' onChange={e => setInvoiceId(e.target.value)}/>
 
-  <Button disabled={date == "" || !amount || supplierName == "" || paidOrNo == "" || paymentMethod == ""} onClick={() => setSubmit(true)}>Click to watch before submit</Button>
+  <Button disabled={date == "" || !amount || supplierName == "" || paidOrNo == ""} onClick={() => setSubmit(true)}>Click to watch before submit</Button>
 </FormControl>}
 
    {
@@ -196,7 +196,7 @@ const Reports = () => {
         <h1 className='text-gray-700 text-2xl font-semibold'>Amount: <span className='text-4xl font-bold ml-2 text-gray-600'>{amount}</span></h1>
         <h1 className='text-gray-700 text-2xl font-semibold'>Date :<span className='text-4xl font-bold ml-2 text-gray-600'>{date}</span></h1>
         <h1 className='text-gray-700 text-2xl font-semibold'>Is Paid? :<span className='text-4xl font-bold ml-2 text-gray-600'>{paidOrNo}</span></h1>
-        <h1 className='text-gray-700 text-2xl font-semibold'>Payment Method :<span className='text-4xl font-bold ml-2 text-gray-600'>{paymentMethod}</span></h1>
+        { paymentMethod &&<h1 className='text-gray-700 text-2xl font-semibold'>Payment Method :<span className='text-4xl font-bold ml-2 text-gray-600'>{paymentMethod}</span></h1>}
         { invoiceId && <h1 className='text-gray-700 text-2xl font-semibold'>Invoice Id :<span className='text-4xl font-bold ml-2 text-gray-600'>{invoiceId}</span></h1>}
         <button className='bg-blue-400 rounded-full text-white font-bold mb-2 mt-2 py-1 hover:bg-blue-300' onClick={addInvoice} >Add Invoice</button>
       </div>
