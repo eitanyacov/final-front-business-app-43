@@ -9,9 +9,10 @@ import axios from 'axios';
 // function UserList({ suppliers }) {
   function UserList() {
   const [user, setUser] = useState({})
+  const [id, setId] = useState();
   const [supplier, setSupplier] = useState({})
-  const [isPermanent, setIsPermanent] = useState();
-  const [isActive, setIsActive] = useState();
+  // const [isPermanentModel, setIsPermanentModel] = useState();
+  const [active, setActive] = useState();
   const [address, setAddress] = useState("")
   const [description, setDescription] = useState("")
   const [name, setName] = useState("")
@@ -19,6 +20,7 @@ import axios from 'axios';
   const [phoneNumber, setPhoneNumber] = useState("")
   const [editMode, setEditMode] = useState(false)
   const [suppliers, setSuppliers] = useState([])
+  const [field, setField] = useState("")
   const router = useRouter();
 
   const arr = ["True", "False"];
@@ -46,32 +48,32 @@ import axios from 'axios';
     {
       field: "name",
       headerName: "שם ספק",
-      width: 90,
+      width: 140,
       editable: true,
     },
     {
       field: "email",
       headerName: "אימייל",
-      width: 140,
+      width: 170,
       editable: true,
     },
     {
       field: "phoneNumber",
       headerName: "טלפון",
-      width: 110,
+      width: 120,
       editable: true,
     },
     {
       field: "address",
       headerName: "כתובת",
       // type: 'number',
-      width: 90,
+      width: 120,
       editable: true,
     },
     {
       field: "description",
       headerName: "תיאור",
-      width: 120,
+      width: 140,
       editable: true,
     },
     {
@@ -80,12 +82,12 @@ import axios from 'axios';
       width: 60,
       editable: true,
     },
-    {
-      field: "isPermanentModel",
-      headerName: "?ספק קבוע",
-      width: 90,
-      editable: true,
-    },
+    // {
+    //   field: "isPermanentModel",
+    //   headerName: "?ספק קבוע",
+    //   width: 80,
+    //   editable: true,
+    // },
     // {
     //   field: "isActive",
     //   headerName: "isActive",
@@ -106,33 +108,39 @@ import axios from 'axios';
         );
       },
     },
-    {
-      field: "action2",
-      headerName: "עריכה",
-      width: 120,
-      renderCell: () => {
-        return (
-          <div className="flex space-x-3">
-            <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
-              ערוך ספק
-            </h1>
-          </div>
-        );
-      },
-    },
+    // {
+    //   field: "action2",
+    //   headerName: "עריכה",
+    //   width: 120,
+    //   renderCell: () => {
+    //     return (
+    //       <div className="flex space-x-3">
+    //         <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
+    //           ערוך ספק
+    //         </h1>
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
 
 
-  // const editCell = (param) => {
-  //   console.log(param.getValue(param.row.id, param.field))
-  //   console.log(param)
-  // }
+  const editCell = (param) => {
+    setId(param.id)
+    if(param.field == 'action') return
+    axios.get("http://localhost:8080/api/user/supplier-by-id/" + param.id)
+    .then(res => {setSupplier(res.data), setEditMode(true)})
+    .catch(err => console.log(err))
+    setField(param.field)
+    console.log(param.field)
+    
+  }
 
-  const handleChange1 = (e) => {
-    setIsPermanent(e.target.value)
-}
+//   const handleChange1 = (e) => {
+//     setIsPermanentModel(e.target.value)
+// }
 const handleChange2 = (e) => {
-  setIsActive(e.target.value)
+  setActive(e.target.value)
 }
 
   const cellClick = (e) => {
@@ -140,13 +148,14 @@ const handleChange2 = (e) => {
     if(e.field == 'action') {
       goToPage(e.id)
     }
-    if(e.field == 'action2') {
-      console.log(e)
-      console.log(e.id)
-      axios.get("http://localhost:8080/api/user/supplier-by-id/" + e.id)
-      .then(res => {setSupplier(res.data), setEditMode(true)})
-      .catch(err => console.log(err))
-    }
+    // if(e.field == 'action2') {
+    //   console.log(e)
+    //   console.log(e.id)
+    //   setId(e.id)
+    //   axios.get("http://localhost:8080/api/user/supplier-by-id/" + e.id)
+    //   .then(res => {setSupplier(res.data), setEditMode(true)})
+    //   .catch(err => console.log(err))
+    // }
   }
 
   const goToPage = (id) => {
@@ -160,7 +169,15 @@ const handleChange2 = (e) => {
   // }
   const printValues = (e)=> {
     e.preventDefault()
-    console.log(name, email, address, description, phoneNumber, isActive, isPermanent)
+    axios.post("http://localhost:8080/api/user/update-supplier/" + id, {
+      name: name != "" ? name : supplier.name,
+      email: email != "" ? email : supplier.email,
+      phoneNumber: phoneNumber != "" ? phoneNumber : supplier.phoneNumber,
+      address: address != "" ? address : supplier.address,
+      description: description != "" ? description : supplier.description,
+      active: active != null ? active : supplier.active
+    }).then(res => {console.log(res.data), setEditMode(false), router.reload()})
+    .catch(err => console.log(err))
   }
 
   if(!user) router.push('/login')
@@ -180,7 +197,7 @@ const handleChange2 = (e) => {
           pageSize={8}
           rowsPerPageOptions={[8]}
           checkboxSelection
-          // onCellDoubleClick={param => editCell(param)}
+          onCellDoubleClick={param => editCell(param)}
           editMode='row'
           onCellClick={(e)=> cellClick(e)}
           disableSelectionOnClick
@@ -190,32 +207,65 @@ const handleChange2 = (e) => {
         />
         ) : (
           <div className='flex justify-center items-center mt-1 h-fit'>
-          <form onSubmit={printValues} className='flex flex-col border px-3 py-1 bg-gray-200 rounded-3xl border-t-4 border-gray-500'>
+          <form onSubmit={printValues} className='flex flex-col w-[300px] border px-3 py-1 bg-gray-200 rounded-3xl border-t-4 border-gray-500'>
             <div className='text-right'>
             <button className='hover:text-red-600 hover:scale-150 text-2xl text-red-500' onClick={()=> setEditMode(false)}>X</button>
             </div>
-            <label>שם: {supplier.name}</label>
-            <input type="text" value={name} placeholder="enter new name" className='bg-white rounded-full px-2 py-1' onChange={e => setName(e.target.value)}/>
-            <label>{supplier.email} :אימייל</label>
-            <input type="email" value={email} placeholder="enter new email" className='bg-white rounded-full px-2 py-1' onChange={e => setEmail(e.target.value)}/>
-            <label>כתובת: {supplier.address}</label>
+            {field == "name" && <>
+              <label>שם: {supplier.name}</label>
+              <input type="text" value={name} placeholder="enter new name" className='bg-white rounded-full px-2 py-1' onChange={e => setName(e.target.value)}/>
+            </>
+              
+            }
+            {field == "email" &&
+              <>
+              <label>{supplier.email} :אימייל</label>
+              <input type="email" value={email} placeholder="enter new email" className='bg-white rounded-full px-2 py-1' onChange={e => setEmail(e.target.value)}/>
+            </>
+    
+            }
+            {field == "address" &&
+              <>
+              <label>כתובת: {supplier.address}</label>
             <input type="text" value={address} placeholder="enter new address" className='bg-white rounded-full px-2 py-1' onChange={e => setAddress(e.target.value)}/>
-            <label>תיאור: {supplier.description}</label>
+              </>
+            }
+
+            {field == "description" &&
+              <>
+              <label>תיאור: {supplier.description}</label>
             <input type="text" value={description} placeholder="enter new description" className='bg-white rounded-full px-2 py-1' onChange={e => setDescription(e.target.value)}/>
-            <label>מס' טלפון: {supplier.phoneNumber}</label>
+              </>
+            }
+            
+            {field == "phoneNumber" &&
+              <>
+              <label>מס' טלפון: {supplier.phoneNumber}</label>
             <input type="text" value={phoneNumber} placeholder="enter new phone" className='bg-white rounded-full px-2 py-1' onChange={e => setPhoneNumber(e.target.value)}/>
-            <InputLabel id="demo-simple-select-label" >?ספק קבוע</InputLabel>
-        <Select onChange={handleChange1}>
+              </>
+            }
+
+            {/* {field == "isPermanentModel" &&
+              <>
+              <InputLabel id="demo-simple-select-label" >?ספק קבוע</InputLabel>
+              <Select onChange={handleChange1}>
             {arr.map(a => (
                 <MenuItem value={a}>{a}</MenuItem>
             ))}
-         </Select>
-         <InputLabel id="demo-simple-select-label" >?פעיל</InputLabel>
+             </Select>
+              </>
+            } */}
+            
+         {field == "active" &&
+          <>
+          <InputLabel id="demo-simple-select-label" >?פעיל</InputLabel>
         <Select onChange={handleChange2}>
             {arr.map(a => (
                 <MenuItem value={a}>{a}</MenuItem>
             ))}
          </Select>
+          </>
+         }
             <button type='submit' className='bg-blue-400 rounded-full px-2 py-1 my-4 hover:bg-blue-300'>עדכן ספק</button>
           </form>
           </div>
