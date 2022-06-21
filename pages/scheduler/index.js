@@ -136,7 +136,7 @@ const SchedulerPage = () => {
   return (
     <>
       <SideBarPage />
-      <div className="w-[80%] md:ml-[205px] mt-1">
+      <div className="w-[82%] md:ml-[205px] mt-1">
         <Paper>
           <Scheduler data={schedulers}>
             <ViewState currentDate={date} onCurrentDateChange={currentDateChange}/>

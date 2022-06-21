@@ -17,6 +17,7 @@ const Reports = () => {
   const [submit, setSubmit] = useState(false);
   const [supplierId, setSupplierId] = useState();
   const [supplier, setSupplier] = useState({});
+  const [disabled, setDisabled] = useState(false)
   const inputRef = useRef(null);
 
   const [user, setUser] = useState({})
@@ -174,12 +175,12 @@ const Reports = () => {
             ))}
          </Select>
          <InputLabel id="demo-simple-select-label" className='mt-48'>Paiment Method</InputLabel>
-        <Select onChange={handleChange3} className='mt-2' value={paymentMethod} label="Is Paid?">
+        <Select disabled={paidOrNo == "False"} onChange={handleChange3} className='mt-2' value={paymentMethod} label="Is Paid?">
         
-            {arr2.map(a => (
-                <MenuItem value={a}>{a}</MenuItem>
-            ))}
-         </Select>
+        {arr2.map(a => (
+            <MenuItem value={a}>{a}</MenuItem>
+        ))}
+     </Select>
          <Input type='number' value={invoiceId} placeholder='invice id' onChange={e => setInvoiceId(e.target.value)}/>
 
   <Button disabled={date == "" || !amount || supplierName == "" || paidOrNo == ""} onClick={() => setSubmit(true)}>Click to watch before submit</Button>
