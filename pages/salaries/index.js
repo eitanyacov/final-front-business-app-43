@@ -139,7 +139,7 @@ const salaries = () => {
         // },
       ];
 
-
+      if(!user) router.push('/login')
   return (
     <>
     <SideBarPage />
@@ -164,14 +164,14 @@ const salaries = () => {
             </div>
             {field == "amount" && <>
               <label className='text-center mb-3'><span className='font-semibold text-xl text-gray-600'> סכום:  </span>{salary.amount}</label>
-              <input type="number" value={amount} placeholder="עדכן סכום" className='bg-gray-200 rounded-full px-2 py-1' onChange={e => setAmount(e.target.value)}/>
+              <input type="number" step={0.01} value={amount} placeholder="עדכן סכום" className='bg-gray-200 rounded-full px-2 py-1' onChange={e => setAmount(e.target.value)}/>
             </>
               
             }
             {field == "hours" &&
               <>
               <label className='text-center mb-3'>{salary.hours} <span className='font-semibold text-xl text-gray-600'> :שעות   </span></label>
-              <input type="number" value={hours} placeholder="עדכן שעות" className='bg-gray-200 rounded-full px-2 py-1' onChange={e => setHours(e.target.value)}/>
+              <input type="number" step={0.01} value={hours} placeholder="עדכן שעות" className='bg-gray-200 rounded-full px-2 py-1' onChange={e => setHours(e.target.value)}/>
             </>
     
             }
@@ -185,7 +185,7 @@ const salaries = () => {
             {field == "extraHours" &&
               <>
               <label className='text-center mb-3'><span className='font-semibold text-xl text-gray-600'> שעות נוספות:  </span> {salary.extraHours}</label>
-            <input type="number" value={extraHours} placeholder="עדכן שעות נוספות" className='bg-gray-200 rounded-full px-2 py-1' onChange={e => setExtraHours(e.target.value)}/>
+            <input type="number" step={0.01} value={extraHours} placeholder="עדכן שעות נוספות" className='bg-gray-200 rounded-full px-2 py-1' onChange={e => setExtraHours(e.target.value)}/>
               </>
             }
             

@@ -168,7 +168,7 @@ const Invoice = () => {
           {field == "amount" &&
             <>
             <label className='text-center mb-3'>{invoice.amount} <span className='font-semibold text-xl text-gray-600'> :סכום  </span></label>
-            <input type="number" value={amount} placeholder="עדכן סכום " className='bg-white rounded-full px-2 py-1' onChange={e => setAmount(e.target.value)}/>
+            <input type="number" step={0.01} value={amount} placeholder="עדכן סכום " className='bg-white rounded-full px-2 py-1' onChange={e => setAmount(e.target.value)}/>
           </>
   
           }

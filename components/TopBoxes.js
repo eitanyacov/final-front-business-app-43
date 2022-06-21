@@ -85,10 +85,10 @@ useEffect(()=> {
   console.log("number of suppliers: " + numberOfSuppliers)
   return (
     <div className='flex ml-[80px] md:ml-[200px] justify-around p-1 space-x-2'>
-        <TopBox title="ספקים" amount={numberOfSuppliers} link="See all suppliers" icon={PeopleOutlineIcon} color="success" onClick={()=> router.push('/suppliers')}/>
-        <TopBox title="הוצאות"  amount={`ש"ח ${outcome}`} link="Watch details" icon={MoneyOffIcon}  color="primary" onClick={()=> router.push('/agents')}/>
-        <TopBox title="הכנסות" amount={`ש"ח ${income}`} link="View net income" icon={AttachMoneyIcon}  color="secondary" />
-        <TopBox title="מאזן" amount={`ש"ח ${balance}`} link="See details" icon={MonetizationOnIcon}  color="info"/>
+        <TopBox title="ספקים" amount={numberOfSuppliers} bgIcon="bg-green-100" link="See all suppliers" icon={PeopleOutlineIcon} color="success" onClick={()=> router.push('/suppliers')}/>
+        <TopBox title="הוצאות"  amount={`ש"ח ${outcome}`} bgIcon="bg-blue-100" link="Watch details" icon={MoneyOffIcon}  color="primary" onClick={()=> router.push('/agents')}/>
+        <TopBox title="הכנסות" amount={`ש"ח ${income}`} bgIcon="bg-purple-100" link="View net income" icon={AttachMoneyIcon}  color="secondary" />
+        <TopBox title="מאזן" amount={`ש"ח ${balance}`} bgIcon="bg-blue-200" link="See details" icon={MonetizationOnIcon}  color="info"/>
         <Snackbar open={open} autoHideDuration={10000} onClose={handleClose}>
           <Alert
             onClose={handleClose}

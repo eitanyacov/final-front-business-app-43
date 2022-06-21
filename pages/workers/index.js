@@ -163,17 +163,6 @@ const Workers = ({ clients }) => {
     <>
       <SideBarPage />
       <div className="h-[530px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
-        <div className='flex justify-between items-center'>
-        <h1>{worker.fullName}</h1>
-        <h1>{worker.phoneNumber}</h1>
-        <h1>{worker.dob}</h1>
-        <h1>{worker.active}</h1>
-        <h1>{worker.idNumber}</h1>
-        <h1>{worker.address}</h1>
-        <h1>{worker.status}</h1>
-        <h1>{worker.salaryPerHour}</h1>
-        <h1>{worker.startedAt}</h1>
-        </div>
         {!editMode ?(
           <DataGrid
           rows={workers}
