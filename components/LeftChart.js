@@ -5,7 +5,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 const LeftChart = () => {
     const percentage = 66;
   return (
-    <div className="bg-white  md:col-span-2 md:w-[290px] h-[400px] shadow-2xl rounded-lg border border-gray-300 p-4">
+    <div className="bg-white  md:col-span-2 md:w-[284px] h-[400px] shadow-2xl rounded-lg border border-gray-300 p-4">
         <div className='flex justify-between'>
           <h1 className='text-gray-500 text-xl'>Totol Revenue</h1>
           <div className='text-gray-600 cursor-pointer'>

@@ -137,8 +137,8 @@ const Invoice = () => {
           <DataGrid
           rows={dailyIncomes}
           columns={columns}
-          pageSize={8}
-          rowsPerPageOptions={[8]}
+          pageSize={30}
+          rowsPerPageOptions={[30]}
           checkboxSelection
           disableSelectionOnClick
           onCellDoubleClick={param => editCell(param)}
