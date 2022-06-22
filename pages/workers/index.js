@@ -15,6 +15,7 @@ const Workers = ({ clients }) => {
   const [field, setField] = useState("")
   const [editMode, setEditMode] = useState(false)
   const [fullName, setFullname] = useState("")
+  const [status, setStatus] = useState("")
   const [idNumber, setIdNumber] = useState("")
   const [dob, setDob] = useState("")
   const [address, setAddress] = useState("")
@@ -24,6 +25,8 @@ const Workers = ({ clients }) => {
   const [salaryPerHour, setSalaryPerHour] = useState("")
   
   const arr = ["True", "False"];
+
+  const arr2 = [ "נשוי", "גרוש" , "אלמן", "רווק"];
 
   const router = useRouter();
 
@@ -63,6 +66,10 @@ const Workers = ({ clients }) => {
     setActive(e.target.value)
   }
 
+  const handleChange1 = (e) => {
+      setStatus(e.target.value)
+  }
+
   const getWorkers = async () => {
     const id = user?.id;
     const response = await fetch(`http://localhost:8080/api/user/all-workers/${id}`);
@@ -78,6 +85,7 @@ const Workers = ({ clients }) => {
       phoneNumber: phoneNumber != "" ? phoneNumber : worker.phoneNumber,
       address: address != "" ? address : worker.address,
       dob: dob != "" ? dob : worker.dob,
+      status: status != "" ? status : worker.status,
       active: active != null ? active : worker.active,
       salaryPerHour: salaryPerHour != "" ? salaryPerHour : worker.salaryPerHour,
       startedAt: startedAt != "" ? startedAt : worker.startedAt
@@ -86,7 +94,7 @@ const Workers = ({ clients }) => {
   }
 
   const columns = [
-    { field: "id", headerName: "ID", width: 40 },
+    { field: "id", headerName: "ID", width: 35 },
     {
       field: "fullName",
       headerName: "שם מלא",
@@ -97,7 +105,7 @@ const Workers = ({ clients }) => {
     {
       field: "phoneNumber",
       headerName: "מספר טלפון",
-      width: 115,
+      width: 110,
       editable: true,
     },
     {
@@ -125,26 +133,32 @@ const Workers = ({ clients }) => {
       field: "idNumber",
       headerName: "ת.ז",
       // type: 'number',
-      width: 100,
+      width: 95,
       editable: true,
     },
 
     {
       field: "salaryPerHour",
       headerName: "שכר שעתי",
-      width: 80,
+      width: 75,
+      editable: true,
+    },
+    {
+      field: "status",
+      headerName: "סטטוס",
+      width: 60,
       editable: true,
     },
     {
       field: "active",
       headerName: "?פעיל",
-      width: 60,
+      width: 55,
       editable: true,
     },
     {
       field: "action",
       headerName: "משכורות",
-      width: 150,
+      width: 130,
       renderCell: () => {
         return (
           <div className="flex space-x-3">
@@ -230,16 +244,16 @@ const Workers = ({ clients }) => {
               </>
             }
 
-            {/* {field == "isPermanentModel" &&
+            {field == "status" &&
               <>
-              <InputLabel id="demo-simple-select-label" >?ספק קבוע</InputLabel>
+              <InputLabel id="demo-simple-select-label" >סטטוס {`${worker.status}`}</InputLabel>
               <Select onChange={handleChange1}>
-            {arr.map(a => (
+            {arr2.map(a => (
                 <MenuItem value={a}>{a}</MenuItem>
             ))}
              </Select>
               </>
-            } */}
+            }
             
          {field == "active" &&
           <>

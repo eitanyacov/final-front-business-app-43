@@ -24,7 +24,7 @@ const Reports = () => {
   const router = useRouter();
 
   const arr = ["True", "False"];
-  const arr2 = ["Cash", "Check", "Credit Card", "Bank Transfer", "Other"];
+  const arr2 = ["מזומן", "צ'ק", "כרטיס אשראי", "העברה בנקאית", "ביט", "אחר"];
 
   useEffect(()=> {
       const id = user?.id;

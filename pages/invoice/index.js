@@ -21,7 +21,7 @@ const Invoice = () => {
   const [editMode, setEditMode] = useState(false)
   const router = useRouter();
 
-  const arr2 = ["Cash", "Check", "Credit Card", "Bank Transfer", "Other"];
+  const arr2 = ["מזומן", "צ'ק", "כרטיס אשראי", "העברה בנקאית", "ביט", "אחר", "-"];
 
   const arr = ["True", "False"];
 
