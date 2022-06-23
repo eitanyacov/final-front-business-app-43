@@ -3,6 +3,7 @@ import SideBarPage from '../../components/SideBarPage'
 import { useRouter } from 'next/router'
 import { Select, MenuItem, InputLabel} from '@mui/material'
 import { DataGrid } from "@mui/x-data-grid";
+import Box from '@mui/material/Box';
 import axios from 'axios';
 
 
@@ -95,43 +96,55 @@ const Invoice = () => {
   }
 
   const columns = [
-    { field: "id", headerName: "ID", width: 50 },
+    { field: "id", headerName: "ID", headerAlign: 'center', width: 70 },
     {
       field: "supplierName",
       headerName: "(לא ניתן לערוך) שם ספק",
-      width: 170,          
+      align: "center",
+      headerAlign: 'center',
+      width: 150,          
       // editable: true,
     },
     {
       field: "date",
       headerName: "תאריך חשבונית",
-      width: 140,
+      align: "center",
+      headerAlign: 'center',
+      width: 170,
       editable: true,
     },
     {
       field: "amount",
       headerName: "סכום חשבונית",
-      width: 130,
+      align: "center",
+      headerAlign: 'center',
+      width: 150,
       editable: true,
     },
     {
       field: "invoiceId",
+      align: "center",
       headerName: "מס' חשבונית",
+      headerAlign: 'center',
       // type: 'number',
-      width: 150,
+      width: 160,
       editable: true,
     },
 
     {
       field: "paymentMethod",
+      align: "center",
       headerName: "צורת תשלום",
+      headerAlign: 'center',
       width: 130,
       editable: true,
     },
     {
       field: "paidOrNo",
+      align: "center",
       headerName: "?שולם",
-      width: 110,
+      headerAlign: 'center',
+      width: 120,
       editable: true,
     },
   ];
@@ -142,6 +155,24 @@ const Invoice = () => {
     <SideBarPage />
     <div className="h-[525px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
       {!editMode ? (
+        <Box
+        sx={{
+          height: 535,
+          width: '100%',
+          '& .cold': {
+            backgroundColor: 'white',
+            color: 'red',
+            fontWeight: '500',
+            borderRadius: '25%'
+          },
+          '& .hot': {
+            backgroundColor: 'white',
+            color: 'green',
+            fontWeight: 'bold',
+            borderRadius: '25%'
+          },
+        }}
+      >
         <DataGrid
           rows={invoices}
           columns={columns}
@@ -152,7 +183,14 @@ const Invoice = () => {
           onCellDoubleClick={(params)=> editCell(params)}
           // onRowClick={(params) => goToPage(params.id)}
           className="cursor-pointer"
+          getCellClassName={(params) => {
+            if (params.field == 'paidOrNo') {
+              return params.value == "True" ? 'hot' : 'cold';
+            }
+            return '';
+          }}
         />
+        </Box>
       ) : (
         <div className='flex justify-center items-center mt-1 h-fit'>
         <form onSubmit={printValues} className='flex flex-col w-[300px] border px-3 py-1 bg-gray-200 rounded-3xl border-t-4 border-gray-500'>

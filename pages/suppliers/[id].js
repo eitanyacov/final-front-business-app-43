@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { DataGrid } from "@mui/x-data-grid";
+import Box from '@mui/material/Box';
 import { Select, MenuItem, InputLabel} from '@mui/material'
 import SideBarPage from '../../components/SideBarPage';
 import axios from 'axios';
@@ -127,42 +128,54 @@ const SupplierPage = ({ invoices, supplier }) => {
     }
 
     const columns = [
-      { field: "id", headerName: "ID", width: 70 },
+      { field: "id", headerName: "ID", headerAlign: 'center', width: 70 },
       {
         field: "supplierName",
         headerName: "שם ספק (לא ניתן לערוך)",
-        width: 150,          
+        width: 170,
+        align: "center",
+        headerAlign: 'center',          
         editable: true,
       },
       {
         field: "date",
         headerName: "תאריך חשבונית",
-        width: 180,
+        width: 150,
+        headerAlign: 'center',
+        align: "center",
         editable: true,
       },
       {
         field: "amount",
         headerName: "סכום חשבונית",
-        width: 150,
+        headerAlign: 'center',
+        width: 140,
+        align: "center",
         editable: true,
       },
       {
         field: "invoiceId",
         headerName: "מס' חשבונית",
+        headerAlign: 'center',
         // type: 'number',
-        width: 180,
+        width: 160,
+        align: "center",
         editable: true,
       },
   
       {
         field: "paymentMethod",
         headerName: "צורת תשלום",
+        headerAlign: 'center',
+        align: "center",
         width: 130,
         editable: true,
       },
       {
         field: "paidOrNo",
         headerName: "?שולם",
+        headerAlign: 'center',
+        align: "center",
         width: 130,
         editable: true,
       },
@@ -179,14 +192,32 @@ const SupplierPage = ({ invoices, supplier }) => {
             <h1 className='text-lg font-semibold'>טלפון : <span className='text-sm'>{supplier?.phoneNumber}</span></h1>
             <h1 className='text-lg font-semibold'><span className='text-sm'>{supplier?.email}</span> : אימייל</h1>
             <h1 className='text-lg font-semibold'>שם ספק : <span className='text-sm'>{supplier?.name}</span></h1>
-            <div className="flex space-x-3">
-            <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
-              הקפא ספק
+            <div className="flex space-x-3" onClick={()=> router.back()}>
+            <h1 className="bg-slate-100 mr-3 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
+               חזרה לספקים
             </h1>
           </div>
         </div>
         <div className="h-[490px] w-[82%] ml-[80px] md:ml-[205px] mt-1">
         {!editMode ? (
+          <Box
+          sx={{
+            height: 535,
+            width: '100%',
+            '& .cold': {
+              backgroundColor: 'white',
+              color: 'red',
+              fontWeight: '500',
+              borderRadius: '25%'
+            },
+            '& .hot': {
+              backgroundColor: 'white',
+              color: 'green',
+              fontWeight: 'bold',
+              borderRadius: '25%'
+            },
+          }}
+        >
           <DataGrid
           rows={invoices}
           columns={columns}
@@ -197,7 +228,14 @@ const SupplierPage = ({ invoices, supplier }) => {
           onCellDoubleClick={(params)=> editCell(params)}
           // onRowClick={(params) => goToPage(params.id)}
           className="cursor-pointer"
+          getCellClassName={(params) => {
+            if (params.field == 'paidOrNo') {
+              return params.value == "True" ? 'hot' : 'cold';
+            }
+            return '';
+          }}
         />
+        </Box>
         ) : (
           <div className='flex justify-center items-center mt-1 h-fit'>
         <form onSubmit={printValues} className='flex flex-col w-[300px] border px-3 py-1 bg-gray-200 rounded-3xl border-t-4 border-gray-500'>

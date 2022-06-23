@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from "@mui/x-data-grid";
+import Box from '@mui/material/Box';
 import { useRouter } from "next/router";
 import { Select, MenuItem, InputLabel} from '@mui/material'
 import SideBarPage from "../../components/SideBarPage";
@@ -44,41 +45,53 @@ import axios from 'axios';
   }
 
   const columns = [
-    { field: "id", headerName: "ID", width: 10 },
+    { field: "id", headerName: "ID", headerAlign: 'center', width: 10 },
     {
       field: "name",
       headerName: "שם ספק",
       width: 140,
+      align: "center",
+      headerAlign: 'center',
       editable: true,
     },
     {
       field: "email",
       headerName: "אימייל",
+      align: "center",
+      headerAlign: 'center',
       width: 170,
       editable: true,
     },
     {
       field: "phoneNumber",
+      align: "center",
       headerName: "טלפון",
+      headerAlign: 'center',
       width: 120,
       editable: true,
     },
     {
       field: "address",
+      align: "center",
       headerName: "כתובת",
+      headerAlign: 'center',
       // type: 'number',
       width: 120,
       editable: true,
     },
     {
       field: "description",
+      align: "center",
       headerName: "תיאור",
+      headerAlign: 'center',
       width: 140,
       editable: true,
     },
     {
       field: "active",
       headerName: "?פעיל",
+      align: "center",
+      headerAlign: 'center',
       width: 60,
       editable: true,
     },
@@ -97,6 +110,8 @@ import axios from 'axios';
     {
       field: "action",
       headerName: "חשבוניות ספק",
+      align: "center",
+      headerAlign: 'center',
       width: 140,
       renderCell: () => {
         return (
@@ -189,6 +204,24 @@ const handleChange2 = (e) => {
       </div> */}
       <div className="h-[535px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
         {!editMode ? (
+           <Box
+           sx={{
+             height: 535,
+             width: '100%',
+             '& .cold': {
+               backgroundColor: 'white',
+               color: 'red',
+               fontWeight: '500',
+               borderRadius: '25%'
+             },
+             '& .hot': {
+               backgroundColor: 'white',
+               color: 'green',
+               fontWeight: 'bold',
+               borderRadius: '25%'
+             },
+           }}
+         >
           <DataGrid
           rows={suppliers}
           columns={columns}
@@ -202,7 +235,14 @@ const handleChange2 = (e) => {
           // onRowDoubleClick={(params) => goToPage(params.id)}
           // onRowClick={(params) => showRowId(params.id)}
           className="cursor-pointer"
+          getCellClassName={(params) => {
+            if (params.field == 'active') {
+              return params.value == true ? 'hot' : 'cold';
+            }
+            return '';
+          }}
         />
+        </Box>
         ) : (
           <div className='flex justify-center items-center mt-1 h-fit'>
           <form onSubmit={printValues} className='flex flex-col w-[300px] border px-3 py-1 bg-white rounded-3xl border-t-4 border-gray-500'>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { DataGrid } from "@mui/x-data-grid";
+import Box from '@mui/material/Box';
 import { Select, MenuItem, InputLabel} from '@mui/material'
 import SideBarPage from '../../components/SideBarPage';
 import axios from 'axios';
@@ -94,11 +95,13 @@ const Workers = ({ clients }) => {
   }
 
   const columns = [
-    { field: "id", headerName: "ID", width: 35 },
+    { field: "id", headerName: "ID", headerAlign: 'center', width: 35 },
     {
       field: "fullName",
       headerName: "שם מלא",
       width: 105,
+      headerAlign: 'center',
+      align: "center",
       editable: true,
     },
     
@@ -106,6 +109,8 @@ const Workers = ({ clients }) => {
       field: "phoneNumber",
       headerName: "מספר טלפון",
       width: 110,
+      headerAlign: 'center',
+      align: "center",
       editable: true,
     },
     {
@@ -113,6 +118,7 @@ const Workers = ({ clients }) => {
       headerName: "התחלת עבודה",
       // type: 'number',
       width: 105,
+      align: "center",
       editable: true,
     },
     {
@@ -120,6 +126,8 @@ const Workers = ({ clients }) => {
       headerName: "כתובת",
       // type: 'number',
       width: 100,
+      headerAlign: 'center',
+      align: "center",
       editable: true,
     },
     {
@@ -127,6 +135,8 @@ const Workers = ({ clients }) => {
       headerName: "תאריך לידה",
       // type: 'number',
       width: 100,
+      headerAlign: 'center',
+      align: "center",
       editable: true,
     },
     {
@@ -134,30 +144,40 @@ const Workers = ({ clients }) => {
       headerName: "ת.ז",
       // type: 'number',
       width: 95,
+      align: "center",
       editable: true,
+      headerAlign: 'center',
     },
 
     {
       field: "salaryPerHour",
       headerName: "שכר שעתי",
+      headerAlign: 'center',
       width: 75,
+      align: "center",
       editable: true,
     },
     {
       field: "status",
       headerName: "סטטוס",
+      headerAlign: 'center',
       width: 60,
+      align: "center",
       editable: true,
     },
     {
       field: "active",
       headerName: "?פעיל",
+      headerAlign: 'center',
       width: 55,
+      align: "center",
       editable: true,
     },
     {
       field: "action",
       headerName: "משכורות",
+      headerAlign: 'center',
+      align: "center",
       width: 130,
       renderCell: () => {
         return (
@@ -178,6 +198,24 @@ const Workers = ({ clients }) => {
       <SideBarPage />
       <div className="h-[530px] w-[82%] ml-[80px] md:ml-[205px] mt-2">
         {!editMode ?(
+           <Box
+           sx={{
+             height: 535,
+             width: '100%',
+             '& .cold': {
+               backgroundColor: 'white',
+               color: 'red',
+               fontWeight: '500',
+               borderRadius: '25%'
+             },
+             '& .hot': {
+               backgroundColor: 'white',
+               color: 'green',
+               fontWeight: 'bold',
+               borderRadius: '25%'
+             },
+           }}
+         >
           <DataGrid
           rows={workers}
           columns={columns}
@@ -189,7 +227,14 @@ const Workers = ({ clients }) => {
           disableSelectionOnClick
           // onRowClick={(params) => goToPage(params.id)}
           className="cursor-pointer"
+          getCellClassName={(params) => {
+            if (params.field == 'active') {
+              return params.value == true ? 'hot' : 'cold';
+            }
+            return '';
+          }}
         />
+        </Box>
         ) : (
           <div className='flex justify-center items-center mt-1 h-fit'>
           <form onSubmit={printValues} className='flex flex-col w-[300px] border px-3 py-1 bg-white rounded-3xl border-t-4 border-gray-500'>

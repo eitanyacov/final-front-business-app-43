@@ -67,23 +67,29 @@ const salaries = () => {
     }
 
     const columns = [
-        { field: "id", headerName: "ID", width: 40 },
+        { field: "id", headerName: "ID", headerAlign: 'center', width: 40 },
         {
           field: "workerFullName",
           headerName: "שם עובד/ת",
           width: 110,
+          align: "center",
+          headerAlign: 'center',
           editable: true,
         },
         
         {
           field: "month",
           headerName: "עבור חודש",
+          align: "center",
+          headerAlign: 'center',
           width: 110,
           editable: true,
         },
         {
           field: "hours",
           headerName: "מספר שעות",
+          align: "center",
+          headerAlign: 'center',
           // type: 'number',
           width: 110,
           editable: true,
@@ -91,12 +97,16 @@ const salaries = () => {
         {
           field: "extraHours",
           headerName: "שעות נוספות",
+          align: "center",
+          headerAlign: 'center',
           // type: 'number',
           width: 110,
           editable: true,
         },
         {
           field: "amount",
+          align: "center",
+          headerAlign: 'center',
           headerName: "סכום משכורת מלא",
           // type: 'number',
           width: 120,

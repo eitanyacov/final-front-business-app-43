@@ -94,16 +94,20 @@ const WorkerPage = ({ salaries, worker }) => {
     // }, [id])
 
     const columns = [
-      { field: "id", headerName: "ID", width: 70 },
+      { field: "id", headerName: "ID", headerAlign: 'center', width: 70 },
       {
         field: "workerFullName",
         headerName: "שם עובד",
-        width: 120,          
+        width: 120,
+        align: "center",
+        headerAlign: 'center',          
         editable: true,
       },
       {
         field: "month",
         headerName: "עבור חודש",
+        align: "center",
+        headerAlign: 'center',
         width: 100,
         editable: true,
       },
@@ -111,11 +115,15 @@ const WorkerPage = ({ salaries, worker }) => {
         field: "hours",
         headerName: "מס' שעות",
         width: 90,
+        align: "center",
+        headerAlign: 'center',
         editable: true,
       },
       {
         field: "extraHours",
         headerName: "שעות נוספות",
+        align: "center",
+        headerAlign: 'center',
         // type: 'number',
         width: 90,
         editable: true,
@@ -124,6 +132,8 @@ const WorkerPage = ({ salaries, worker }) => {
       {
         field: "amount",
         headerName: "סכום מלא",
+        align: "center",
+        headerAlign: 'center',
         width: 80,
         editable: true,
       },
@@ -186,9 +196,9 @@ const WorkerPage = ({ salaries, worker }) => {
             <h1 className='text-lg font-semibold'>טלפון : <span className='text-sm'>{worker?.phoneNumber}</span></h1>
             <h1 className='text-lg font-semibold'>התחלת עבודה : <span className='text-sm'>{worker?.startedAt}</span></h1>
             <h1 className='text-lg font-semibold'>שכר שעתי : <span className='text-sm'>{worker?.salaryPerHour}</span></h1>
-            <div className="flex space-x-3">
-            <h1 className="bg-slate-100 rounded-md px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
-              Disable Worker
+            <div className="flex space-x-3" onClick={()=> router.back()}>
+            <h1 className="bg-slate-100 rounded-md mr-3 px-4 py-2 text-blue-700 hover:text-blue-300 cursor-pointer">
+              חזרה לעובדים
             </h1>
           </div>
         </div>

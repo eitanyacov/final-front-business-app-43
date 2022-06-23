@@ -16,6 +16,10 @@ export default function Home() {
     const result = JSON.parse(res)
     setUser(result)
     }, [])
+    if (typeof window === 'object') {
+      // mark that the app was server-side rendered
+      window.__WAS_SSR = true
+    }
    return (
     <div>
       <Head>
