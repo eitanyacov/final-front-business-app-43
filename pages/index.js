@@ -11,15 +11,13 @@ import TopBoxes from "../components/TopBoxes";
 export default function Home() {
   const [user, setUser] = useState({})
   const router = useRouter();
+  
   useEffect(()=> {
     let res = localStorage.getItem("user")
     const result = JSON.parse(res)
     setUser(result)
     }, [])
-    if (typeof window === 'object') {
-      // mark that the app was server-side rendered
-      window.__WAS_SSR = true
-    }
+    
    return (
     <div>
       <Head>

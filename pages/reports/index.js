@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import SideBarPage from "../../components/SideBarPage";
-import { PieChart, Pie, Cell } from 'recharts';
+// import { PieChart, Pie, Cell } from 'recharts';
 import { AreaChart, LineChart, Area, defs, stop,  linearGradient, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-
-import axios from 'axios';
 import { useRouter } from "next/router";
-import PiesCharts from "../../components/PiesCharts";
+import BarCharts from "../../components/BarCharts";
 
 const Reports = () => {
   const [user, setUser] = useState({});
@@ -75,7 +73,7 @@ const Reports = () => {
       )}
 
         </div>
-        {!isSSR && <PiesCharts />}
+        {!isSSR && <BarCharts />}
       </div>
     </>
   );

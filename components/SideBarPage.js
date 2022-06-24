@@ -11,19 +11,57 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LogoutIcon from '@mui/icons-material/Logout';
+import axios from "axios";
 import { useRouter } from 'next/router'
 
 
 const SideBarPage = () => {
   const [checked, setChecked] = useState(false)
+  const [schedulers, setSchedulers] = useState([])
+  const [counter, setCounter] = useState() // not include schedulers before today
+  const [numsOfSchedulers, setNumsOfSchedulers] = useState()  // all the schedulars, even those in the past(not always we delete the past schedulers)
   const router = useRouter()
- 
+
   
+  useEffect(()=> {
+    axios.get(`http://localhost:8080/api/user/schedulers-by-user/38`)
+    .then(res => {setSchedulers(res.data), setNumsOfSchedulers(res.data.length)})
+    .catch(err => console.log(err))
+  }, [numsOfSchedulers])
+
+//  useEffect(()=> {
+//       const count = 0;
+//       schedulers.map(s => {
+//         if(s.id > 50) {
+//           count++
+//           setCounter(count)
+//         }
+        
+//       })
+//       console.log('count is: ' + counter)
+//  }, [schedulers])
+
+ useEffect(()=> {
+  const count = 0;
+  const todayScheduler = 0;
+  const now = new Date().getDate()
+  schedulers.map(s => {
+    if(now <= new Date(s.endDate).getDate()) {
+      count++
+      setCounter(count)
+    }
+    
+  })
+  console.log('count is: ' + counter)
+}, [schedulers])
+
+
   const handleChange = () => {
     setChecked(!checked)
 
   }
-
+  
+  console.log(counter)
   console.log(router.pathname)
   return (
     <div className="bg-gray-50 w-[80px] md:w-[200px] px-2 fixed min-h-screen border">
@@ -48,14 +86,17 @@ const SideBarPage = () => {
       <SideBar icon={MonetizationOnIcon} color="secondary" title="Daily Income" onClick={()=> router.push('/daily-income')}/>
       </div>
       <div className={router.asPath == "/invoice" ? "active" : ""}>
-      <SideBar icon={DescriptionIcon} color="secondary" title="Invoice" onClick={()=> router.push("/invoice")}/>
+      <SideBar icon={DescriptionIcon} color="secondary" title="Invoices" onClick={()=> router.push("/invoice")}/>
       </div>
       <div className={router.asPath == "/workers" ? "active" : ""}>
       <SideBar icon={PeopleOutlineIcon} color="secondary" title="Workers" onClick={()=> router.push('/workers')}/> 
       </div>
       <h1 className="text-gray-600 text-sm font-semibold">Services</h1>
-      <div className={router.asPath == "/scheduler" ? "active" : ""}>
+      <div className={router.asPath == "/scheduler" ? "active1" : "flex items-center justify-between pr-3"}>
       <SideBar icon={CalendarMonthIcon} color="secondary" title="Calendar" onClick={()=> router.push("/scheduler")}/>
+      <div className="flex w-6 h-6 bg-blue-400 animate-pulse rounded-full justify-center items-center">
+        <h1 className="text-white font-mono">{counter}</h1>
+      </div>
       </div>
       <div className={router.asPath == "/tasks" ? "active" : ""}>
       <SideBar icon={AssignmentIcon} color="secondary" title="Tasks" onClick={()=> router.push("/tasks")}/>
@@ -99,8 +140,11 @@ const SideBarPage = () => {
       <SideBar icon={PeopleOutlineIcon} color="secondary" title="עובדים" onClick={()=> router.push('/workers')}/> 
       </div>
       <h1 className="text-gray-600 text-sm font-semibold">שירותים</h1>
-      <div className={router.asPath == "/scheduler" ? "active" : ""}>
+      <div className={router.asPath == "/scheduler" ? "active1" : "flex items-center justify-between pr-3"}>
       <SideBar icon={CalendarMonthIcon} color="secondary" title="יומן פגישות" onClick={()=> router.push("/scheduler")}/>
+      <div className="flex w-6 h-6 bg-blue-400 animate-pulse rounded-full justify-center items-center">
+        <h1 className="text-white font-mono">{counter}</h1>
+      </div>
       </div>
       <div className={router.asPath == "/tasks" ? "active" : ""}>
       <SideBar icon={AssignmentIcon} color="secondary" title="משימות / תזכורות" onClick={()=> router.push("/tasks")}/>

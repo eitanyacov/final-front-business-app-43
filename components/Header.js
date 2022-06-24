@@ -12,8 +12,12 @@ const Header = () => {
   const router = useRouter();
   const [user, setUser] = useState({})
   const [open, setOpen] = useState(false)
+  const [isSSR, setIsSSR] = useState(true);
   const [urgentTasks, setUrgentTasks] = useState()
   
+  useEffect(() => {
+    setIsSSR(false);
+  }, []);
   
   useEffect(()=> {
     const res = localStorage.getItem("user")
@@ -46,20 +50,35 @@ const Header = () => {
     <div className="w-full shadow-md bg-white sticky top-0 z-50">
       <div className="flex justify-between h-14 max-w-6xl mx-auto px-3">
         <Link href="/">
-          <div className="flex items-center cursor-pointer">
+          <div className="flex items-center cursor-pointer space-x-12">
             <img
               src="https://www.tobiipro.com/imagevault/publishedmedia/9f5pqmy21ou5wpmv3s9l/TobiiPro-Colorlogo-TransparentBackground-818x300.png?download=1"
               width={100}
             />
+            {router.pathname == '/' && (
+              !isSSR && (
+                <div className='flex items-center space-x-5 bg-white w-fit h-fit shadow-md rounded-xl py-1 px-4'>
+                  <h1 className='text-gray-900 text-xl font-mono'>{new Date().toLocaleDateString()}</h1>
+                  <h1 className='text-blue-900 text-lg font-mono'>{new Date().toLocaleTimeString()}</h1>
+               </div>
+              )
+            )}
           </div>
-          
         </Link>
+       
         <div className="flex items-center justify-center space-x-5">
+        
           {router.pathname.startsWith('/suppliers') && (
-            <h1 className='mr-6 text-green-600'>לחץ לחיצה כפולה על השדה שברצונך לעדכן</h1>
+            <h1 className='mr-6 text-green-700 font-mono'>לחץ לחיצה כפולה על השדה שברצונך לעדכן</h1>
+          )}
+          {router.pathname.startsWith('/daily-income') && (
+            <h1 className='mr-6 text-green-700 font-mono'>לחץ לחיצה כפולה על השדה שברצונך לעדכן</h1>
           )}
           {router.pathname == '/invoice' && (
-            <h1 className='mr-6 text-green-600'>לחץ לחיצה כפולה על השדה שברצונך לעדכן</h1>
+            <h1 className='mr-4 text-green-700 font-mono'>לחץ לחיצה כפולה על השדה שברצונך לעדכן</h1>
+          )}
+          {router.pathname.startsWith('/workers') && (
+            <h1 className='mr-[1px] text-green-700 font-mono'>לחיצה כפולה על השדה שברצונך לעדכן</h1>
           )}
       
           {/* <a href="/"> */}
@@ -89,9 +108,9 @@ const Header = () => {
                 </div>
                  )}
                  {router.pathname == "/workers" && (
-                  <div className='flex items-center space-x-14'>
-                  <div className='flex items-center justify-center bg-green-400 rounded-full px-3 py-1 cursor-pointer hover:bg-green-300' onClick={()=> router.push('/salaries')}>
-                    <h1 className='text-blue-700 font-semibold'> משכורות כל העובדים</h1>
+                  <div className='flex items-center space-x-4'>
+                  <div className='flex items-center justify-center w-fit h-fit bg-green-400 rounded-full px-3 py-1 cursor-pointer hover:bg-green-300' onClick={()=> router.push('/salaries')}>
+                    <h1 className='text-blue-700 font-semibold text-sm'>כל המשכורות</h1>
                   </div>
                 <div className="flex items-center space-x-2" onClick={()=> router.push("/add-worker")}>
                    <div className="flex justify-center items-center bg-orange-400 h-8 w-8 rounded-full hover:scale-125 ease-out transition-all duration-125 hover:bg-orange-300">

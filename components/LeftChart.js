@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import PiesCharts from "./PiesCharts";
+
 
 const LeftChart = () => {
   const percentage = 66;
+
 
   // const [isSSR, setIsSSR] = useState(true);
 
@@ -60,11 +61,11 @@ const LeftChart = () => {
             text={`${percentage}%`}
             strokeWidth={4}
           />
+         
         </div>
       </div>
       <div className="flex-col">
-        {/* {!isSSR && <PiesCharts />} */}
-        
+    
         <h1 className="mt-3 text-xs text-gray-500 md:text-sm md:mt-8">
           previous transaction processing last payment may no be included
         </h1>

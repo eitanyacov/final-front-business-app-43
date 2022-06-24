@@ -26,6 +26,7 @@ const RightChart = () => {
     setUser(result);
   }, []);
 
+  // const currentYear = new Date().getFullYear();
   
   useEffect(()=> {
     const id = user?.id
@@ -136,7 +137,7 @@ const RightChart = () => {
     
   ];
 
-
+  
   return (
     <div className="hidden md:block md:col-span-4 bg-white md:w-[680px] md:h-[400px] shadow-2xl rounded-lg border border-gray-300 py-5 overflow-hidden flex-1">
       <div className="flex justify-center space-x-5 mb-2">

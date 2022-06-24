@@ -48,24 +48,7 @@ const SchedulerPage = () => {
     .then(res => {setSchedulers(res.data), console.log(res.data)})
     .catch(err => console.log(err))
   }, [user?.id])
-  // const currentDate = "2018-11-01";
-  // const currentDate = new Date()
-  // const schedulerData = [
-  //   {
-  //     id: 1,
-  //     startDate: "2022-06-14T07:45",
-  //     endDate: "2022-06-14T08:45",
-  //     title: "Meeting",
-  //     notes: "do some stuff"
-  //   },
-  //   {
-  //     id: 2,
-  //     startDate: "2022-06-12T09:00",
-  //     endDate: "2022-06-12T10:45",
-  //     title: "go to the gym",
-  //     notes: "do some stuff"
-  //   },
-  // ];
+ 
   const dragDisableIds = new Set([3, 8, 10, 12]);
 
   const allowDrag = ({ id }) => !dragDisableIds.has(id);

@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+    .active1 {
+        @apply bg-gray-200 rounded-lg flex items-center justify-between pr-3
+    }
+
     .active {
         @apply bg-gray-200 rounded-lg
     }

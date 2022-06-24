@@ -2,7 +2,7 @@ import React from 'react'
 // import { PieChart, Pie, Cell } from 'recharts';
 import {BarChart, CartesianGrid, YAxis, XAxis, Tooltip, Bar, Legend } from 'recharts';
 
-const PiesCharts = () => {
+const BarCharts = () => {
     const colors = ['red', 'green', 'blue', 'yellow', 'pink', 'black']
     const data = [
       {
@@ -53,7 +53,7 @@ const PiesCharts = () => {
          }
        </Pie>
      </PieChart> */}
-     <BarChart width={1050} height={250} data={data} margin={{right: 30, top: 10}}>
+     <BarChart width={1050} height={250} data={data} margin={{right: 30, top: 20}}>
   <CartesianGrid strokeDasharray="3 3" />
   <XAxis dataKey="name" />
   <YAxis />
@@ -70,4 +70,4 @@ const PiesCharts = () => {
  
 }
 
-export default PiesCharts
+export default BarCharts
